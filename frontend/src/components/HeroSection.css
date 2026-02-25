@@ -1,0 +1,221 @@
+/* ─────────────────────────────────────────────
+   Hero Section
+───────────────────────────────────────────── */
+.hero {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 80px 24px 120px;
+  text-align: center;
+}
+
+.hero__inner {
+  max-width: 760px;
+  width: 100%;
+}
+
+/* Eyebrow */
+.hero__eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.hero__eyebrow-text {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  white-space: nowrap;
+}
+
+.hero__line {
+  display: block;
+  flex: 1;
+  max-width: 80px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold));
+}
+
+.hero__line:last-child {
+  background: linear-gradient(to left, transparent, var(--gold));
+}
+
+/* Title */
+.hero__title {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  color: var(--white);
+  margin-bottom: 28px;
+}
+
+.hero__title em {
+  font-style: italic;
+  color: var(--gold);
+  font-weight: 300;
+}
+
+/* Subtitle */
+.hero__subtitle {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+  margin-bottom: 52px;
+}
+
+/* CTA Button */
+.hero__actions {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 72px;
+}
+
+.hero__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 44px;
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background var(--transition-base), color var(--transition-base),
+    box-shadow var(--transition-base), transform var(--transition-base);
+  outline: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero__cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+  z-index: 0;
+}
+
+.hero__cta:hover::before {
+  transform: scaleX(1);
+}
+
+.hero__cta span,
+.hero__cta svg {
+  position: relative;
+  z-index: 1;
+}
+
+.hero__cta:hover {
+  color: var(--bg-deep);
+}
+
+.hero__cta-arrow {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+
+.hero__cta:hover .hero__cta-arrow {
+  transform: translateY(3px);
+}
+
+/* Stats row */
+.hero__stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  flex-wrap: wrap;
+}
+
+.hero__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 40px;
+}
+
+.hero__stat-value {
+  font-family: var(--font-serif);
+  font-size: 1.9rem;
+  font-weight: 400;
+  color: var(--white);
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+.hero__stat-label {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+  margin-top: 6px;
+}
+
+.hero__stat-sep {
+  width: 1px;
+  height: 40px;
+  background: var(--glass-border);
+}
+
+/* Scroll Indicator */
+.hero__scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero__scroll-dot {
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  opacity: 0.6;
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); opacity: 0.6; }
+  50% { transform: translateY(10px); opacity: 0.2; }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .hero__stat {
+    padding: 0 20px;
+  }
+  .hero__stat-value {
+    font-size: 1.4rem;
+  }
+  .hero__stats {
+    gap: 8px;
+  }
+}
