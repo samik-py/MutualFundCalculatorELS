@@ -207,7 +207,131 @@
   50% { transform: translateY(10px); opacity: 0.2; }
 }
 
+/* ── About Section ── */
+.hero__about {
+  width: 100%;
+  max-width: 960px;
+  padding: 80px 24px 100px;
+  text-align: center;
+}
+
+.hero__about-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.hero__about-body {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.9;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+  max-width: 680px;
+  margin: 0 auto 60px;
+}
+
+/* Feature cards */
+.hero__features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 52px;
+  text-align: left;
+}
+
+.hero__feature {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 12px;
+  padding: 28px 24px;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.hero__feature:hover {
+  border-color: rgba(209, 161, 83, 0.3);
+  transform: translateY(-3px);
+}
+
+.hero__feature-icon {
+  width: 36px;
+  height: 36px;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+.hero__feature-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.hero__feature-title {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--white);
+  letter-spacing: 0.02em;
+  margin-bottom: 10px;
+}
+
+.hero__feature-desc {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--text-subtle);
+  letter-spacing: 0.02em;
+}
+
+/* Tech stack pills */
+.hero__stack {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 52px;
+}
+
+.hero__stack-label {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+  margin-right: 4px;
+}
+
+.hero__stack-pill {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  border: 1px solid rgba(103, 232, 249, 0.25);
+  border-radius: 4px;
+  padding: 4px 12px;
+}
+
+/* Second CTA at bottom of about */
+.hero__cta--bottom {
+  margin: 0 auto;
+}
+
 /* Responsive */
+@media (max-width: 760px) {
+  .hero__features {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 600px) {
   .hero__stat {
     padding: 0 20px;

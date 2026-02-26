@@ -1,45 +1,15 @@
-import { useEffect } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './App.css'
-import FlowFieldBackground from './components/ui/FlowFieldBackground'
-import Navbar from './components/Navbar'
-import TickerTape from './components/TickerTape'
-import HeroSection from './components/HeroSection'
-import PredictorForm from './components/PredictorForm'
-import AISection from './components/AISection'
-
-function useScrollReveal() {
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible')
-          }
-        })
-      },
-      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
-    )
-
-    const elements = document.querySelectorAll('.reveal')
-    elements.forEach((el) => observer.observe(el))
-
-    return () => observer.disconnect()
-  }, [])
-}
+import LandingPage from './pages/LandingPage'
+import PredictorPage from './pages/PredictorPage'
 
 export default function App() {
-  useScrollReveal()
-
   return (
-    <>
-      <FlowFieldBackground />
-      <Navbar />
-      <TickerTape />
-      <main>
-        <HeroSection />
-        <PredictorForm />
-        <AISection />
-      </main>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/predictor" element={<PredictorPage />} />
+      </Routes>
+    </BrowserRouter>
   )
 }

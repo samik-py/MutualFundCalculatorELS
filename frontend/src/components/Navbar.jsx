@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import './Navbar.css'
 
 const NAV_LINKS = ['Markets', 'Insights', 'Funds', 'About']
@@ -16,13 +17,13 @@ export default function Navbar() {
     <nav className={`navbar${scrolled ? ' navbar--scrolled' : ''}`}>
       <div className="navbar__inner">
         {/* Left: GS monogram + wordmark */}
-        <div className="navbar__brand">
+        <Link to="/" className="navbar__brand">
           <div className="navbar__monogram">GS</div>
           <div className="navbar__wordmark">
             <span className="navbar__wordmark-main">Goldman Sachs</span>
             <span className="navbar__wordmark-sub">Asset Management</span>
           </div>
-        </div>
+        </Link>
 
         {/* Right: nav links */}
         <ul className="navbar__links">
@@ -32,9 +33,9 @@ export default function Navbar() {
             </li>
           ))}
           <li>
-            <a href="#calculator" className="navbar__link navbar__link--cta">
+            <Link to="/predictor" className="navbar__link navbar__link--cta">
               Get Started
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
