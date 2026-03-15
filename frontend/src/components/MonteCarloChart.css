@@ -1,0 +1,218 @@
+/* ─────────────────────────────────────────────
+   Monte Carlo Chart
+───────────────────────────────────────────── */
+.mc-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.mc-intro {
+  background: rgba(103, 232, 249, 0.03);
+  border: 1px solid rgba(103, 232, 249, 0.1);
+  border-radius: 12px;
+  padding: 24px 28px;
+}
+
+.mc-intro__title {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: var(--cyan);
+  margin-bottom: 10px;
+}
+
+.mc-intro__body {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+.mc-controls {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 36px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  transition: border-color var(--transition-base);
+}
+
+.mc-controls:hover {
+  border-color: var(--glass-border-hover);
+}
+
+.mc-row {
+  display: flex;
+  gap: 28px;
+  align-items: flex-end;
+}
+
+.mc-field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 140px;
+}
+
+.mc-field--grow {
+  flex: 1;
+}
+
+.mc-error {
+  font-size: 0.8rem;
+  color: #f87171;
+}
+
+/* Chart area */
+.mc-chart-area {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 36px 32px;
+  animation: resultReveal 0.5s ease forwards;
+}
+
+.mc-chart-header {
+  margin-bottom: 24px;
+}
+
+.mc-chart-title {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+
+.mc-chart-subtitle {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-weight: 300;
+}
+
+/* Summary cards */
+.mc-summary {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px;
+  background: var(--glass-border);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 28px;
+}
+
+.mc-summary-item {
+  background: rgba(4, 16, 36, 0.6);
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mc-summary-item--main {
+  background: rgba(209, 161, 83, 0.06);
+}
+
+.mc-summary-label {
+  font-size: 0.64rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+}
+
+.mc-summary-val {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 300;
+}
+
+.mc-summary-val--low  { color: #94a3b8; }
+.mc-summary-val--med  { color: var(--gold); }
+.mc-summary-val--high { color: #5de89e; }
+
+/* Tooltip */
+.mc-tooltip {
+  background: rgba(4, 16, 36, 0.95);
+  border: 1px solid rgba(209, 161, 83, 0.2);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 0.8rem;
+  min-width: 190px;
+}
+
+.mc-tooltip__year {
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+  margin-bottom: 8px;
+}
+
+.mc-tooltip__row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 0;
+}
+
+.mc-tooltip__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.mc-tooltip__label {
+  flex: 1;
+  color: var(--text-muted);
+}
+
+.mc-tooltip__val {
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  color: var(--white);
+}
+
+/* Legend */
+.mc-legend {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--glass-border);
+}
+
+.mc-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.mc-legend-band {
+  width: 20px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+.mc-legend-band--outer { background: rgba(209, 161, 83, 0.12); border: 1px dashed rgba(209,161,83,0.4); }
+.mc-legend-band--inner { background: rgba(209, 161, 83, 0.22); }
+
+.mc-legend-line {
+  width: 20px;
+  height: 2px;
+  background: var(--gold);
+  border-radius: 1px;
+}
+
+@media (max-width: 640px) {
+  .mc-controls { padding: 24px 20px; }
+  .mc-row { flex-direction: column; gap: 20px; }
+  .mc-summary { grid-template-columns: 1fr; }
+}

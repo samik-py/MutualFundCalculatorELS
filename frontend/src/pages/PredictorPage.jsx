@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar'
 import TickerTape from '../components/TickerTape'
 import PredictorForm from '../components/PredictorForm'
 import AISection from '../components/AISection'
+import GroundTruth from '../components/GroundTruth'
 
 function useScrollReveal() {
   useEffect(() => {
@@ -33,6 +34,7 @@ export default function PredictorPage() {
       <TickerTape />
       <main>
         <PredictorForm />
+        <GroundTruth />
         <AISection />
       </main>
     </>

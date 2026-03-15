@@ -159,8 +159,13 @@
   color: var(--white);
 }
 
-.navbar__link:hover::after {
+.navbar__link:hover::after,
+.navbar__link--active::after {
   transform: scaleX(1);
+}
+
+.navbar__link--active {
+  color: var(--white);
 }
 
 /* CTA link */

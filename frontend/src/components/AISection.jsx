@@ -1,73 +1,45 @@
 import { useState } from 'react'
+import { getAIPortfolio } from '../services/api'
 import './AISection.css'
 
-// Mock AI responses based on risk profile keywords
-const MOCK_RESPONSES = {
-  aggressive: {
-    allocation: [
-      { name: 'Fidelity Growth Company (FDGRX)', pct: 40, color: '#d1a153' },
-      { name: 'T. Rowe Price Blue Chip (TRBCX)', pct: 30, color: '#67e8f9' },
-      { name: 'Vanguard 500 Index (VFIAX)', pct: 20, color: '#a78bfa' },
-      { name: 'PIMCO Total Return (PTTRX)', pct: 10, color: 'rgba(255,255,255,0.3)' },
-    ],
-    summary:
-      'High-growth portfolio optimized for long-term capital appreciation. Weighted heavily toward equity growth funds with minimal fixed-income exposure. Suitable for a 10+ year horizon with tolerance for 20–35% drawdowns.',
-    expectedReturn: '12.4%',
-    riskLevel: 'High',
-  },
-  moderate: {
-    allocation: [
-      { name: 'Vanguard 500 Index (VFIAX)', pct: 40, color: '#d1a153' },
-      { name: 'Schwab Total Market (SWTSX)', pct: 25, color: '#67e8f9' },
-      { name: 'T. Rowe Price Blue Chip (TRBCX)', pct: 20, color: '#a78bfa' },
-      { name: 'PIMCO Total Return (PTTRX)', pct: 15, color: 'rgba(255,255,255,0.3)' },
-    ],
-    summary:
-      'Balanced portfolio designed for steady growth with moderate volatility. Broad equity exposure balanced with fixed-income stability. Suitable for a 5–10 year horizon with tolerance for 10–20% drawdowns.',
-    expectedReturn: '9.8%',
-    riskLevel: 'Moderate',
-  },
-  conservative: {
-    allocation: [
-      { name: 'PIMCO Total Return (PTTRX)', pct: 45, color: '#67e8f9' },
-      { name: 'Vanguard 500 Index (VFIAX)', pct: 30, color: '#d1a153' },
-      { name: 'Schwab Total Market (SWTSX)', pct: 15, color: '#a78bfa' },
-      { name: 'Fidelity Growth Company (FDGRX)', pct: 10, color: 'rgba(255,255,255,0.3)' },
-    ],
-    summary:
-      'Capital-preservation portfolio prioritizing income stability. Bond-heavy allocation minimizes equity volatility while maintaining modest growth potential. Suitable for shorter horizons or near-retirement investors.',
-    expectedReturn: '6.1%',
-    riskLevel: 'Low',
-  },
-}
+const COLORS = ['#d1a153', '#67e8f9', '#a78bfa', 'rgba(255,255,255,0.3)']
 
-function classifyInput(text) {
-  const lower = text.toLowerCase()
-  if (lower.includes('aggressive') || lower.includes('high risk') || lower.includes('growth') || lower.includes('long term') || lower.includes('young')) {
-    return 'aggressive'
-  }
-  if (lower.includes('conservative') || lower.includes('low risk') || lower.includes('safe') || lower.includes('retire') || lower.includes('preserv')) {
-    return 'conservative'
-  }
-  return 'moderate'
+function riskColor(level) {
+  const l = (level || '').toLowerCase()
+  if (l === 'high') return '#f97316'
+  if (l === 'low') return '#5de89e'
+  return '#67e8f9'
 }
 
 export default function AISection() {
   const [prompt, setPrompt] = useState('')
   const [response, setResponse] = useState(null)
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
 
-  const handleGenerate = () => {
+  const handleGenerate = async () => {
     if (!prompt.trim()) return
     setLoading(true)
     setResponse(null)
-
-    // Simulate API latency
-    setTimeout(() => {
-      const profile = classifyInput(prompt)
-      setResponse(MOCK_RESPONSES[profile])
+    setError(null)
+    try {
+      const data = await getAIPortfolio(prompt)
+      // Backend returns { allocation: [{name, pct}], summary, expectedReturn }
+      // Attach colors for display
+      const enriched = {
+        ...data,
+        allocation: data.allocation.map((item, i) => ({
+          ...item,
+          color: COLORS[i % COLORS.length],
+        })),
+        riskLevel: detectRisk(prompt),
+      }
+      setResponse(enriched)
+    } catch (e) {
+      setError('Unable to reach the portfolio service. Please try again.')
+    } finally {
       setLoading(false)
-    }, 1400)
+    }
   }
 
   return (
@@ -75,10 +47,10 @@ export default function AISection() {
       <div className="section-divider" />
       <div className="section">
         <div className="ai-header reveal">
-          <span className="ai-eyebrow">Goldman Sachs · AI & Innovation</span>
+          <span className="ai-eyebrow">Goldman Sachs · AI &amp; Innovation</span>
           <h2 className="ai-title">Portfolio Optimization</h2>
           <p className="ai-subtitle">
-            Describe your investment goals and risk tolerance. Our AI engine will
+            Describe your investment goals and risk tolerance. Our engine will
             recommend an optimal fund allocation for your profile.
           </p>
         </div>
@@ -115,7 +87,7 @@ export default function AISection() {
             {loading ? (
               <>
                 <span className="ai-spinner" />
-                <span>Analyzing Profile...</span>
+                <span>Analyzing Profile…</span>
               </>
             ) : (
               <>
@@ -128,12 +100,17 @@ export default function AISection() {
             )}
           </button>
 
+          {error && <p className="ai-error">{error}</p>}
+
           {/* ── AI Response ── */}
           {response && (
             <div className="ai-result">
               <div className="ai-result__header">
                 <div className="ai-result__badge">
-                  <span className="ai-result__risk" data-level={response.riskLevel.toLowerCase()}>
+                  <span
+                    className="ai-result__risk"
+                    style={{ color: riskColor(response.riskLevel) }}
+                  >
                     {response.riskLevel} Risk
                   </span>
                   <span className="ai-result__return">
@@ -163,7 +140,8 @@ export default function AISection() {
               <p className="ai-result__summary">{response.summary}</p>
 
               <p className="result-disclaimer" style={{ marginTop: '16px' }}>
-                * Methodology sourced from Goldman Sachs Investment Research. AI recommendations are illustrative only and do not constitute financial advice.
+                * Methodology sourced from Goldman Sachs Investment Research. Recommendations
+                are illustrative only and do not constitute financial advice.
               </p>
             </div>
           )}
@@ -182,4 +160,11 @@ export default function AISection() {
       </footer>
     </section>
   )
+}
+
+function detectRisk(prompt) {
+  const lower = prompt.toLowerCase()
+  if (lower.includes('aggressive') || lower.includes('high risk') || lower.includes('growth') || lower.includes('long term') || lower.includes('young')) return 'High'
+  if (lower.includes('conservative') || lower.includes('low risk') || lower.includes('safe') || lower.includes('retire') || lower.includes('preserv')) return 'Low'
+  return 'Moderate'
 }

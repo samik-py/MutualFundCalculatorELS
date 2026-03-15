@@ -1,0 +1,120 @@
+/* ─────────────────────────────────────────────
+   Compare Page
+───────────────────────────────────────────── */
+.cp-hero {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(to bottom, rgba(103,232,249,0.03) 0%, transparent 100%);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.cp-hero__inner {
+  text-align: center;
+  padding: 20px 0 0;
+}
+
+.cp-hero__title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 300;
+  color: var(--white);
+  letter-spacing: 0.02em;
+  margin: 14px 0 16px;
+}
+
+.cp-hero__subtitle {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  font-weight: 300;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.75;
+}
+
+/* Sections */
+.cp-section {
+  position: relative;
+  z-index: 1;
+}
+
+.cp-section-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.cp-section-num {
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  font-weight: 300;
+  color: rgba(209, 161, 83, 0.25);
+  line-height: 1;
+  flex-shrink: 0;
+  padding-top: 4px;
+}
+
+.cp-section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 300;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.cp-section-sub {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  font-weight: 300;
+  line-height: 1.65;
+  max-width: 560px;
+}
+
+/* Footer */
+.app-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 48px;
+  border-top: 1px solid var(--glass-border);
+  background: rgba(4, 16, 36, 0.6);
+}
+
+.app-footer__gs {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.app-footer__monogram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid rgba(209, 161, 83, 0.4);
+  font-family: var(--font-serif);
+  font-size: 0.75rem;
+  color: var(--gold);
+}
+
+.app-footer__brand {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.app-footer__copy {
+  font-size: 0.68rem;
+  color: var(--text-subtle);
+}
+
+@media (max-width: 640px) {
+  .app-footer {
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px 24px;
+    text-align: center;
+  }
+}

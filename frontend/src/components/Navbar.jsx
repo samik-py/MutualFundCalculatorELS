@@ -1,11 +1,16 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import './Navbar.css'
 
-const NAV_LINKS = ['Markets', 'Insights', 'Funds', 'About']
+const NAV_LINKS = [
+  { label: 'Predictor', to: '/predictor' },
+  { label: 'Compare', to: '/compare' },
+  { label: 'Portfolio', to: '/portfolio' },
+]
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
+  const location = useLocation()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -27,9 +32,14 @@ export default function Navbar() {
 
         {/* Right: nav links */}
         <ul className="navbar__links">
-          {NAV_LINKS.map((link) => (
-            <li key={link}>
-              <a href="#" className="navbar__link">{link}</a>
+          {NAV_LINKS.map(({ label, to }) => (
+            <li key={to}>
+              <Link
+                to={to}
+                className={`navbar__link${location.pathname === to ? ' navbar__link--active' : ''}`}
+              >
+                {label}
+              </Link>
             </li>
           ))}
           <li>

@@ -8,8 +8,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mfcalculator.dto.InvestmentRequest;
 import com.mfcalculator.dto.InvestmentResponse;
+import com.mfcalculator.service.CompareService;
 import com.mfcalculator.service.FinanceService;
 import com.mfcalculator.service.FundCatalogService;
+import com.mfcalculator.service.MonteCarloService;
 import com.mfcalculator.service.PortfolioService;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
@@ -30,10 +32,17 @@ class MutualFundControllerIntegrationTest {
         ticker -> 0.08
     );
 
+    CompareService compareService = new CompareService(financeService, fundCatalogService);
+    MonteCarloService monteCarloService = new MonteCarloService(financeService, ticker -> 1.2, fundCatalogService);
+
     MutualFundController controller = new MutualFundController(
         financeService,
         new PortfolioService(),
-        fundCatalogService
+        fundCatalogService,
+        compareService,
+        monteCarloService,
+        () -> 0.02,
+        () -> 0.08
     );
 
     MockMvc mockMvc = MockMvcBuilders
