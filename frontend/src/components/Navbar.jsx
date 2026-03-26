@@ -1,18 +1,18 @@
 import { useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import { useOnboarding } from './onboarding/OnboardingContext'
+import { Link } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext'
 import './Navbar.css'
 
-const NAV_LINKS = [
-  { label: 'Predictor', to: '/predictor' },
-  { label: 'Compare', to: '/compare' },
-  { label: 'Portfolio', to: '/portfolio' },
+const AUTH_NAV_LINKS = [
+  { label: 'Dashboard', to: '/dashboard' },
+  { label: 'My Portfolios', to: '/portfolios' },
+  { label: 'Compare Funds', to: '/compare' },
+  { label: 'Saved Charts', to: '/charts' },
 ]
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
-  const location = useLocation()
-  const { restart } = useOnboarding()
+  const { isAuthenticated, user, logout } = useAuth()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -34,26 +34,41 @@ export default function Navbar() {
 
         {/* Right: nav links */}
         <ul className="navbar__links">
-          {NAV_LINKS.map(({ label, to }) => (
-            <li key={to}>
-              <Link
-                to={to}
-                className={`navbar__link${location.pathname === to ? ' navbar__link--active' : ''}`}
-              >
-                {label}
-              </Link>
-            </li>
-          ))}
-          <li>
-            <button className="navbar__link navbar__link--tour" onClick={restart}>
-              Tour
-            </button>
-          </li>
-          <li>
-            <Link to="/predictor" className="navbar__link navbar__link--cta">
-              Get Started
-            </Link>
-          </li>
+          {isAuthenticated ? (
+            <>
+              {AUTH_NAV_LINKS.map(({ label, to }) => (
+                <li key={to}>
+                  <Link to={to} className="navbar__link">{label}</Link>
+                </li>
+              ))}
+              <li>
+                <Link to="/predictor" className="navbar__link navbar__link--cta">
+                  Get Started
+                </Link>
+              </li>
+              {user?.displayName && (
+                <li>
+                  <span className="navbar__display-name">{user.displayName}</span>
+                </li>
+              )}
+              <li>
+                <button className="navbar__link navbar__link--logout" onClick={logout}>
+                  Logout
+                </button>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <Link to="/login" className="navbar__link">Login</Link>
+              </li>
+              <li>
+                <Link to="/predictor" className="navbar__link navbar__link--cta">
+                  Get Started
+                </Link>
+              </li>
+            </>
+          )}
         </ul>
       </div>
 

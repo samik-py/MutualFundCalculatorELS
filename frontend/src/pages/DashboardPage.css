@@ -1,0 +1,298 @@
+/* Dashboard — glassmorphism cards, dark theme */
+
+.dashboard-page {
+  min-height: 100vh;
+  padding-top: 88px;
+}
+
+.dashboard-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.dashboard-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 300;
+  color: var(--white);
+  letter-spacing: 0.02em;
+  margin-bottom: 8px;
+}
+
+.dashboard-subtitle {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+.dashboard-filter {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.dashboard-filter__label {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+}
+
+.dashboard-filter__select {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  padding: 10px 36px 10px 12px;
+  cursor: pointer;
+  outline: none;
+  transition: border-color var(--transition-base);
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23888' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+
+.dashboard-filter__select:focus {
+  border-color: var(--gold);
+}
+
+.dashboard-filter__select option {
+  background: #0a1e3d;
+  color: var(--text-primary);
+}
+
+.dashboard-error {
+  background: rgba(220, 80, 80, 0.15);
+  border: 1px solid rgba(220, 80, 80, 0.4);
+  border-radius: 8px;
+  color: #f4a0a0;
+  padding: 14px 18px;
+  margin-bottom: 24px;
+  font-size: 0.9rem;
+}
+
+.dashboard-loading {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 48px 24px;
+}
+
+/* Empty state */
+.dashboard-empty {
+  text-align: center;
+  padding: 64px 24px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+}
+
+.dashboard-empty__text {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.dashboard-empty__hint {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+.dashboard-empty__cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 14px 28px;
+  background: var(--gold);
+  border-radius: 4px;
+  color: #0a0a0a;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  transition: filter var(--transition-base), transform var(--transition-base);
+}
+
+.dashboard-empty__cta:hover {
+  filter: brightness(1.12);
+  transform: translateY(-2px);
+  color: #0a0a0a;
+}
+
+/* Summary cards */
+.dashboard-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.dashboard-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 28px 24px;
+  transition: border-color var(--transition-base);
+}
+
+.dashboard-card:hover {
+  border-color: var(--glass-border-hover);
+}
+
+.dashboard-card__label {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+  margin-bottom: 12px;
+}
+
+.dashboard-card__value {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 400;
+}
+
+.dashboard-card__value--primary {
+  color: var(--white);
+}
+
+.dashboard-card__value--positive {
+  color: #34d399;
+}
+
+.dashboard-card__value--negative {
+  color: #f87171;
+}
+
+/* Pie chart card */
+.dashboard-chart-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 28px 24px;
+  margin-bottom: 32px;
+}
+
+.dashboard-chart-title {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+  margin-bottom: 20px;
+}
+
+.dashboard-chart-card .recharts-legend-item-text {
+  fill: rgba(255, 255, 255, 0.9);
+}
+
+/* Table card */
+.dashboard-table-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 28px 24px;
+}
+
+.dashboard-table-wrap {
+  overflow-x: auto;
+}
+
+.dashboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.dashboard-table__th {
+  text-align: left;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+  padding: 12px 16px 12px 0;
+  border-bottom: 1px solid var(--glass-border);
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.dashboard-table__th:hover {
+  color: var(--gold);
+}
+
+.dashboard-table__sort {
+  margin-left: 4px;
+}
+
+.dashboard-table td {
+  padding: 14px 16px 14px 0;
+  border-bottom: 1px solid var(--glass-border);
+  color: var(--text-primary);
+}
+
+.dashboard-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.dashboard-table tbody tr:hover td {
+  background: var(--glass-bg-hover);
+}
+
+.dashboard-table__fund {
+  color: var(--white);
+  font-weight: 500;
+}
+
+.dashboard-table--positive {
+  color: #34d399;
+}
+
+.dashboard-table--negative {
+  color: #f87171;
+}
+
+@media (max-width: 768px) {
+  .dashboard-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-section {
+    padding: 32px 16px;
+  }
+
+  .dashboard-table__th,
+  .dashboard-table td {
+    padding: 10px 12px 10px 0;
+    font-size: 0.85rem;
+  }
+}

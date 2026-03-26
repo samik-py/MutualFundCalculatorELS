@@ -1,0 +1,403 @@
+import { useState, useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
+import Navbar from '../components/Navbar'
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from 'recharts'
+import { calculateFutureValue } from '../services/api'
+import { saveChart, getSavedChart } from '../services/chartApi'
+import '../components/PredictorForm.css'
+import './CompareChartsPage.css'
+
+const FUNDS = [
+  { id: 'vanguard-500', label: 'Vanguard 500 Index (VFIAX)' },
+  { id: 'fidelity-growth', label: 'Fidelity Growth Company (FDGRX)' },
+  { id: 'trowe-bluechip', label: 'T. Rowe Price Blue Chip (TRBCX)' },
+  { id: 'schwab-total', label: 'Schwab Total Market (SWTSX)' },
+  { id: 'pimco-total', label: 'PIMCO Total Return (PTTRX)' },
+]
+
+const LINE_COLORS = ['#d1a153', '#67e8f9', '#a78bfa', '#f87171', '#34d399']
+
+function formatCurrency(value) {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    maximumFractionDigits: 0,
+    minimumFractionDigits: 0,
+  }).format(value)
+}
+
+export default function CompareChartsPage() {
+  const [searchParams] = useSearchParams()
+  const [selectedIds, setSelectedIds] = useState(() => FUNDS.slice(0, 2).map((f) => f.id))
+  const [amount, setAmount] = useState('10000')
+  const [years, setYears] = useState(10)
+  const [chartData, setChartData] = useState(null)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
+  const [saveModalOpen, setSaveModalOpen] = useState(false)
+  const [saveTitle, setSaveTitle] = useState('')
+  const [saving, setSaving] = useState(false)
+  const [saveError, setSaveError] = useState(null)
+  const [shareStatus, setShareStatus] = useState('')
+
+  const runGenerate = async (fundIdList, principal, yearsVal) => {
+    const selected = FUNDS.filter((f) => fundIdList.includes(f.id))
+    if (selected.length < 2 || selected.length > 5 || !principal || principal <= 0) return
+    setLoading(true)
+    setError(null)
+    try {
+      const annualReturns = {}
+      for (const fund of selected) {
+        const res = await calculateFutureValue(fund.id, principal, yearsVal)
+        annualReturns[fund.id] = res.annualReturn
+      }
+      const data = []
+      for (let y = 0; y <= yearsVal; y++) {
+        const point = { year: y }
+        selected.forEach((f) => {
+          point[f.id] = Math.round(principal * Math.pow(1 + annualReturns[f.id], y))
+        })
+        data.push(point)
+      }
+      setChartData({ data, selectedFunds: selected })
+    } catch (e) {
+      setError(e.message)
+      setChartData(null)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const chartIdParam = searchParams.get('chartId')
+  const sharedFundIdsParam = searchParams.get('fundIds')
+  const sharedAmountParam = searchParams.get('amount')
+  const sharedYearsParam = searchParams.get('years')
+
+  useEffect(() => {
+    let cancelled = false
+
+    ;(async () => {
+      if (chartIdParam) {
+        try {
+          const saved = await getSavedChart(Number(chartIdParam))
+          if (cancelled) return
+          const ids = saved.fundIds.split(',').map((s) => s.trim()).filter(Boolean)
+          setSelectedIds(ids)
+          setAmount(String(saved.amount))
+          setYears(saved.timeHorizon)
+          await runGenerate(ids, saved.amount, saved.timeHorizon)
+        } catch (e) {
+          if (!cancelled) setError(e.message)
+        }
+        return
+      }
+
+      if (sharedFundIdsParam && sharedAmountParam && sharedYearsParam) {
+        try {
+          const ids = sharedFundIdsParam
+            .split(',')
+            .map((s) => s.trim())
+            .filter((id) => FUNDS.some((f) => f.id === id))
+          const parsedAmount = Number(sharedAmountParam)
+          const parsedYears = Number(sharedYearsParam)
+          if (ids.length >= 2 && ids.length <= 5 && parsedAmount > 0 && parsedYears >= 1 && parsedYears <= 30) {
+            if (cancelled) return
+            setSelectedIds(ids)
+            setAmount(String(parsedAmount))
+            setYears(parsedYears)
+            await runGenerate(ids, parsedAmount, parsedYears)
+          }
+        } catch (e) {
+          if (!cancelled) setError(e.message)
+        }
+      }
+    })()
+
+    return () => {
+      cancelled = true
+    }
+  }, [chartIdParam, sharedFundIdsParam, sharedAmountParam, sharedYearsParam])
+
+  const toggleFund = (id) => {
+    setSelectedIds((prev) => {
+      const next = prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+      if (next.length > 5) return prev
+      return next
+    })
+  }
+
+  const selectedFunds = FUNDS.filter((f) => selectedIds.includes(f.id))
+  const canGenerate = selectedFunds.length >= 2 && selectedFunds.length <= 5 && amount && parseFloat(amount) > 0
+
+  const sliderStyle = {
+    background: `linear-gradient(to right, var(--gold) 0%, var(--gold) ${((years - 1) / 29) * 100}%, rgba(255,255,255,0.12) ${((years - 1) / 29) * 100}%, rgba(255,255,255,0.12) 100%)`,
+  }
+
+  const handleGenerate = async () => {
+    if (!canGenerate) return
+    const principal = parseFloat(amount)
+    if (!principal || principal <= 0) return
+    await runGenerate(selectedIds, principal, years)
+  }
+
+  const handleOpenSaveModal = () => {
+    setSaveTitle('')
+    setSaveError(null)
+    setSaveModalOpen(true)
+  }
+
+  const handleSaveChart = async (e) => {
+    e.preventDefault()
+    const title = saveTitle.trim()
+    if (!title) return
+    setSaving(true)
+    setSaveError(null)
+    try {
+      await saveChart({
+        title,
+        fundIds: selectedIds.join(','),
+        timeHorizon: years,
+        amount: parseFloat(amount),
+      })
+      setSaveModalOpen(false)
+      setSaveTitle('')
+    } catch (e) {
+      setSaveError(e.message)
+    } finally {
+      setSaving(false)
+    }
+  }
+
+  const handleShareChart = async () => {
+    if (!chartData) return
+    const baseUrl = `${window.location.origin}/compare`
+    const shareUrl = `${baseUrl}?fundIds=${encodeURIComponent(selectedIds.join(','))}&amount=${encodeURIComponent(amount)}&years=${encodeURIComponent(String(years))}`
+
+    try {
+      await navigator.clipboard.writeText(shareUrl)
+      setShareStatus('Share link copied')
+      window.setTimeout(() => setShareStatus(''), 2500)
+    } catch {
+      setShareStatus(shareUrl)
+    }
+  }
+
+  return (
+    <>
+      <Navbar />
+      <main className="compare-charts-page">
+        <div className="compare-charts-section">
+          <header className="compare-charts-header">
+            <h1 className="compare-charts-title">Compare Fund Growth</h1>
+            <p className="compare-charts-subtitle">
+              Select 2-5 funds, set your investment and horizon, then generate a projected growth chart.
+            </p>
+          </header>
+
+          <div className="compare-charts-card">
+            <div className="field-group">
+              <label className="field-label">Select funds (2-5)</label>
+              <div className="compare-charts-checkboxes">
+                {FUNDS.map((f) => (
+                  <label key={f.id} className="compare-charts-checkbox">
+                    <input
+                      type="checkbox"
+                      checked={selectedIds.includes(f.id)}
+                      onChange={() => toggleFund(f.id)}
+                      disabled={!selectedIds.includes(f.id) && selectedIds.length >= 5}
+                    />
+                    <span className="compare-charts-checkbox-label">{f.label}</span>
+                  </label>
+                ))}
+              </div>
+              {selectedIds.length < 2 && <span className="field-hint">Select at least 2 funds.</span>}
+            </div>
+
+            <div className="field-group">
+              <label className="field-label">Initial Investment</label>
+              <div className="input-wrapper">
+                <span className="input-prefix">$</span>
+                <input
+                  className="field-input"
+                  type="number"
+                  min="0"
+                  step="1000"
+                  placeholder="10,000"
+                  value={amount}
+                  onChange={(e) => setAmount(e.target.value)}
+                />
+              </div>
+            </div>
+
+            <div className="field-group">
+              <div className="slider-header">
+                <label className="field-label">Time Horizon</label>
+                <span className="slider-value">
+                  <strong>{years}</strong> {years === 1 ? 'year' : 'years'}
+                </span>
+              </div>
+              <input
+                className="field-range"
+                type="range"
+                min="1"
+                max="30"
+                value={years}
+                style={sliderStyle}
+                onChange={(e) => setYears(parseInt(e.target.value, 10))}
+              />
+              <div className="slider-ticks">
+                <span>1yr</span>
+                <span>5yr</span>
+                <span>10yr</span>
+                <span>20yr</span>
+                <span>30yr</span>
+              </div>
+            </div>
+
+            {error && (
+              <div className="compare-charts-error" role="alert">
+                {error}
+              </div>
+            )}
+
+            <button
+              type="button"
+              className={`calc-button ${!canGenerate ? 'calc-button--disabled' : ''}`}
+              onClick={handleGenerate}
+              disabled={!canGenerate || loading}
+            >
+              {loading ? 'Generating...' : 'Generate Chart'}
+            </button>
+          </div>
+
+          {chartData && chartData.data.length > 0 && (
+            <>
+              <div className="compare-charts-save-row">
+                <button type="button" className="compare-charts-save-btn" onClick={handleOpenSaveModal}>
+                  Save This Chart
+                </button>
+                <button type="button" className="compare-charts-save-btn" onClick={handleShareChart}>
+                  Share Chart
+                </button>
+                {shareStatus && <span className="compare-charts-share-status">{shareStatus}</span>}
+              </div>
+              <div className="compare-charts-chart-wrap">
+                <ResponsiveContainer width="100%" height={420}>
+                  <LineChart data={chartData.data} margin={{ top: 16, right: 16, left: 8, bottom: 8 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
+                    <XAxis
+                      dataKey="year"
+                      stroke="rgba(255,255,255,0.7)"
+                      tick={{ fill: 'rgba(255,255,255,0.9)', fontSize: 12 }}
+                      tickLine={{ stroke: 'rgba(255,255,255,0.2)' }}
+                      axisLine={{ stroke: 'rgba(255,255,255,0.2)' }}
+                      label={{ value: 'Years', position: 'insideBottom', offset: -4, fill: 'rgba(255,255,255,0.7)' }}
+                    />
+                    <YAxis
+                      stroke="rgba(255,255,255,0.7)"
+                      tick={{ fill: 'rgba(255,255,255,0.9)', fontSize: 12 }}
+                      tickLine={{ stroke: 'rgba(255,255,255,0.2)' }}
+                      axisLine={{ stroke: 'rgba(255,255,255,0.2)' }}
+                      tickFormatter={(v) => formatCurrency(v)}
+                      label={{ value: 'Projected value', angle: -90, position: 'insideLeft', fill: 'rgba(255,255,255,0.7)' }}
+                    />
+                    <Tooltip
+                      contentStyle={{
+                        background: 'rgba(10, 30, 60, 0.95)',
+                        border: '1px solid rgba(255,255,255,0.15)',
+                        borderRadius: '8px',
+                        color: '#e8eaf0',
+                      }}
+                      labelStyle={{ color: 'rgba(255,255,255,0.9)' }}
+                      formatter={(value, name) => {
+                        const fund = chartData.selectedFunds.find((f) => f.id === name)
+                        return [formatCurrency(value), fund ? fund.label : name]
+                      }}
+                      labelFormatter={(label) => `Year ${label}`}
+                    />
+                    <Legend
+                      wrapperStyle={{ paddingTop: 16 }}
+                      formatter={(value) => {
+                        const fund = chartData.selectedFunds.find((f) => f.id === value)
+                        return fund ? fund.label : value
+                      }}
+                      iconType="line"
+                      iconSize={10}
+                      stroke="rgba(255,255,255,0.5)"
+                    />
+                    {chartData.selectedFunds.map((f, i) => (
+                      <Line
+                        key={f.id}
+                        type="monotone"
+                        dataKey={f.id}
+                        name={f.id}
+                        stroke={LINE_COLORS[i % LINE_COLORS.length]}
+                        strokeWidth={2}
+                        dot={false}
+                        activeDot={{ r: 4, strokeWidth: 0 }}
+                      />
+                    ))}
+                  </LineChart>
+                </ResponsiveContainer>
+              </div>
+            </>
+          )}
+
+          {saveModalOpen && (
+            <div
+              className="compare-charts-modal-backdrop"
+              onClick={() => !saving && setSaveModalOpen(false)}
+              role="presentation"
+            >
+              <div className="compare-charts-modal" onClick={(e) => e.stopPropagation()}>
+                <h3 className="compare-charts-modal__title">Save chart</h3>
+                <form onSubmit={handleSaveChart} className="compare-charts-modal__form">
+                  <label className="compare-charts-modal__label" htmlFor="chart-title">
+                    Title
+                  </label>
+                  <input
+                    id="chart-title"
+                    type="text"
+                    className="compare-charts-modal__input"
+                    value={saveTitle}
+                    onChange={(e) => setSaveTitle(e.target.value)}
+                    placeholder="e.g. Retirement comparison"
+                    autoFocus
+                    disabled={saving}
+                  />
+                  {saveError && <p className="compare-charts-modal__error" role="alert">{saveError}</p>}
+                  <div className="compare-charts-modal__actions">
+                    <button
+                      type="button"
+                      className="compare-charts-modal__btn compare-charts-modal__btn--cancel"
+                      onClick={() => !saving && setSaveModalOpen(false)}
+                      disabled={saving}
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      className="compare-charts-modal__btn compare-charts-modal__btn--submit"
+                      disabled={saving || !saveTitle.trim()}
+                    >
+                      {saving ? 'Saving...' : 'Save'}
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          )}
+        </div>
+      </main>
+    </>
+  )
+}

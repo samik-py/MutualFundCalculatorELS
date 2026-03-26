@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
-import FlowFieldBackground from '../components/ui/FlowFieldBackground'
+import Navbar from '../components/Navbar'
+import TickerTape from '../components/TickerTape'
 import HeroSection from '../components/HeroSection'
 
 function useScrollReveal() {
@@ -22,7 +23,8 @@ export default function LandingPage() {
 
   return (
     <>
-      <FlowFieldBackground />
+      <Navbar />
+      <TickerTape />
       <main>
         <HeroSection />
       </main>

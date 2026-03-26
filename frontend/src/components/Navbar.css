@@ -216,4 +216,34 @@
   color: var(--gold);
 }
 
+/* Display name */
+.navbar__display-name {
+  display: inline-block;
+  padding: 6px 10px;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: rgba(209, 161, 83, 0.8);
+  white-space: nowrap;
+}
 
+/* Logout button — matches link style */
+.navbar__link--logout {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Responsive — hide sub links on small screens */
+@media (max-width: 640px) {
+  .navbar__links li:not(:last-child) {
+    display: none;
+  }
+  .navbar__wordmark-sub {
+    display: none;
+  }
+  .navbar__inner {
+    padding: 0 20px;
+  }
+}
