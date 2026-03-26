@@ -1,4 +1,6 @@
 import { useEffect } from 'react'
+import Navbar from '../components/Navbar'
+import TickerTape from '../components/TickerTape'
 import PredictorForm from '../components/PredictorForm'
 import AISection from '../components/AISection'
 import GroundTruth from '../components/GroundTruth'
@@ -28,6 +30,8 @@ export default function PredictorPage() {
 
   return (
     <>
+      <Navbar />
+      <TickerTape />
       <main>
         <PredictorForm />
         <GroundTruth />
