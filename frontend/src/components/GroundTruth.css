@@ -6,6 +6,10 @@
   z-index: 1;
 }
 
+.gt-section .section {
+  max-width: 1200px;
+}
+
 .gt-header {
   text-align: center;
   margin-bottom: 56px;
@@ -222,3 +226,4 @@
     grid-column: 1 / -1;
   }
 }
+

@@ -101,7 +101,7 @@ export default function MonteCarloChart() {
   })
 
   return (
-    <div className="mc-wrapper">
+    <div className="mc-wrapper" data-tour="monte-carlo">
       <div className="mc-intro">
         <h3 className="mc-intro__title">Monte Carlo Predictive Model</h3>
         <p className="mc-intro__body">
@@ -115,9 +115,9 @@ export default function MonteCarloChart() {
       <div className="mc-controls">
         {/* Fund select */}
         <div className="field-group">
-          <label className="field-label">Fund</label>
+          <label className="field-label" htmlFor="mc-fund">Fund</label>
           <div className="select-wrapper">
-            <select className="field-select" value={fundId} onChange={e => setFundId(e.target.value)}>
+            <select id="mc-fund" className="field-select" value={fundId} onChange={e => setFundId(e.target.value)}>
               {allFunds.map(f => (
                 <option key={f.fundId} value={f.fundId}>{f.name} ({f.ticker})</option>
               ))}
@@ -131,10 +131,11 @@ export default function MonteCarloChart() {
         <div className="mc-row">
           {/* Amount */}
           <div className="mc-field">
-            <label className="field-label">Initial Investment</label>
+            <label className="field-label" htmlFor="mc-amount">Initial Investment</label>
             <div className="input-wrapper">
               <span className="input-prefix">$</span>
               <input
+                id="mc-amount"
                 className="field-input"
                 type="number" min="100" step="1000"
                 value={amount}
@@ -146,10 +147,11 @@ export default function MonteCarloChart() {
           {/* Years */}
           <div className="mc-field mc-field--grow">
             <div className="slider-header">
-              <label className="field-label">Horizon</label>
+              <label className="field-label" htmlFor="mc-years">Horizon</label>
               <span className="slider-value"><strong>{years}</strong> yr</span>
             </div>
             <input
+              id="mc-years"
               className="field-range" type="range" min="1" max="30" value={years}
               style={sliderStyle(years, 30)}
               onChange={e => setYears(Number(e.target.value))}
@@ -159,10 +161,11 @@ export default function MonteCarloChart() {
           {/* Simulations */}
           <div className="mc-field">
             <div className="slider-header">
-              <label className="field-label">Simulations</label>
+              <label className="field-label" htmlFor="mc-simulations">Simulations</label>
               <span className="slider-value"><strong>{simulations}</strong></span>
             </div>
             <input
+              id="mc-simulations"
               className="field-range" type="range" min="100" max="2000" step="100" value={simulations}
               style={sliderStyle(simulations, 2000)}
               onChange={e => setSimulations(Number(e.target.value))}

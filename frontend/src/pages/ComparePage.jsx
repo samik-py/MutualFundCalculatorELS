@@ -1,6 +1,4 @@
 import { useEffect } from 'react'
-import Navbar from '../components/Navbar'
-import TickerTape from '../components/TickerTape'
 import FundCompareChart from '../components/FundCompareChart'
 import MonteCarloChart from '../components/MonteCarloChart'
 import GroundTruth from '../components/GroundTruth'
@@ -22,8 +20,6 @@ export default function ComparePage() {
 
   return (
     <>
-      <Navbar />
-      <TickerTape />
       <main>
         {/* ── Page Header ── */}
         <section className="cp-hero">

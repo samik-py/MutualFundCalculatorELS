@@ -22,7 +22,7 @@ export default function GroundTruth() {
   const premium = rm - rf
 
   return (
-    <section className="gt-section">
+    <section className="gt-section" data-tour="ground-truth">
       <div className="section-divider" />
       <div className="section">
         <div className="gt-header reveal">

@@ -79,7 +79,7 @@ export default function PredictorForm() {
   const selectedFundObj = funds.find(f => f.fundId === selectedFund)
 
   return (
-    <section id="calculator" className="predictor-section">
+    <section id="calculator" className="predictor-section" data-tour="predictor-form">
       <div className="section">
         <div className="predictor-header reveal">
           <span className="predictor-eyebrow">Goldman Sachs · Quantitative Research</span>
@@ -93,9 +93,10 @@ export default function PredictorForm() {
         <div className="predictor-card reveal reveal-delay-1">
           {/* ── Fund Selector ── */}
           <div className="field-group">
-            <label className="field-label">Select Mutual Fund</label>
+            <label className="field-label" htmlFor="predictor-fund">Select Mutual Fund</label>
             <div className="select-wrapper">
               <select
+                id="predictor-fund"
                 className="field-select"
                 value={selectedFund}
                 disabled={fundsLoading}
@@ -124,10 +125,11 @@ export default function PredictorForm() {
 
           {/* ── Investment Amount ── */}
           <div className="field-group">
-            <label className="field-label">Initial Investment</label>
+            <label className="field-label" htmlFor="predictor-amount">Initial Investment</label>
             <div className="input-wrapper">
               <span className="input-prefix">$</span>
               <input
+                id="predictor-amount"
                 className="field-input"
                 type="number"
                 min="0"
@@ -145,12 +147,13 @@ export default function PredictorForm() {
           {/* ── Time Horizon Slider ── */}
           <div className="field-group">
             <div className="slider-header">
-              <label className="field-label">Time Horizon</label>
+              <label className="field-label" htmlFor="predictor-years">Time Horizon</label>
               <span className="slider-value">
                 <strong>{years}</strong> {years === 1 ? 'year' : 'years'}
               </span>
             </div>
             <input
+              id="predictor-years"
               className="field-range"
               type="range"
               min="1"

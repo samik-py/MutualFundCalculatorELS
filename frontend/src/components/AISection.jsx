@@ -43,7 +43,7 @@ export default function AISection() {
   }
 
   return (
-    <section className="ai-section">
+    <section className="ai-section" data-tour="ai-section">
       <div className="section-divider" />
       <div className="section">
         <div className="ai-header reveal">
@@ -57,8 +57,9 @@ export default function AISection() {
 
         <div className="ai-card reveal reveal-delay-1">
           <div className="ai-input-area">
-            <label className="field-label ai-label">Your Investment Profile</label>
+            <label className="field-label ai-label" htmlFor="ai-profile">Your Investment Profile</label>
             <textarea
+              id="ai-profile"
               className="ai-textarea"
               placeholder="e.g. I'm 28 years old, looking for aggressive long-term growth over 20 years. I can tolerate high volatility and market downturns..."
               value={prompt}

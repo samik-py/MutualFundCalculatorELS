@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { useOnboarding } from './onboarding/OnboardingContext'
 import './Navbar.css'
 
 const NAV_LINKS = [
@@ -11,6 +12,7 @@ const NAV_LINKS = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const location = useLocation()
+  const { restart } = useOnboarding()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -42,6 +44,11 @@ export default function Navbar() {
               </Link>
             </li>
           ))}
+          <li>
+            <button className="navbar__link navbar__link--tour" onClick={restart}>
+              Tour
+            </button>
+          </li>
           <li>
             <Link to="/predictor" className="navbar__link navbar__link--cta">
               Get Started

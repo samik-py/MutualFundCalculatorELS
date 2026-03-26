@@ -86,7 +86,7 @@ export default function FundCompareChart() {
   }
 
   return (
-    <div className="fcc-wrapper">
+    <div className="fcc-wrapper" data-tour="fund-compare">
       {/* Controls */}
       <div className="fcc-controls">
         {/* Fund selector */}
@@ -120,10 +120,11 @@ export default function FundCompareChart() {
         <div className="fcc-row">
           {/* Amount */}
           <div className="fcc-field fcc-field--sm">
-            <label className="field-label">Initial Investment</label>
+            <label className="field-label" htmlFor="fcc-amount">Initial Investment</label>
             <div className="input-wrapper">
               <span className="input-prefix">$</span>
               <input
+                id="fcc-amount"
                 className="field-input"
                 type="number"
                 min="100"
@@ -137,10 +138,11 @@ export default function FundCompareChart() {
           {/* Years */}
           <div className="fcc-field fcc-field--grow">
             <div className="slider-header">
-              <label className="field-label">Time Horizon</label>
+              <label className="field-label" htmlFor="fcc-years">Time Horizon</label>
               <span className="slider-value"><strong>{years}</strong> yr</span>
             </div>
             <input
+              id="fcc-years"
               className="field-range"
               type="range" min="1" max="30" value={years}
               style={sliderStyle}

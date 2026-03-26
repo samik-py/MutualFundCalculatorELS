@@ -172,7 +172,7 @@ export default function PortfolioBuilder() {
   const finalB = result?.rows?.[result.rows.length - 1]?.[result.nameB]
 
   return (
-    <div className="pb-wrapper">
+    <div className="pb-wrapper" data-tour="portfolio-builder">
       {/* Dual portfolio panels */}
       <div className="pb-panels">
         <PortfolioPanel
@@ -191,10 +191,11 @@ export default function PortfolioBuilder() {
       <div className="pb-shared-controls">
         <div className="pb-shared-row">
           <div className="mc-field">
-            <label className="field-label">Initial Investment</label>
+            <label className="field-label" htmlFor="pb-amount">Initial Investment</label>
             <div className="input-wrapper">
               <span className="input-prefix">$</span>
               <input
+                id="pb-amount"
                 className="field-input"
                 type="number" min="1000" step="5000"
                 value={amount}
@@ -204,10 +205,11 @@ export default function PortfolioBuilder() {
           </div>
           <div className="mc-field mc-field--grow">
             <div className="slider-header">
-              <label className="field-label">Time Horizon</label>
+              <label className="field-label" htmlFor="pb-years">Time Horizon</label>
               <span className="slider-value"><strong>{years}</strong> yr</span>
             </div>
             <input
+              id="pb-years"
               className="field-range" type="range" min="1" max="30" value={years}
               style={sliderStyle}
               onChange={e => setYears(Number(e.target.value))}

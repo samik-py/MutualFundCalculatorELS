@@ -402,12 +402,3 @@
   line-height: 1.5;
 }
 
-/* Responsive */
-@media (max-width: 640px) {
-  .predictor-card {
-    padding: 32px 24px;
-  }
-  .result-stats {
-    grid-template-columns: 1fr;
-  }
-}

@@ -183,6 +183,14 @@ export default function FlowFieldBackground() {
       }}
     >
       <canvas ref={canvasRef} style={{ display: 'block' }} />
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'rgba(4, 16, 36, 0.93)',
+          pointerEvents: 'none',
+        }}
+      />
     </div>
   )
 }

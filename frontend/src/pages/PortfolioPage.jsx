@@ -1,6 +1,4 @@
 import { useEffect } from 'react'
-import Navbar from '../components/Navbar'
-import TickerTape from '../components/TickerTape'
 import PortfolioBuilder from '../components/PortfolioBuilder'
 import './PortfolioPage.css'
 
@@ -20,8 +18,6 @@ export default function PortfolioPage() {
 
   return (
     <>
-      <Navbar />
-      <TickerTape />
       <main>
         <section className="pp-hero">
           <div className="section">
