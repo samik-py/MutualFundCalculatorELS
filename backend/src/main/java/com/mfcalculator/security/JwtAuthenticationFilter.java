@@ -4,13 +4,12 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.Optional;
 import org.springframework.http.HttpHeaders;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+import com.mfcalculator.repository.UserRepository;
 
 import java.io.IOException;
 
@@ -18,11 +17,13 @@ import java.io.IOException;
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
   private final JwtUtil jwtUtil;
-  private final UserDetailsServiceImpl userDetailsService;
+  private final UserRepository userRepository;
 
-  public JwtAuthenticationFilter(JwtUtil jwtUtil, UserDetailsServiceImpl userDetailsService) {
+  public JwtAuthenticationFilter(
+      JwtUtil jwtUtil,
+      UserRepository userRepository) {
     this.jwtUtil = jwtUtil;
-    this.userDetailsService = userDetailsService;
+    this.userRepository = userRepository;
   }
 
   @Override
@@ -40,11 +41,15 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     if (jwtUtil.isTokenValid(token)
         && SecurityContextHolder.getContext().getAuthentication() == null) {
       String username = jwtUtil.extractUsername(token);
-      UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-      UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
-          userDetails, null, userDetails.getAuthorities());
-      auth.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-      SecurityContextHolder.getContext().setAuthentication(auth);
+      Optional<com.mfcalculator.model.User> userOpt = userRepository.findByUsername(username);
+      if (userOpt.isPresent()) {
+        com.mfcalculator.model.User user = userOpt.get();
+        UserPrincipal principal = new UserPrincipal(user.getId(), user.getUsername());
+        principal.setAuthenticated(true);
+        SecurityContextHolder.getContext().setAuthentication(principal);
+      } else {
+        // Keep unauthenticated if user doesn't exist anymore
+      }
     }
 
     filterChain.doFilter(request, response);
