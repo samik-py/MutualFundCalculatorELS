@@ -1,0 +1,619 @@
+{
+  "account": {
+    "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "name": "Samik Shah",
+    "email": "samik.shah@email.com",
+    "created_at": "2021-03-14T09:22:11Z",
+    "country": "US",
+    "native_currency": "USD"
+  },
+  "portfolioSummary": {
+    "totalValueUSD": 847293.42,
+    "totalCostBasisUSD": 612840.00,
+    "totalUnrealizedGainUSD": 234453.42,
+    "totalUnrealizedGainPct": 38.26,
+    "totalRealizedGainUSD": 91230.55,
+    "totalFeesUSD": 4821.33,
+    "totalSpreadCostUSD": 3104.17,
+    "lastUpdated": "2026-03-31T14:30:00Z"
+  },
+  "holdings": [
+    {
+      "asset": "BTC",
+      "name": "Bitcoin",
+      "quantity": 4.82341,
+      "avgCostBasisUSD": 38420.00,
+      "currentPriceUSD": 83241.55,
+      "currentValueUSD": 401521.38,
+      "costBasisTotalUSD": 185222.02,
+      "unrealizedGainUSD": 216299.36,
+      "unrealizedGainPct": 116.78,
+      "portfolioWeightPct": 47.39,
+      "lots": [
+        {
+          "lotId": "lot-btc-001",
+          "purchaseDate": "2021-03-14T10:15:00Z",
+          "quantity": 1.5,
+          "costBasisPerUnit": 57200.00,
+          "costBasisTotal": 85800.00,
+          "term": "long"
+        },
+        {
+          "lotId": "lot-btc-002",
+          "purchaseDate": "2022-06-18T14:32:00Z",
+          "quantity": 2.0,
+          "costBasisPerUnit": 20840.00,
+          "costBasisTotal": 41680.00,
+          "term": "long"
+        },
+        {
+          "lotId": "lot-btc-003",
+          "purchaseDate": "2023-10-02T09:01:00Z",
+          "quantity": 0.82341,
+          "costBasisPerUnit": 27100.00,
+          "costBasisTotal": 22314.41,
+          "term": "long"
+        },
+        {
+          "lotId": "lot-btc-004",
+          "purchaseDate": "2025-01-08T16:45:00Z",
+          "quantity": 0.5,
+          "costBasisPerUnit": 71255.22,
+          "costBasisTotal": 35627.61,
+          "term": "short"
+        }
+      ]
+    },
+    {
+      "asset": "ETH",
+      "name": "Ethereum",
+      "quantity": 48.3291,
+      "avgCostBasisUSD": 2180.00,
+      "currentPriceUSD": 1842.30,
+      "currentValueUSD": 89002.38,
+      "costBasisTotalUSD": 105357.78,
+      "unrealizedGainUSD": -16355.40,
+      "unrealizedGainPct": -15.52,
+      "portfolioWeightPct": 10.51,
+      "lots": [
+        {
+          "lotId": "lot-eth-001",
+          "purchaseDate": "2021-05-10T11:20:00Z",
+          "quantity": 10.0,
+          "costBasisPerUnit": 3920.00,
+          "costBasisTotal": 39200.00,
+          "term": "long"
+        },
+        {
+          "lotId": "lot-eth-002",
+          "purchaseDate": "2022-07-02T08:55:00Z",
+          "quantity": 20.0,
+          "costBasisPerUnit": 1080.00,
+          "costBasisTotal": 21600.00,
+          "term": "long"
+        },
+        {
+          "lotId": "lot-eth-003",
+          "purchaseDate": "2023-03-15T13:10:00Z",
+          "quantity": 12.5,
+          "costBasisPerUnit": 1740.00,
+          "costBasisTotal": 21750.00,
+          "term": "long"
+        },
+        {
+          "lotId": "lot-eth-004",
+          "purchaseDate": "2025-11-20T17:30:00Z",
+          "quantity": 5.8291,
+          "costBasisPerUnit": 3920.55,
+          "costBasisTotal": 22849.38,
+          "term": "short"
+        }
+      ]
+    },
+    {
+      "asset": "SOL",
+      "name": "Solana",
+      "quantity": 1240.5,
+      "avgCostBasisUSD": 98.40,
+      "currentPriceUSD": 131.22,
+      "currentValueUSD": 162788.01,
+      "costBasisTotalUSD": 122065.20,
+      "unrealizedGainUSD": 40722.81,
+      "unrealizedGainPct": 33.36,
+      "portfolioWeightPct": 19.21,
+      "lots": [
+        {
+          "lotId": "lot-sol-001",
+          "purchaseDate": "2022-01-12T09:44:00Z",
+          "quantity": 500.0,
+          "costBasisPerUnit": 142.30,
+          "costBasisTotal": 71150.00,
+          "term": "long"
+        },
+        {
+          "lotId": "lot-sol-002",
+          "purchaseDate": "2022-12-28T15:22:00Z",
+          "quantity": 600.0,
+          "costBasisPerUnit": 10.20,
+          "costBasisTotal": 6120.00,
+          "term": "long"
+        },
+        {
+          "lotId": "lot-sol-003",
+          "purchaseDate": "2025-02-14T10:05:00Z",
+          "quantity": 140.5,
+          "costBasisPerUnit": 319.45,
+          "costBasisTotal": 44882.53,
+          "term": "short"
+        }
+      ]
+    },
+    {
+      "asset": "USDC",
+      "name": "USD Coin",
+      "quantity": 95000.00,
+      "avgCostBasisUSD": 1.00,
+      "currentPriceUSD": 1.00,
+      "currentValueUSD": 95000.00,
+      "costBasisTotalUSD": 95000.00,
+      "unrealizedGainUSD": 0.00,
+      "unrealizedGainPct": 0.00,
+      "portfolioWeightPct": 11.21,
+      "lots": [
+        {
+          "lotId": "lot-usdc-001",
+          "purchaseDate": "2025-08-30T12:00:00Z",
+          "quantity": 95000.00,
+          "costBasisPerUnit": 1.00,
+          "costBasisTotal": 95000.00,
+          "term": "short"
+        }
+      ]
+    },
+    {
+      "asset": "LINK",
+      "name": "Chainlink",
+      "quantity": 3820.0,
+      "avgCostBasisUSD": 12.40,
+      "currentPriceUSD": 13.08,
+      "currentValueUSD": 49965.60,
+      "costBasisTotalUSD": 47368.00,
+      "unrealizedGainUSD": 2597.60,
+      "unrealizedGainPct": 5.48,
+      "portfolioWeightPct": 5.90,
+      "lots": [
+        {
+          "lotId": "lot-link-001",
+          "purchaseDate": "2022-09-05T14:15:00Z",
+          "quantity": 2000.0,
+          "costBasisPerUnit": 6.82,
+          "costBasisTotal": 13640.00,
+          "term": "long"
+        },
+        {
+          "lotId": "lot-link-002",
+          "purchaseDate": "2023-08-21T11:30:00Z",
+          "quantity": 1820.0,
+          "costBasisPerUnit": 18.53,
+          "costBasisTotal": 33724.60,
+          "term": "long"
+        }
+      ]
+    },
+    {
+      "asset": "AVAX",
+      "name": "Avalanche",
+      "quantity": 820.0,
+      "avgCostBasisUSD": 28.90,
+      "currentPriceUSD": 19.74,
+      "currentValueUSD": 16186.80,
+      "costBasisTotalUSD": 23698.00,
+      "unrealizedGainUSD": -7511.20,
+      "unrealizedGainPct": -31.69,
+      "portfolioWeightPct": 1.91,
+      "lots": [
+        {
+          "lotId": "lot-avax-001",
+          "purchaseDate": "2023-11-08T16:00:00Z",
+          "quantity": 820.0,
+          "costBasisPerUnit": 28.90,
+          "costBasisTotal": 23698.00,
+          "term": "long"
+        }
+      ]
+    },
+    {
+      "asset": "MATIC",
+      "name": "Polygon",
+      "quantity": 42000.0,
+      "avgCostBasisUSD": 0.782,
+      "currentPriceUSD": 0.391,
+      "currentValueUSD": 16422.00,
+      "costBasisTotalUSD": 32844.00,
+      "unrealizedGainUSD": -16422.00,
+      "unrealizedGainPct": -50.00,
+      "portfolioWeightPct": 1.94,
+      "lots": [
+        {
+          "lotId": "lot-matic-001",
+          "purchaseDate": "2023-04-19T09:30:00Z",
+          "quantity": 42000.0,
+          "costBasisPerUnit": 0.782,
+          "costBasisTotal": 32844.00,
+          "term": "long"
+        }
+      ]
+    },
+    {
+      "asset": "UNI",
+      "name": "Uniswap",
+      "quantity": 2100.0,
+      "avgCostBasisUSD": 6.10,
+      "currentPriceUSD": 7.82,
+      "currentValueUSD": 16422.00,
+      "costBasisTotalUSD": 12810.00,
+      "unrealizedGainUSD": 3612.00,
+      "unrealizedGainPct": 28.20,
+      "portfolioWeightPct": 1.94,
+      "lots": [
+        {
+          "lotId": "lot-uni-001",
+          "purchaseDate": "2024-01-30T13:45:00Z",
+          "quantity": 2100.0,
+          "costBasisPerUnit": 6.10,
+          "costBasisTotal": 12810.00,
+          "term": "long"
+        }
+      ]
+    }
+  ],
+  "transactionHistory": [
+    {
+      "txId": "tx-001",
+      "type": "buy",
+      "asset": "BTC",
+      "quantity": 1.5,
+      "priceUSD": 57200.00,
+      "totalUSD": 85800.00,
+      "feeUSD": 214.50,
+      "spreadUSD": 171.60,
+      "timestamp": "2021-03-14T10:15:00Z",
+      "paymentMethod": "bank_account"
+    },
+    {
+      "txId": "tx-002",
+      "type": "buy",
+      "asset": "ETH",
+      "quantity": 10.0,
+      "priceUSD": 3920.00,
+      "totalUSD": 39200.00,
+      "feeUSD": 98.00,
+      "spreadUSD": 78.40,
+      "timestamp": "2021-05-10T11:20:00Z",
+      "paymentMethod": "bank_account"
+    },
+    {
+      "txId": "tx-003",
+      "type": "sell",
+      "asset": "ETH",
+      "quantity": 5.0,
+      "priceUSD": 4780.00,
+      "totalUSD": 23900.00,
+      "feeUSD": 59.75,
+      "spreadUSD": 47.80,
+      "costBasisUSD": 19600.00,
+      "realizedGainUSD": 4300.00,
+      "timestamp": "2021-11-08T15:45:00Z",
+      "paymentMethod": "coinbase_account"
+    },
+    {
+      "txId": "tx-004",
+      "type": "buy",
+      "asset": "SOL",
+      "quantity": 500.0,
+      "priceUSD": 142.30,
+      "totalUSD": 71150.00,
+      "feeUSD": 177.88,
+      "spreadUSD": 142.30,
+      "timestamp": "2022-01-12T09:44:00Z",
+      "paymentMethod": "bank_account"
+    },
+    {
+      "txId": "tx-005",
+      "type": "buy",
+      "asset": "ETH",
+      "quantity": 20.0,
+      "priceUSD": 1080.00,
+      "totalUSD": 21600.00,
+      "feeUSD": 54.00,
+      "spreadUSD": 43.20,
+      "timestamp": "2022-07-02T08:55:00Z",
+      "paymentMethod": "bank_account"
+    },
+    {
+      "txId": "tx-006",
+      "type": "buy",
+      "asset": "BTC",
+      "quantity": 2.0,
+      "priceUSD": 20840.00,
+      "totalUSD": 41680.00,
+      "feeUSD": 104.20,
+      "spreadUSD": 83.36,
+      "timestamp": "2022-06-18T14:32:00Z",
+      "paymentMethod": "bank_account"
+    },
+    {
+      "txId": "tx-007",
+      "type": "buy",
+      "asset": "LINK",
+      "quantity": 2000.0,
+      "priceUSD": 6.82,
+      "totalUSD": 13640.00,
+      "feeUSD": 34.10,
+      "spreadUSD": 27.28,
+      "timestamp": "2022-09-05T14:15:00Z",
+      "paymentMethod": "bank_account"
+    },
+    {
+      "txId": "tx-008",
+      "type": "buy",
+      "asset": "SOL",
+      "quantity": 600.0,
+      "priceUSD": 10.20,
+      "totalUSD": 6120.00,
+      "feeUSD": 15.30,
+      "spreadUSD": 12.24,
+      "timestamp": "2022-12-28T15:22:00Z",
+      "paymentMethod": "bank_account"
+    },
+    {
+      "txId": "tx-009",
+      "type": "sell",
+      "asset": "BTC",
+      "quantity": 0.5,
+      "priceUSD": 29400.00,
+      "totalUSD": 14700.00,
+      "feeUSD": 36.75,
+      "spreadUSD": 29.40,
+      "costBasisUSD": 28600.00,
+      "realizedGainUSD": 800.00,
+      "timestamp": "2023-02-14T10:30:00Z",
+      "paymentMethod": "coinbase_account"
+    },
+    {
+      "txId": "tx-010",
+      "type": "buy",
+      "asset": "ETH",
+      "quantity": 12.5,
+      "priceUSD": 1740.00,
+      "totalUSD": 21750.00,
+      "feeUSD": 54.38,
+      "spreadUSD": 43.50,
+      "timestamp": "2023-03-15T13:10:00Z",
+      "paymentMethod": "bank_account"
+    },
+    {
+      "txId": "tx-011",
+      "type": "buy",
+      "asset": "MATIC",
+      "quantity": 42000.0,
+      "priceUSD": 0.782,
+      "totalUSD": 32844.00,
+      "feeUSD": 82.11,
+      "spreadUSD": 65.69,
+      "timestamp": "2023-04-19T09:30:00Z",
+      "paymentMethod": "bank_account"
+    },
+    {
+      "txId": "tx-012",
+      "type": "sell",
+      "asset": "SOL",
+      "quantity": 200.0,
+      "priceUSD": 24.80,
+      "totalUSD": 4960.00,
+      "feeUSD": 12.40,
+      "spreadUSD": 9.92,
+      "costBasisUSD": 2040.00,
+      "realizedGainUSD": 2920.00,
+      "timestamp": "2023-05-30T11:15:00Z",
+      "paymentMethod": "coinbase_account"
+    },
+    {
+      "txId": "tx-013",
+      "type": "buy",
+      "asset": "LINK",
+      "quantity": 1820.0,
+      "priceUSD": 18.53,
+      "totalUSD": 33724.60,
+      "feeUSD": 84.31,
+      "spreadUSD": 67.45,
+      "timestamp": "2023-08-21T11:30:00Z",
+      "paymentMethod": "bank_account"
+    },
+    {
+      "txId": "tx-014",
+      "type": "buy",
+      "asset": "BTC",
+      "quantity": 0.82341,
+      "priceUSD": 27100.00,
+      "totalUSD": 22314.41,
+      "feeUSD": 55.79,
+      "spreadUSD": 44.63,
+      "timestamp": "2023-10-02T09:01:00Z",
+      "paymentMethod": "bank_account"
+    },
+    {
+      "txId": "tx-015",
+      "type": "buy",
+      "asset": "AVAX",
+      "quantity": 820.0,
+      "priceUSD": 28.90,
+      "totalUSD": 23698.00,
+      "feeUSD": 59.25,
+      "spreadUSD": 47.40,
+      "timestamp": "2023-11-08T16:00:00Z",
+      "paymentMethod": "bank_account"
+    },
+    {
+      "txId": "tx-016",
+      "type": "sell",
+      "asset": "ETH",
+      "quantity": 8.0,
+      "priceUSD": 3820.00,
+      "totalUSD": 30560.00,
+      "feeUSD": 76.40,
+      "spreadUSD": 61.12,
+      "costBasisUSD": 18720.00,
+      "realizedGainUSD": 11840.00,
+      "timestamp": "2024-01-11T14:20:00Z",
+      "paymentMethod": "coinbase_account"
+    },
+    {
+      "txId": "tx-017",
+      "type": "buy",
+      "asset": "UNI",
+      "quantity": 2100.0,
+      "priceUSD": 6.10,
+      "totalUSD": 12810.00,
+      "feeUSD": 32.03,
+      "spreadUSD": 25.62,
+      "timestamp": "2024-01-30T13:45:00Z",
+      "paymentMethod": "bank_account"
+    },
+    {
+      "txId": "tx-018",
+      "type": "sell",
+      "asset": "BTC",
+      "quantity": 0.25,
+      "priceUSD": 68200.00,
+      "totalUSD": 17050.00,
+      "feeUSD": 42.63,
+      "spreadUSD": 34.10,
+      "costBasisUSD": 14300.00,
+      "realizedGainUSD": 2750.00,
+      "timestamp": "2024-03-14T09:55:00Z",
+      "paymentMethod": "coinbase_account"
+    },
+    {
+      "txId": "tx-019",
+      "type": "buy",
+      "asset": "BTC",
+      "quantity": 0.5,
+      "priceUSD": 71255.22,
+      "totalUSD": 35627.61,
+      "feeUSD": 89.07,
+      "spreadUSD": 71.26,
+      "timestamp": "2025-01-08T16:45:00Z",
+      "paymentMethod": "bank_account"
+    },
+    {
+      "txId": "tx-020",
+      "type": "buy",
+      "asset": "SOL",
+      "quantity": 140.5,
+      "priceUSD": 319.45,
+      "totalUSD": 44882.53,
+      "feeUSD": 112.21,
+      "spreadUSD": 89.77,
+      "timestamp": "2025-02-14T10:05:00Z",
+      "paymentMethod": "bank_account"
+    },
+    {
+      "txId": "tx-021",
+      "type": "convert",
+      "asset": "ETH",
+      "toAsset": "USDC",
+      "quantity": 14.6709,
+      "priceUSD": 2641.10,
+      "totalUSD": 38742.00,
+      "feeUSD": 96.86,
+      "spreadUSD": 77.48,
+      "timestamp": "2025-08-30T12:00:00Z",
+      "paymentMethod": "coinbase_account"
+    },
+    {
+      "txId": "tx-022",
+      "type": "buy",
+      "asset": "ETH",
+      "quantity": 5.8291,
+      "priceUSD": 3920.55,
+      "totalUSD": 22849.38,
+      "feeUSD": 57.12,
+      "spreadUSD": 45.70,
+      "timestamp": "2025-11-20T17:30:00Z",
+      "paymentMethod": "bank_account"
+    },
+    {
+      "txId": "tx-023",
+      "type": "sell",
+      "asset": "SOL",
+      "quantity": 100.0,
+      "priceUSD": 198.40,
+      "totalUSD": 19840.00,
+      "feeUSD": 49.60,
+      "spreadUSD": 39.68,
+      "costBasisUSD": 5100.00,
+      "realizedGainUSD": 14740.00,
+      "timestamp": "2025-12-05T08:30:00Z",
+      "paymentMethod": "coinbase_account"
+    },
+    {
+      "txId": "tx-024",
+      "type": "sell",
+      "asset": "BTC",
+      "quantity": 0.15,
+      "priceUSD": 97800.00,
+      "totalUSD": 14670.00,
+      "feeUSD": 36.68,
+      "spreadUSD": 29.34,
+      "costBasisUSD": 8568.00,
+      "realizedGainUSD": 6102.00,
+      "timestamp": "2026-01-20T11:10:00Z",
+      "paymentMethod": "coinbase_account"
+    },
+    {
+      "txId": "tx-025",
+      "type": "sell",
+      "asset": "ETH",
+      "quantity": 3.0,
+      "priceUSD": 3410.00,
+      "totalUSD": 10230.00,
+      "feeUSD": 25.58,
+      "spreadUSD": 20.46,
+      "costBasisUSD": 5400.00,
+      "realizedGainUSD": 4830.00,
+      "timestamp": "2026-02-28T16:20:00Z",
+      "paymentMethod": "coinbase_account"
+    }
+  ],
+  "taxSummary": {
+    "taxYear": 2025,
+    "shortTermGainsUSD": 21848.55,
+    "longTermGainsUSD": 69382.00,
+    "totalRealizedGainsUSD": 91230.55,
+    "estimatedTaxLiabilityUSD": 28491.20,
+    "harvestingOpportunities": [
+      {
+        "asset": "MATIC",
+        "lotId": "lot-matic-001",
+        "unrealizedLossUSD": -16422.00,
+        "term": "long",
+        "estimatedTaxSavingsUSD": 2463.30
+      },
+      {
+        "asset": "AVAX",
+        "lotId": "lot-avax-001",
+        "unrealizedLossUSD": -7511.20,
+        "term": "long",
+        "estimatedTaxSavingsUSD": 1126.68
+      },
+      {
+        "asset": "ETH",
+        "lotId": "lot-eth-001",
+        "unrealizedLossUSD": -20779.00,
+        "term": "long",
+        "estimatedTaxSavingsUSD": 3116.85
+      }
+    ]
+  }
+}

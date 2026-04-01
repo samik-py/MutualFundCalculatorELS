@@ -1,21 +1,14 @@
-const BASE = '/api/user/charts'
+import { authFetch, buildAuthHeaders } from './authFetch'
 
-const getAuthHeaders = () => {
-  const token = localStorage.getItem('jwt')
-  const headers = { 'Content-Type': 'application/json' }
-  if (token) {
-    headers['Authorization'] = `Bearer ${token}`
-  }
-  return headers
-}
+const BASE = '/api/user/charts'
 
 /**
  * @returns {Promise<Array<{ id: number, title: string, fundIds: string, timeHorizon: number, amount: number, createdAt: string }>>}
  */
 export async function getSavedCharts() {
-  const response = await fetch(BASE, {
+  const response = await authFetch(BASE, {
     method: 'GET',
-    headers: getAuthHeaders(),
+    headers: buildAuthHeaders({ 'Content-Type': 'application/json' }),
   })
   if (!response.ok) throw new Error(`Failed to load saved charts: ${response.status}`)
   return response.json()
@@ -26,9 +19,9 @@ export async function getSavedCharts() {
  * @returns {Promise<{ id: number, title: string, fundIds: string, timeHorizon: number, amount: number, createdAt: string }>}
  */
 export async function saveChart(config) {
-  const response = await fetch(BASE, {
+  const response = await authFetch(BASE, {
     method: 'POST',
-    headers: getAuthHeaders(),
+    headers: buildAuthHeaders({ 'Content-Type': 'application/json' }),
     body: JSON.stringify(config),
   })
   if (!response.ok) throw new Error(`Failed to save chart: ${response.status}`)
@@ -40,9 +33,9 @@ export async function saveChart(config) {
  * @returns {Promise<{ id: number, title: string, fundIds: string, timeHorizon: number, amount: number, createdAt: string }>}
  */
 export async function getSavedChart(id) {
-  const response = await fetch(`${BASE}/${id}`, {
+  const response = await authFetch(`${BASE}/${id}`, {
     method: 'GET',
-    headers: getAuthHeaders(),
+    headers: buildAuthHeaders({ 'Content-Type': 'application/json' }),
   })
   if (!response.ok) throw new Error(`Failed to load chart: ${response.status}`)
   return response.json()
@@ -53,9 +46,9 @@ export async function getSavedChart(id) {
  * @returns {Promise<void>}
  */
 export async function deleteChart(id) {
-  const response = await fetch(`${BASE}/${id}`, {
+  const response = await authFetch(`${BASE}/${id}`, {
     method: 'DELETE',
-    headers: getAuthHeaders(),
+    headers: buildAuthHeaders({ 'Content-Type': 'application/json' }),
   })
   if (!response.ok) throw new Error(`Failed to delete chart: ${response.status}`)
 }

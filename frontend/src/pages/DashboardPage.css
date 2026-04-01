@@ -14,6 +14,7 @@
 .dashboard-header {
   text-align: center;
   margin-bottom: 40px;
+  animation: soft-rise-in 0.55s var(--transition-spring) both;
 }
 
 .dashboard-title {
@@ -98,6 +99,7 @@
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--glass-border);
   border-radius: 20px;
+  animation: soft-scale-in 0.55s var(--transition-spring) both;
 }
 
 .dashboard-empty__text {
@@ -149,12 +151,19 @@
   border: 1px solid var(--glass-border);
   border-radius: 20px;
   padding: 28px 24px;
-  transition: border-color var(--transition-base);
+  transition: border-color var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
+  animation: soft-rise-in 0.55s var(--transition-spring) both;
 }
 
 .dashboard-card:hover {
   border-color: var(--glass-border-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px rgba(4, 16, 36, 0.24);
 }
+
+.dashboard-card:nth-child(1) { animation-delay: 0.06s; }
+.dashboard-card:nth-child(2) { animation-delay: 0.12s; }
+.dashboard-card:nth-child(3) { animation-delay: 0.18s; }
 
 .dashboard-card__label {
   display: block;
@@ -195,6 +204,14 @@
   border-radius: 20px;
   padding: 28px 24px;
   margin-bottom: 32px;
+  transition: border-color var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
+  animation: soft-rise-in 0.6s var(--transition-spring) 0.2s both;
+}
+
+.dashboard-chart-card:hover {
+  border-color: var(--glass-border-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px rgba(4, 16, 36, 0.2);
 }
 
 .dashboard-chart-title {
@@ -219,6 +236,14 @@
   border: 1px solid var(--glass-border);
   border-radius: 20px;
   padding: 28px 24px;
+  transition: border-color var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
+  animation: soft-rise-in 0.6s var(--transition-spring) 0.28s both;
+}
+
+.dashboard-table-card:hover {
+  border-color: var(--glass-border-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px rgba(4, 16, 36, 0.2);
 }
 
 .dashboard-table-wrap {
@@ -266,6 +291,14 @@
 
 .dashboard-table tbody tr:hover td {
   background: var(--glass-bg-hover);
+}
+
+.dashboard-table tbody tr {
+  transition: transform 0.2s ease;
+}
+
+.dashboard-table tbody tr:hover {
+  transform: translateX(2px);
 }
 
 .dashboard-table__fund {

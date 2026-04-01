@@ -16,6 +16,7 @@
 .saved-charts-header {
   text-align: center;
   margin-bottom: 48px;
+  animation: soft-rise-in 0.55s var(--transition-spring) both;
 }
 
 .saved-charts-title {
@@ -63,17 +64,26 @@
   border: 1px solid var(--glass-border);
   border-radius: 20px;
   padding: 28px 24px;
-  transition: border-color var(--transition-base), transform var(--transition-base);
+  transition: border-color var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
   cursor: pointer;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  animation: soft-rise-in 0.5s var(--transition-spring) both;
 }
 
 .saved-charts-card:hover {
   border-color: var(--glass-border-hover);
-  transform: translateY(-2px);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 28px rgba(4, 16, 36, 0.22);
 }
+
+.saved-charts-card:nth-child(1) { animation-delay: 0.05s; }
+.saved-charts-card:nth-child(2) { animation-delay: 0.1s; }
+.saved-charts-card:nth-child(3) { animation-delay: 0.15s; }
+.saved-charts-card:nth-child(4) { animation-delay: 0.2s; }
+.saved-charts-card:nth-child(5) { animation-delay: 0.25s; }
+.saved-charts-card:nth-child(6) { animation-delay: 0.3s; }
 
 .saved-charts-card__content {
   flex: 1;

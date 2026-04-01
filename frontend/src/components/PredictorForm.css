@@ -10,6 +10,7 @@
 .predictor-header {
   text-align: center;
   margin-bottom: 56px;
+  animation: soft-rise-in 0.55s var(--transition-spring) both;
 }
 
 .predictor-eyebrow {
@@ -51,11 +52,14 @@
   border: 1px solid var(--glass-border);
   border-radius: 20px;
   padding: 52px 48px;
-  transition: border-color var(--transition-base);
+  transition: border-color var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
+  animation: soft-rise-in 0.62s var(--transition-spring) 0.08s both;
 }
 
 .predictor-card:hover {
   border-color: var(--glass-border-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 18px 34px rgba(4, 16, 36, 0.2);
 }
 
 /* ─────────────────────────────────────────────
@@ -63,7 +67,12 @@
 ───────────────────────────────────────────── */
 .field-group {
   margin-bottom: 40px;
+  animation: soft-rise-in 0.52s var(--transition-spring) both;
 }
+
+.field-group:nth-of-type(1) { animation-delay: 0.08s; }
+.field-group:nth-of-type(2) { animation-delay: 0.14s; }
+.field-group:nth-of-type(3) { animation-delay: 0.2s; }
 
 .field-label {
   display: block;
@@ -139,6 +148,7 @@
 
 .select-wrapper:focus-within .select-chevron {
   color: var(--gold);
+  transform: translateY(1px);
 }
 
 /* ─────────────────────────────────────────────
@@ -154,6 +164,7 @@
 
 .input-wrapper:focus-within {
   border-bottom: 2px solid var(--cyan);
+  animation: soft-glow-pulse 0.5s ease;
 }
 
 .input-prefix {
@@ -372,7 +383,12 @@
   background: rgba(4, 16, 36, 0.5);
   padding: 20px 16px;
   text-align: center;
+  animation: soft-rise-in 0.45s var(--transition-spring) both;
 }
+
+.result-stat:nth-child(1) { animation-delay: 0.08s; }
+.result-stat:nth-child(2) { animation-delay: 0.14s; }
+.result-stat:nth-child(3) { animation-delay: 0.2s; }
 
 .result-stat__label {
   display: block;
@@ -401,4 +417,3 @@
   text-align: center;
   line-height: 1.5;
 }
-

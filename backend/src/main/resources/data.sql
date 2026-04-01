@@ -1,2 +1,3 @@
--- Test user for development (password: test)
-INSERT INTO users (username, password) VALUES ('test', 'test');
+-- Intentionally left blank.
+-- Local accounts should be created via the auth flow and are now persisted
+-- in the file-backed H2 database across backend restarts.

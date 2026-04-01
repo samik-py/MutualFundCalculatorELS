@@ -5,6 +5,7 @@ import './Navbar.css'
 
 const AUTH_NAV_LINKS = [
   { label: 'Dashboard', to: '/dashboard' },
+  { label: 'Crypto Suite', to: '/crypto' },
   { label: 'My Portfolios', to: '/portfolios' },
   { label: 'Compare Funds', to: '/compare' },
   { label: 'Saved Charts', to: '/charts' },

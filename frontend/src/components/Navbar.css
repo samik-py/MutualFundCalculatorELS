@@ -12,6 +12,7 @@
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   transition: background 0.3s ease, border-color 0.3s ease;
+  animation: soft-rise-in 0.55s var(--transition-spring) both;
 }
 
 .navbar--scrolled {
@@ -69,6 +70,11 @@
   align-items: center;
   gap: 14px;
   text-decoration: none;
+  transition: transform var(--transition-base);
+}
+
+.navbar__brand:hover {
+  transform: translateY(-1px);
 }
 
 .navbar__monogram {
@@ -84,12 +90,13 @@
   letter-spacing: 0.04em;
   color: var(--gold);
   flex-shrink: 0;
-  transition: border-color 0.2s ease, background 0.2s ease;
+  transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
 }
 
 .navbar__brand:hover .navbar__monogram {
   background: rgba(115, 153, 198, 0.08);
   border-color: var(--gold);
+  transform: rotate(-4deg);
 }
 
 .navbar__wordmark {
@@ -128,6 +135,17 @@
   list-style: none;
 }
 
+.navbar__links li {
+  animation: soft-rise-in 0.45s var(--transition-spring) both;
+}
+
+.navbar__links li:nth-child(1) { animation-delay: 0.08s; }
+.navbar__links li:nth-child(2) { animation-delay: 0.12s; }
+.navbar__links li:nth-child(3) { animation-delay: 0.16s; }
+.navbar__links li:nth-child(4) { animation-delay: 0.2s; }
+.navbar__links li:nth-child(5) { animation-delay: 0.24s; }
+.navbar__links li:nth-child(6) { animation-delay: 0.28s; }
+
 .navbar__link {
   display: inline-block;
   padding: 6px 14px;
@@ -138,7 +156,7 @@
   text-transform: uppercase;
   color: rgba(232, 234, 240, 0.6);
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, transform 0.2s ease;
   white-space: nowrap;
   position: relative;
 }
@@ -157,6 +175,7 @@
 
 .navbar__link:hover {
   color: var(--white);
+  transform: translateY(-1px);
 }
 
 .navbar__link:hover::after,
@@ -194,6 +213,7 @@
   background: rgba(115, 153, 198, 0.08);
   border-color: rgba(115, 153, 198, 0.6);
   color: #7399C6;
+  box-shadow: 0 8px 20px rgba(115, 153, 198, 0.14);
 }
 
 /* CTA link */
@@ -214,6 +234,7 @@
   background: rgba(115, 153, 198, 0.1);
   border-color: var(--gold);
   color: var(--gold);
+  box-shadow: 0 8px 20px rgba(115, 153, 198, 0.16);
 }
 
 /* Display name */

@@ -11,6 +11,7 @@ import PortfolioDetailPage from './pages/PortfolioDetailPage'
 import CompareChartsPage from './pages/CompareChartsPage'
 import SavedChartsPage from './pages/SavedChartsPage'
 import DashboardPage from './pages/DashboardPage'
+import CryptoSuitePage from './pages/CryptoSuitePage'
 
 export default function App() {
   return (
@@ -58,6 +59,14 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <SavedChartsPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/crypto"
+            element={
+              <ProtectedRoute>
+                <CryptoSuitePage />
               </ProtectedRoute>
             }
           />

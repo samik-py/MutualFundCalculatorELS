@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react'
+import { AUTH_EXPIRED_EVENT } from '../services/authFetch'
 
 const JWT_KEY = 'jwt'
 const USER_KEY = 'user'
@@ -23,6 +24,32 @@ export function AuthProvider({ children }) {
       _clear()
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    const handleAuthExpired = () => {
+      _clear()
+    }
+
+    const handleStorage = (event) => {
+      if (event.key === JWT_KEY || event.key === USER_KEY) {
+        try {
+          const nextToken = localStorage.getItem(JWT_KEY)
+          const nextUser = localStorage.getItem(USER_KEY)
+          setTokenState(nextToken)
+          setUserState(nextUser ? JSON.parse(nextUser) : null)
+        } catch {
+          _clear()
+        }
+      }
+    }
+
+    window.addEventListener(AUTH_EXPIRED_EVENT, handleAuthExpired)
+    window.addEventListener('storage', handleStorage)
+    return () => {
+      window.removeEventListener(AUTH_EXPIRED_EVENT, handleAuthExpired)
+      window.removeEventListener('storage', handleStorage)
+    }
+  }, [])
 
   function _persist(data) {
     const userObj = { email: data.email, displayName: data.displayName }

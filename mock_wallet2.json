@@ -1,0 +1,720 @@
+{
+  "account": {
+    "id": "cb-7f3a9d2e-4b1c-4e8f-a2d5-9c6e3f1b8a0d",
+    "name": "Alex Chen",
+    "email": "alex.chen@email.com",
+    "created_at": "2020-11-03T08:14:22Z",
+    "country": "US",
+    "native_currency": "USD",
+    "coinbase_tier": "Advanced Trade",
+    "base_linked": true
+  },
+  "portfolioSummary": {
+    "totalValueUSD": 1247830.55,
+    "totalCostBasisUSD": 891420.00,
+    "totalUnrealizedGainUSD": 356410.55,
+    "totalUnrealizedGainPct": 39.98,
+    "totalRealizedGainUSD": 148320.40,
+    "totalFeesUSD": 3748.22,
+    "totalSpreadCostUSD": 4685.44,
+    "advancedTradeEquivalentUSD": 2499.10,
+    "effectiveCostRatePct": 1.35,
+    "recoverableDragUSD": 5934.56,
+    "lastUpdated": "2026-03-31T09:30:00Z"
+  },
+  "holdings": [
+    {
+      "asset": "BTC",
+      "name": "Bitcoin",
+      "quantity": 6.94210,
+      "avgCostBasisUSD": 41200.00,
+      "currentPriceUSD": 83241.55,
+      "currentValueUSD": 577821.44,
+      "costBasisTotalUSD": 285994.20,
+      "unrealizedGainUSD": 291827.24,
+      "unrealizedGainPct": 102.04,
+      "portfolioWeightPct": 46.31,
+      "lots": [
+        {
+          "lotId": "lot-btc-001",
+          "purchaseDate": "2020-11-03T08:14:22Z",
+          "quantity": 1.20000,
+          "costBasisPerUnit": 14200.00,
+          "costBasisTotal": 17040.00,
+          "term": "long",
+          "unrealizedGain": 83161.86,
+          "unrealizedGainPct": 487.97
+        },
+        {
+          "lotId": "lot-btc-002",
+          "purchaseDate": "2021-01-28T11:42:00Z",
+          "quantity": 0.85000,
+          "costBasisPerUnit": 33800.00,
+          "costBasisTotal": 28730.00,
+          "term": "long",
+          "unrealizedGain": 41904.82,
+          "unrealizedGainPct": 145.86
+        },
+        {
+          "lotId": "lot-btc-003",
+          "purchaseDate": "2022-06-14T09:30:00Z",
+          "quantity": 2.10000,
+          "costBasisPerUnit": 21400.00,
+          "costBasisTotal": 44940.00,
+          "term": "long",
+          "unrealizedGain": 129867.26,
+          "unrealizedGainPct": 288.97
+        },
+        {
+          "lotId": "lot-btc-004",
+          "purchaseDate": "2023-10-19T14:55:00Z",
+          "quantity": 1.54210,
+          "costBasisPerUnit": 28900.00,
+          "costBasisTotal": 44566.69,
+          "term": "long",
+          "unrealizedGain": 83951.91,
+          "unrealizedGainPct": 188.45
+        },
+        {
+          "lotId": "lot-btc-005",
+          "purchaseDate": "2025-02-10T16:20:00Z",
+          "quantity": 1.25000,
+          "costBasisPerUnit": 96574.04,
+          "costBasisTotal": 120717.55,
+          "term": "short",
+          "unrealizedGain": -16715.94,
+          "unrealizedGainPct": -13.85
+        }
+      ]
+    },
+    {
+      "asset": "ETH",
+      "name": "Ethereum",
+      "quantity": 142.8800,
+      "avgCostBasisUSD": 2614.00,
+      "currentPriceUSD": 1842.30,
+      "currentValueUSD": 263146.92,
+      "costBasisTotalUSD": 373483.32,
+      "unrealizedGainUSD": -110336.40,
+      "unrealizedGainPct": -29.54,
+      "portfolioWeightPct": 21.09,
+      "lots": [
+        {
+          "lotId": "lot-eth-001",
+          "purchaseDate": "2021-02-14T10:00:00Z",
+          "quantity": 18.00,
+          "costBasisPerUnit": 1820.00,
+          "costBasisTotal": 32760.00,
+          "term": "long",
+          "unrealizedGain": 397.40,
+          "unrealizedGainPct": 1.21
+        },
+        {
+          "lotId": "lot-eth-002",
+          "purchaseDate": "2021-10-29T15:30:00Z",
+          "quantity": 12.00,
+          "costBasisPerUnit": 4410.00,
+          "costBasisTotal": 52920.00,
+          "term": "long",
+          "unrealizedGain": -30590.40,
+          "unrealizedGainPct": -57.80
+        },
+        {
+          "lotId": "lot-eth-003",
+          "purchaseDate": "2022-08-11T08:45:00Z",
+          "quantity": 55.00,
+          "costBasisPerUnit": 1920.00,
+          "costBasisTotal": 105600.00,
+          "term": "long",
+          "unrealizedGain": -4443.50,
+          "unrealizedGainPct": -4.21
+        },
+        {
+          "lotId": "lot-eth-004",
+          "purchaseDate": "2023-06-02T12:10:00Z",
+          "quantity": 38.88,
+          "costBasisPerUnit": 1880.00,
+          "costBasisTotal": 73094.40,
+          "term": "long",
+          "unrealizedGain": -2370.86,
+          "unrealizedGainPct": -3.24
+        },
+        {
+          "lotId": "lot-eth-005",
+          "purchaseDate": "2025-12-01T09:00:00Z",
+          "quantity": 19.00,
+          "costBasisPerUnit": 5729.95,
+          "costBasisTotal": 108868.92,
+          "term": "short",
+          "unrealizedGain": -73929.04,
+          "unrealizedGainPct": -67.91
+        }
+      ]
+    },
+    {
+      "asset": "SOL",
+      "name": "Solana",
+      "quantity": 1840.00,
+      "avgCostBasisUSD": 64.80,
+      "currentPriceUSD": 131.22,
+      "currentValueUSD": 241444.80,
+      "costBasisTotalUSD": 119232.00,
+      "unrealizedGainUSD": 122212.80,
+      "unrealizedGainPct": 102.50,
+      "portfolioWeightPct": 19.35,
+      "lots": [
+        {
+          "lotId": "lot-sol-001",
+          "purchaseDate": "2021-09-10T13:00:00Z",
+          "quantity": 420.00,
+          "costBasisPerUnit": 148.20,
+          "costBasisTotal": 62244.00,
+          "term": "long",
+          "unrealizedGain": -7155.60,
+          "unrealizedGainPct": -11.50
+        },
+        {
+          "lotId": "lot-sol-002",
+          "purchaseDate": "2022-12-31T10:20:00Z",
+          "quantity": 900.00,
+          "costBasisPerUnit": 9.62,
+          "costBasisTotal": 8658.00,
+          "term": "long",
+          "unrealizedGain": 109240.80,
+          "unrealizedGainPct": 1262.30
+        },
+        {
+          "lotId": "lot-sol-003",
+          "purchaseDate": "2023-11-15T14:30:00Z",
+          "quantity": 520.00,
+          "costBasisPerUnit": 92.94,
+          "costBasisTotal": 48328.80,
+          "term": "long",
+          "unrealizedGain": 20125.60,
+          "unrealizedGainPct": 41.65
+        }
+      ]
+    },
+    {
+      "asset": "USDC",
+      "name": "USD Coin",
+      "quantity": 82400.00,
+      "avgCostBasisUSD": 1.00,
+      "currentPriceUSD": 1.00,
+      "currentValueUSD": 82400.00,
+      "costBasisTotalUSD": 82400.00,
+      "unrealizedGainUSD": 0.00,
+      "unrealizedGainPct": 0.00,
+      "portfolioWeightPct": 6.60,
+      "note": "Rotated from ETH sale on 2025-08-14. Awaiting redeployment trigger.",
+      "lots": [
+        {
+          "lotId": "lot-usdc-001",
+          "purchaseDate": "2025-08-14T11:00:00Z",
+          "quantity": 82400.00,
+          "costBasisPerUnit": 1.00,
+          "costBasisTotal": 82400.00,
+          "term": "short"
+        }
+      ]
+    },
+    {
+      "asset": "CBBTC",
+      "name": "Coinbase Wrapped BTC",
+      "quantity": 0.92100,
+      "avgCostBasisUSD": 67400.00,
+      "currentPriceUSD": 83241.55,
+      "currentValueUSD": 76665.47,
+      "costBasisTotalUSD": 62075.40,
+      "unrealizedGainUSD": 14590.07,
+      "unrealizedGainPct": 23.50,
+      "portfolioWeightPct": 6.14,
+      "note": "Wrapped on Base for DeFi yield. Bridge cost included in cost basis.",
+      "lots": [
+        {
+          "lotId": "lot-cbbtc-001",
+          "purchaseDate": "2024-09-22T10:00:00Z",
+          "quantity": 0.92100,
+          "costBasisPerUnit": 67400.00,
+          "costBasisTotal": 62075.40,
+          "term": "long"
+        }
+      ]
+    }
+  ],
+  "transactionHistory": [
+    {
+      "txId": "tx-001",
+      "type": "buy",
+      "asset": "BTC",
+      "quantity": 1.20,
+      "priceUSD": 14200.00,
+      "totalUSD": 17040.00,
+      "feeUSD": 170.40,
+      "spreadUSD": 85.20,
+      "venue": "Coinbase Simple",
+      "timestamp": "2020-11-03T08:14:22Z"
+    },
+    {
+      "txId": "tx-002",
+      "type": "buy",
+      "asset": "ETH",
+      "quantity": 18.00,
+      "priceUSD": 1820.00,
+      "totalUSD": 32760.00,
+      "feeUSD": 245.70,
+      "spreadUSD": 163.80,
+      "venue": "Coinbase Simple",
+      "timestamp": "2021-02-14T10:00:00Z"
+    },
+    {
+      "txId": "tx-003",
+      "type": "buy",
+      "asset": "BTC",
+      "quantity": 0.85,
+      "priceUSD": 33800.00,
+      "totalUSD": 28730.00,
+      "feeUSD": 215.48,
+      "spreadUSD": 143.65,
+      "venue": "Coinbase Simple",
+      "timestamp": "2021-01-28T11:42:00Z"
+    },
+    {
+      "txId": "tx-004",
+      "type": "buy",
+      "asset": "SOL",
+      "quantity": 420.00,
+      "priceUSD": 148.20,
+      "totalUSD": 62244.00,
+      "feeUSD": 155.61,
+      "spreadUSD": 124.49,
+      "venue": "Coinbase Advanced Trade",
+      "timestamp": "2021-09-10T13:00:00Z"
+    },
+    {
+      "txId": "tx-005",
+      "type": "buy",
+      "asset": "ETH",
+      "quantity": 12.00,
+      "priceUSD": 4410.00,
+      "totalUSD": 52920.00,
+      "feeUSD": 396.90,
+      "spreadUSD": 264.60,
+      "venue": "Coinbase Simple",
+      "timestamp": "2021-10-29T15:30:00Z"
+    },
+    {
+      "txId": "tx-006",
+      "type": "sell",
+      "asset": "ETH",
+      "quantity": 6.00,
+      "priceUSD": 2940.00,
+      "totalUSD": 17640.00,
+      "feeUSD": 44.10,
+      "spreadUSD": 35.28,
+      "costBasisUSD": 25200.00,
+      "realizedGainUSD": -7560.00,
+      "venue": "Coinbase Advanced Trade",
+      "timestamp": "2022-05-18T09:15:00Z"
+    },
+    {
+      "txId": "tx-007",
+      "type": "buy",
+      "asset": "BTC",
+      "quantity": 2.10,
+      "priceUSD": 21400.00,
+      "totalUSD": 44940.00,
+      "feeUSD": 112.35,
+      "spreadUSD": 89.88,
+      "venue": "Coinbase Advanced Trade",
+      "timestamp": "2022-06-14T09:30:00Z"
+    },
+    {
+      "txId": "tx-008",
+      "type": "buy",
+      "asset": "ETH",
+      "quantity": 55.00,
+      "priceUSD": 1920.00,
+      "totalUSD": 105600.00,
+      "feeUSD": 264.00,
+      "spreadUSD": 211.20,
+      "venue": "Coinbase Advanced Trade",
+      "timestamp": "2022-08-11T08:45:00Z"
+    },
+    {
+      "txId": "tx-009",
+      "type": "buy",
+      "asset": "SOL",
+      "quantity": 900.00,
+      "priceUSD": 9.62,
+      "totalUSD": 8658.00,
+      "feeUSD": 21.65,
+      "spreadUSD": 17.32,
+      "venue": "Coinbase Advanced Trade",
+      "timestamp": "2022-12-31T10:20:00Z"
+    },
+    {
+      "txId": "tx-010",
+      "type": "sell",
+      "asset": "BTC",
+      "quantity": 0.40,
+      "priceUSD": 29100.00,
+      "totalUSD": 11640.00,
+      "feeUSD": 29.10,
+      "spreadUSD": 23.28,
+      "costBasisUSD": 5680.00,
+      "realizedGainUSD": 5960.00,
+      "venue": "Coinbase Advanced Trade",
+      "timestamp": "2023-04-11T14:00:00Z"
+    },
+    {
+      "txId": "tx-011",
+      "type": "buy",
+      "asset": "ETH",
+      "quantity": 38.88,
+      "priceUSD": 1880.00,
+      "totalUSD": 73094.40,
+      "feeUSD": 182.74,
+      "spreadUSD": 146.19,
+      "venue": "Coinbase Advanced Trade",
+      "timestamp": "2023-06-02T12:10:00Z"
+    },
+    {
+      "txId": "tx-012",
+      "type": "buy",
+      "asset": "BTC",
+      "quantity": 1.54210,
+      "priceUSD": 28900.00,
+      "totalUSD": 44566.69,
+      "feeUSD": 111.42,
+      "spreadUSD": 89.13,
+      "venue": "Coinbase Advanced Trade",
+      "timestamp": "2023-10-19T14:55:00Z"
+    },
+    {
+      "txId": "tx-013",
+      "type": "buy",
+      "asset": "SOL",
+      "quantity": 520.00,
+      "priceUSD": 92.94,
+      "totalUSD": 48328.80,
+      "feeUSD": 120.82,
+      "spreadUSD": 96.66,
+      "venue": "Coinbase Advanced Trade",
+      "timestamp": "2023-11-15T14:30:00Z"
+    },
+    {
+      "txId": "tx-014",
+      "type": "sell",
+      "asset": "SOL",
+      "quantity": 310.00,
+      "priceUSD": 188.40,
+      "totalUSD": 58404.00,
+      "feeUSD": 146.01,
+      "spreadUSD": 116.81,
+      "costBasisUSD": 2981.20,
+      "realizedGainUSD": 55422.80,
+      "venue": "Coinbase Advanced Trade",
+      "timestamp": "2024-03-18T10:45:00Z"
+    },
+    {
+      "txId": "tx-015",
+      "type": "buy",
+      "asset": "CBBTC",
+      "quantity": 0.92100,
+      "priceUSD": 67400.00,
+      "totalUSD": 62075.40,
+      "feeUSD": 62.08,
+      "spreadUSD": 49.66,
+      "venue": "Coinbase Advanced Trade",
+      "note": "Wrapped to Base for DeFi deployment",
+      "timestamp": "2024-09-22T10:00:00Z"
+    },
+    {
+      "txId": "tx-016",
+      "type": "sell",
+      "asset": "ETH",
+      "quantity": 22.00,
+      "priceUSD": 3740.00,
+      "totalUSD": 82280.00,
+      "feeUSD": 205.70,
+      "spreadUSD": 164.56,
+      "costBasisUSD": 42240.00,
+      "realizedGainUSD": 40040.00,
+      "venue": "Coinbase Advanced Trade",
+      "timestamp": "2024-12-06T15:30:00Z"
+    },
+    {
+      "txId": "tx-017",
+      "type": "convert",
+      "asset": "ETH",
+      "toAsset": "USDC",
+      "quantity": 22.12,
+      "priceUSD": 3723.00,
+      "totalUSD": 82396.76,
+      "feeUSD": 205.99,
+      "spreadUSD": 164.79,
+      "venue": "Coinbase Simple",
+      "note": "De-risked ETH exposure ahead of macro uncertainty. Rotating to USDC pending re-entry.",
+      "timestamp": "2025-08-14T11:00:00Z"
+    },
+    {
+      "txId": "tx-018",
+      "type": "buy",
+      "asset": "ETH",
+      "quantity": 19.00,
+      "priceUSD": 5729.95,
+      "totalUSD": 108868.92,
+      "feeUSD": 272.17,
+      "spreadUSD": 217.74,
+      "venue": "Coinbase Simple",
+      "note": "Re-entered ETH position. Cost basis elevated vs prior lots.",
+      "timestamp": "2025-12-01T09:00:00Z"
+    },
+    {
+      "txId": "tx-019",
+      "type": "buy",
+      "asset": "BTC",
+      "quantity": 1.25,
+      "priceUSD": 96574.04,
+      "totalUSD": 120717.55,
+      "feeUSD": 301.79,
+      "spreadUSD": 241.44,
+      "venue": "Coinbase Simple",
+      "note": "Added BTC near ATH. High cost basis lot, short-term.",
+      "timestamp": "2025-02-10T16:20:00Z"
+    },
+    {
+      "txId": "tx-020",
+      "type": "sell",
+      "asset": "BTC",
+      "quantity": 0.30,
+      "priceUSD": 97200.00,
+      "totalUSD": 29160.00,
+      "feeUSD": 72.90,
+      "spreadUSD": 58.32,
+      "costBasisUSD": 4260.00,
+      "realizedGainUSD": 24900.00,
+      "venue": "Coinbase Advanced Trade",
+      "timestamp": "2026-01-15T13:00:00Z"
+    },
+    {
+      "txId": "tx-021",
+      "type": "sell",
+      "asset": "SOL",
+      "quantity": 180.00,
+      "priceUSD": 201.30,
+      "totalUSD": 36234.00,
+      "feeUSD": 90.59,
+      "spreadUSD": 72.47,
+      "costBasisUSD": 1731.60,
+      "realizedGainUSD": 34502.40,
+      "venue": "Coinbase Advanced Trade",
+      "timestamp": "2026-02-03T11:20:00Z"
+    }
+  ],
+  "taxSummary": {
+    "taxYear": 2026,
+    "shortTermGainsUSD": 24900.00,
+    "longTermGainsUSD": 123420.40,
+    "totalRealizedGainsUSD": 148320.40,
+    "estimatedTaxLiabilityUSD": 41329.80,
+    "costBasisMethod": {
+      "current": "FIFO",
+      "optimized": "HIFO",
+      "fifoGainUSD": 5988.00,
+      "hifoGainUSD": 2427.00,
+      "taxAlphaUSD": 1318.00
+    },
+    "harvestingOpportunities": [
+      {
+        "asset": "ETH",
+        "lotId": "lot-eth-005",
+        "purchaseDate": "2025-12-01T09:00:00Z",
+        "quantity": 19.00,
+        "costBasisPerUnit": 5729.95,
+        "currentPrice": 1842.30,
+        "unrealizedLossUSD": -73929.04,
+        "term": "short",
+        "estimatedTaxSavingsUSD": 18327.32,
+        "note": "Largest harvestable loss on the book. Short-term treatment maximizes savings rate."
+      },
+      {
+        "asset": "ETH",
+        "lotId": "lot-eth-002",
+        "purchaseDate": "2021-10-29T15:30:00Z",
+        "quantity": 12.00,
+        "costBasisPerUnit": 4410.00,
+        "currentPrice": 1842.30,
+        "unrealizedLossUSD": -30590.40,
+        "term": "long",
+        "estimatedTaxSavingsUSD": 4588.56,
+        "note": "Long-term loss. Pair with long-term gains for offset."
+      },
+      {
+        "asset": "BTC",
+        "lotId": "lot-btc-005",
+        "purchaseDate": "2025-02-10T16:20:00Z",
+        "quantity": 1.25,
+        "costBasisPerUnit": 96574.04,
+        "currentPrice": 83241.55,
+        "unrealizedLossUSD": -16665.62,
+        "term": "short",
+        "estimatedTaxSavingsUSD": 4133.00,
+        "note": "Near-term buy at ATH now underwater. Harvest to offset short-term gains."
+      }
+    ]
+  },
+  "feeAudit": {
+    "totalCoinbaseFeesUSD": 3748.22,
+    "totalSpreadCostUSD": 4685.44,
+    "totalExecutionCostUSD": 8433.66,
+    "advancedTradeEquivalentUSD": 2499.10,
+    "recoverableDragUSD": 5934.56,
+    "effectiveCostRatePct": 1.35,
+    "advancedTradeCostRatePct": 0.40,
+    "worstOffendingTrades": [
+      {
+        "txId": "tx-018",
+        "asset": "ETH",
+        "totalUSD": 108868.92,
+        "feeUSD": 272.17,
+        "spreadUSD": 217.74,
+        "venue": "Coinbase Simple",
+        "effectiveCostPct": 0.45,
+        "note": "Largest single trade by cost. Moving to Advanced Trade saves ~$272 on this size."
+      },
+      {
+        "txId": "tx-019",
+        "asset": "BTC",
+        "totalUSD": 120717.55,
+        "feeUSD": 301.79,
+        "spreadUSD": 241.44,
+        "venue": "Coinbase Simple",
+        "effectiveCostPct": 0.45,
+        "note": "High nominal fee due to trade size. Advanced Trade equivalent fee: ~$120."
+      },
+      {
+        "txId": "tx-005",
+        "asset": "ETH",
+        "totalUSD": 52920.00,
+        "feeUSD": 396.90,
+        "spreadUSD": 264.60,
+        "venue": "Coinbase Simple",
+        "effectiveCostPct": 0.75,
+        "note": "Early Simple Trade era — highest cost rate on the book at 0.75%."
+      }
+    ]
+  },
+  "baseOnChain": {
+    "linked": true,
+    "walletCount": 2,
+    "thirtyDayTransactions": 42,
+    "thirtyDayGasSpendUSD": 39.14,
+    "bridgeVolumeUSD": 118625.00,
+    "protocols": [
+      {
+        "name": "Aerodrome Finance",
+        "type": "DEX / LP",
+        "tvlExposureUSD": 38420.00,
+        "asset": "CBBTC-USDC LP",
+        "apy": 8.4,
+        "note": "cbBTC wrapped on Base and deployed into Aerodrome LP for yield."
+      },
+      {
+        "name": "Moonwell",
+        "type": "Lending",
+        "tvlExposureUSD": 28900.00,
+        "asset": "USDC supplied",
+        "apy": 5.1,
+        "note": "Portion of USDC balance earning lending yield on Base."
+      }
+    ],
+    "recentTransactions": [
+      {
+        "hash": "0x3a9f...d4e2",
+        "type": "bridge",
+        "asset": "CBBTC",
+        "amountUSD": 62075.40,
+        "gasUSD": 1.82,
+        "protocol": "Coinbase Bridge",
+        "timestamp": "2024-09-22T10:30:00Z"
+      },
+      {
+        "hash": "0x7c1b...a3f8",
+        "type": "addLiquidity",
+        "asset": "CBBTC-USDC",
+        "amountUSD": 38420.00,
+        "gasUSD": 2.14,
+        "protocol": "Aerodrome Finance",
+        "timestamp": "2024-09-22T11:15:00Z"
+      },
+      {
+        "hash": "0x2d4e...8b91",
+        "type": "supply",
+        "asset": "USDC",
+        "amountUSD": 28900.00,
+        "gasUSD": 1.44,
+        "protocol": "Moonwell",
+        "timestamp": "2025-08-16T09:45:00Z"
+      }
+    ]
+  },
+  "marketMicrostructure": {
+    "asset": "BTC-USD",
+    "venue": "Coinbase Advanced Trade",
+    "midPriceUSD": 83242.00,
+    "spreadBps": 5.6,
+    "bidDepthUSD": 1531645.00,
+    "askDepthUSD": 1340189.00,
+    "bookImbalancePct": 6.70,
+    "imbalanceSignal": "bid_heavy",
+    "note": "Bid depth currently outweighs ask depth, suggesting buyers are more aggressive near the mid.",
+    "timestamp": "2026-03-31T09:30:00Z"
+  },
+  "stressScenariosForPortfolio": {
+    "initialValueUSD": 1247830.55,
+    "scenarios": [
+      {
+        "name": "Bull",
+        "annualDriftPct": 65.0,
+        "annualVolatilityPct": 70.0,
+        "median5YUSD": 3229052.00,
+        "year1MedianUSD": 1047979.00,
+        "year3MedianUSD": 1720814.00,
+        "percentile5USD": 345300.00,
+        "percentile95USD": 27773455.00
+      },
+      {
+        "name": "Sideways",
+        "annualDriftPct": 8.0,
+        "annualVolatilityPct": 55.0,
+        "median5YUSD": 772067.00,
+        "year1MedianUSD": 794852.00,
+        "year3MedianUSD": 741489.00,
+        "percentile5USD": 122492.00,
+        "percentile95USD": 4542431.00
+      },
+      {
+        "name": "Bear",
+        "annualDriftPct": -35.0,
+        "annualVolatilityPct": 80.0,
+        "median5YUSD": 102653.00,
+        "year1MedianUSD": 519025.00,
+        "year3MedianUSD": 212560.00,
+        "percentile5USD": 6487.00,
+        "percentile95USD": 1464944.00
+      },
+      {
+        "name": "2018-Style Crash",
+        "annualDriftPct": -82.0,
+        "annualVolatilityPct": 110.0,
+        "median5YUSD": 18470.00,
+        "year1MedianUSD": 361219.00,
+        "year3MedianUSD": 73466.00,
+        "percentile5USD": 530.00,
+        "percentile95USD": 563317.00
+      }
+    ]
+  }
+}

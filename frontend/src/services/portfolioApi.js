@@ -1,21 +1,14 @@
-const BASE = '/api/user/portfolios'
+import { authFetch, buildAuthHeaders } from './authFetch'
 
-const getAuthHeaders = () => {
-  const token = localStorage.getItem('jwt')
-  const headers = { 'Content-Type': 'application/json' }
-  if (token) {
-    headers['Authorization'] = `Bearer ${token}`
-  }
-  return headers
-}
+const BASE = '/api/user/portfolios'
 
 /**
  * @returns {Promise<Array<{ id: number, name: string, holdingCount: number, createdAt: string }>>}
  */
 export async function getPortfolios() {
-  const response = await fetch(BASE, {
+  const response = await authFetch(BASE, {
     method: 'GET',
-    headers: getAuthHeaders(),
+    headers: buildAuthHeaders({ 'Content-Type': 'application/json' }),
   })
   if (!response.ok) throw new Error(`Failed to load portfolios: ${response.status}`)
   return response.json()
@@ -26,9 +19,9 @@ export async function getPortfolios() {
  * @returns {Promise<{ id: number, name: string, holdings: Array, createdAt: string }>}
  */
 export async function createPortfolio(name) {
-  const response = await fetch(BASE, {
+  const response = await authFetch(BASE, {
     method: 'POST',
-    headers: getAuthHeaders(),
+    headers: buildAuthHeaders({ 'Content-Type': 'application/json' }),
     body: JSON.stringify({ name }),
   })
   if (!response.ok) throw new Error(`Failed to create portfolio: ${response.status}`)
@@ -40,9 +33,9 @@ export async function createPortfolio(name) {
  * @returns {Promise<{ id: number, name: string, holdings: Array, createdAt: string }>}
  */
 export async function getPortfolio(id) {
-  const response = await fetch(`${BASE}/${id}`, {
+  const response = await authFetch(`${BASE}/${id}`, {
     method: 'GET',
-    headers: getAuthHeaders(),
+    headers: buildAuthHeaders({ 'Content-Type': 'application/json' }),
   })
   if (!response.ok) throw new Error(`Failed to load portfolio: ${response.status}`)
   return response.json()
@@ -54,9 +47,9 @@ export async function getPortfolio(id) {
  * @returns {Promise<{ id: number, name: string, holdings: Array, createdAt: string }>}
  */
 export async function updatePortfolio(id, name) {
-  const response = await fetch(`${BASE}/${id}`, {
+  const response = await authFetch(`${BASE}/${id}`, {
     method: 'PUT',
-    headers: getAuthHeaders(),
+    headers: buildAuthHeaders({ 'Content-Type': 'application/json' }),
     body: JSON.stringify({ name }),
   })
   if (!response.ok) throw new Error(`Failed to update portfolio: ${response.status}`)
@@ -68,9 +61,9 @@ export async function updatePortfolio(id, name) {
  * @returns {Promise<void>}
  */
 export async function deletePortfolio(id) {
-  const response = await fetch(`${BASE}/${id}`, {
+  const response = await authFetch(`${BASE}/${id}`, {
     method: 'DELETE',
-    headers: getAuthHeaders(),
+    headers: buildAuthHeaders({ 'Content-Type': 'application/json' }),
   })
   if (!response.ok) throw new Error(`Failed to delete portfolio: ${response.status}`)
 }
@@ -81,9 +74,9 @@ export async function deletePortfolio(id) {
  * @returns {Promise<{ id: number, name: string, holdings: Array, createdAt: string }>}
  */
 export async function addHolding(portfolioId, holding) {
-  const response = await fetch(`${BASE}/${portfolioId}/holdings`, {
+  const response = await authFetch(`${BASE}/${portfolioId}/holdings`, {
     method: 'POST',
-    headers: getAuthHeaders(),
+    headers: buildAuthHeaders({ 'Content-Type': 'application/json' }),
     body: JSON.stringify(holding),
   })
   if (!response.ok) throw new Error(`Failed to add holding: ${response.status}`)
@@ -96,9 +89,9 @@ export async function addHolding(portfolioId, holding) {
  * @returns {Promise<void>}
  */
 export async function removeHolding(portfolioId, holdingId) {
-  const response = await fetch(`${BASE}/${portfolioId}/holdings/${holdingId}`, {
+  const response = await authFetch(`${BASE}/${portfolioId}/holdings/${holdingId}`, {
     method: 'DELETE',
-    headers: getAuthHeaders(),
+    headers: buildAuthHeaders({ 'Content-Type': 'application/json' }),
   })
   if (!response.ok) throw new Error(`Failed to remove holding: ${response.status}`)
 }
