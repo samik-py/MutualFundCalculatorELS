@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import Navbar from '../components/Navbar'
-import TickerTape from '../components/TickerTape'
 import HeroSection from '../components/HeroSection'
 
 function useScrollReveal() {
@@ -24,8 +23,7 @@ export default function LandingPage() {
   return (
     <>
       <Navbar />
-      <TickerTape />
-      <main>
+      <main id="main-content">
         <HeroSection />
       </main>
     </>

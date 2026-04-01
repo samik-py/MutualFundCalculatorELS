@@ -3,6 +3,7 @@ import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
 } from 'recharts'
 import { fetchFunds, compareFunds } from '../services/api'
+import { useTheme } from '../context/ThemeContext'
 import './FundCompareChart.css'
 
 const CHART_COLORS = [
@@ -42,6 +43,13 @@ function CustomTooltip({ active, payload, label }) {
 }
 
 export default function FundCompareChart() {
+  const { theme } = useTheme()
+  const isLight = theme === 'light'
+  const chartTickColor = isLight ? 'rgba(13,31,51,0.55)' : 'rgba(232,234,240,0.45)'
+  const chartGridColor = isLight ? 'rgba(0,0,0,0.08)' : 'rgba(255,255,255,0.06)'
+  const chartAxisColor = isLight ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.08)'
+  const legendColor = isLight ? 'rgba(13,31,51,0.7)' : 'rgba(232,234,240,0.6)'
+
   const [allFunds, setAllFunds] = useState([])
   const [selected, setSelected] = useState(['vanguard-500', 'qqq', 'pimco-total'])
   const [amount, setAmount] = useState(10000)
@@ -81,8 +89,9 @@ export default function FundCompareChart() {
     }
   }
 
+  const sliderTrack = isLight ? 'rgba(0,0,0,0.12)' : 'rgba(255,255,255,0.12)'
   const sliderStyle = {
-    background: `linear-gradient(to right, var(--gold) 0%, var(--gold) ${((years - 1) / 29) * 100}%, rgba(255,255,255,0.12) ${((years - 1) / 29) * 100}%, rgba(255,255,255,0.12) 100%)`,
+    background: `linear-gradient(to right, var(--gold) 0%, var(--gold) ${((years - 1) / 29) * 100}%, ${sliderTrack} ${((years - 1) / 29) * 100}%, ${sliderTrack} 100%)`,
   }
 
   return (
@@ -174,16 +183,16 @@ export default function FundCompareChart() {
 
           <ResponsiveContainer width="100%" height={380}>
             <LineChart data={chartData.rows} margin={{ top: 8, right: 24, left: 16, bottom: 8 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+              <CartesianGrid strokeDasharray="3 3" stroke={chartGridColor} />
               <XAxis
                 dataKey="year"
-                tick={{ fill: 'rgba(232,234,240,0.45)', fontSize: 11 }}
+                tick={{ fill: chartTickColor, fontSize: 11 }}
                 tickLine={false}
-                axisLine={{ stroke: 'rgba(255,255,255,0.08)' }}
+                axisLine={{ stroke: chartAxisColor }}
                 tickFormatter={(v) => `Yr ${v}`}
               />
               <YAxis
-                tick={{ fill: 'rgba(232,234,240,0.45)', fontSize: 11 }}
+                tick={{ fill: chartTickColor, fontSize: 11 }}
                 tickLine={false}
                 axisLine={false}
                 tickFormatter={formatCurrency}
@@ -191,7 +200,7 @@ export default function FundCompareChart() {
               />
               <Tooltip content={<CustomTooltip />} />
               <Legend
-                wrapperStyle={{ paddingTop: 16, fontSize: 11, color: 'rgba(232,234,240,0.6)' }}
+                wrapperStyle={{ paddingTop: 16, fontSize: 11, color: legendColor }}
               />
               {chartData.funds.map((f, i) => (
                 <Line

@@ -269,13 +269,18 @@
 }
 
 .slider-ticks {
-  display: flex;
-  justify-content: space-between;
+  position: relative;
+  height: 18px;
   font-size: 0.65rem;
   color: var(--text-subtle);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  padding: 0 2px;
+}
+
+.slider-ticks span {
+  position: absolute;
+  transform: translateX(-50%);
+  white-space: nowrap;
 }
 
 /* ─────────────────────────────────────────────

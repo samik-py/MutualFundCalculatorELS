@@ -21,22 +21,39 @@ const ITEMS = [...TICKERS, ...TICKERS]
 
 export default function TickerTape() {
   return (
-    <div className="ticker">
-      <div className="ticker__label">LIVE</div>
-      <div className="ticker__track">
+    <div
+      className="ticker"
+      role="marquee"
+      aria-label="Live market ticker — major indices, mutual funds, and commodities"
+      aria-live="off"
+    >
+      <div className="ticker__label" aria-hidden="true">LIVE</div>
+      {/* aria-hidden: the scrolling track is presentational; a static summary is provided below */}
+      <div className="ticker__track" aria-hidden="true">
         <div className="ticker__inner">
           {ITEMS.map((item, i) => (
             <span key={i} className="ticker__item">
               <span className="ticker__symbol">{item.symbol}</span>
               <span className="ticker__value">{item.value}</span>
-              <span className={`ticker__change ticker__change--${item.up ? 'up' : 'down'}`}>
-                {item.up ? '▲' : '▼'} {item.change}
-              </span>
+              {item.change && (
+                <span className={`ticker__change ticker__change--${item.up ? 'up' : 'down'}`}>
+                  {item.up ? '▲' : '▼'} {item.change}
+                </span>
+              )}
               <span className="ticker__sep">·</span>
             </span>
           ))}
         </div>
       </div>
+      {/* Screen-reader summary of ticker contents (not visible) */}
+      <ul className="sr-only">
+        {TICKERS.map((item) => (
+          <li key={item.symbol}>
+            {item.symbol}: {item.value}
+            {item.change ? `, ${item.up ? 'up' : 'down'} ${item.change}` : ''}
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }

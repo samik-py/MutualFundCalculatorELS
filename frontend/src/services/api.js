@@ -1,3 +1,5 @@
+import { buildAuthHeaders, authFetch } from './authFetch'
+
 const BASE_URL = '/api'
 
 // ── Existing ──────────────────────────────────────────────────────────────────
@@ -111,4 +113,44 @@ export async function runMonteCarlo(fundId, amount, years, simulations) {
   })
   if (!res.ok) throw new Error(`Monte Carlo failed: ${res.status}`)
   return res.json()
+}
+
+// ── User Profile ───────────────────────────────────────────────────────────────
+
+export async function getProfile() {
+  const res = await authFetch(`${BASE_URL}/user/profile`, {
+    headers: buildAuthHeaders(),
+  })
+  if (!res.ok) throw new Error(`Failed to fetch profile: ${res.status}`)
+  return res.json()
+}
+
+export async function updateProfileName(displayName) {
+  const res = await authFetch(`${BASE_URL}/user/profile`, {
+    method: 'PUT',
+    headers: buildAuthHeaders({ 'Content-Type': 'application/json' }),
+    body: JSON.stringify({ displayName }),
+  })
+  if (!res.ok) throw new Error(`Failed to update profile: ${res.status}`)
+  return res.json()
+}
+
+export async function changePassword(currentPassword, newPassword) {
+  const res = await authFetch(`${BASE_URL}/user/profile/password`, {
+    method: 'PUT',
+    headers: buildAuthHeaders({ 'Content-Type': 'application/json' }),
+    body: JSON.stringify({ currentPassword, newPassword }),
+  })
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}))
+    throw new Error(err.message || `Failed to change password: ${res.status}`)
+  }
+}
+
+export async function deleteAccount() {
+  const res = await authFetch(`${BASE_URL}/user/profile`, {
+    method: 'DELETE',
+    headers: buildAuthHeaders(),
+  })
+  if (!res.ok) throw new Error(`Failed to delete account: ${res.status}`)
 }

@@ -96,8 +96,14 @@ export function AuthProvider({ children }) {
     _clear()
   }
 
+  function updateStoredDisplayName(displayName) {
+    const newUser = { ...user, displayName }
+    localStorage.setItem(USER_KEY, JSON.stringify(newUser))
+    setUserState(newUser)
+  }
+
   return (
-    <AuthContext.Provider value={{ user, token, login, register, logout, isAuthenticated: !!token }}>
+    <AuthContext.Provider value={{ user, token, login, register, logout, updateStoredDisplayName, isAuthenticated: !!token }}>
       {children}
     </AuthContext.Provider>
   )

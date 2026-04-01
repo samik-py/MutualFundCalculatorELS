@@ -5,7 +5,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "users")
@@ -22,6 +24,16 @@ public class User {
   private String password;
 
   private String displayName;
+
+  @Column(name = "created_at")
+  private LocalDateTime createdAt;
+
+  @PrePersist
+  protected void onCreate() {
+    if (createdAt == null) {
+      createdAt = LocalDateTime.now();
+    }
+  }
 
   public User() {}
 
@@ -60,5 +72,9 @@ public class User {
 
   public void setDisplayName(String displayName) {
     this.displayName = displayName;
+  }
+
+  public LocalDateTime getCreatedAt() {
+    return createdAt;
   }
 }

@@ -81,9 +81,9 @@ export default function SavedChartsPage() {
     return (
       <>
         <Navbar />
-        <main className="saved-charts-page">
+        <main id="main-content" className="saved-charts-page">
           <div className="saved-charts-section">
-            <p className="saved-charts-loading">Loading saved charts…</p>
+            <p className="saved-charts-loading" role="status" aria-live="polite">Loading saved charts…</p>
           </div>
         </main>
       </>
@@ -93,9 +93,9 @@ export default function SavedChartsPage() {
   return (
     <>
       <Navbar />
-      <main className="saved-charts-page">
+      <main id="main-content" className="saved-charts-page">
         <div className="saved-charts-section">
-          <header className="saved-charts-header">
+          <header className="saved-charts-header" data-tour="saved-charts">
             <h1 className="saved-charts-title">Saved Charts</h1>
             <p className="saved-charts-subtitle">Open a saved chart to view or edit the comparison.</p>
           </header>
@@ -106,7 +106,7 @@ export default function SavedChartsPage() {
             </div>
           )}
 
-          <div className="saved-charts-grid">
+          <div className="saved-charts-grid" role="list">
             {charts.map((chart) => {
               const fundNames = fundIdsToNames(chart.fundIds)
               const isConfirming = deleteConfirm === chart.id
@@ -114,7 +114,16 @@ export default function SavedChartsPage() {
                 <article
                   key={chart.id}
                   className="saved-charts-card"
+                  role="listitem"
+                  tabIndex={isConfirming ? -1 : 0}
                   onClick={() => handleCardClick(chart.id)}
+                  onKeyDown={(e) => {
+                    if ((e.key === 'Enter' || e.key === ' ') && !isConfirming) {
+                      e.preventDefault()
+                      handleCardClick(chart.id)
+                    }
+                  }}
+                  aria-label={`${chart.title}, saved ${formatDate(chart.createdAt)}, ${chart.timeHorizon} ${chart.timeHorizon === 1 ? 'year' : 'years'}`}
                 >
                   <div className="saved-charts-card__content">
                     <h2 className="saved-charts-card__title">{chart.title}</h2>
@@ -131,10 +140,11 @@ export default function SavedChartsPage() {
                   <div className="saved-charts-card__actions">
                     {isConfirming ? (
                       <>
-                        <span className="saved-charts-card__confirm-text">Delete?</span>
+                        <span className="saved-charts-card__confirm-text" role="status">Delete?</span>
                         <button
                           type="button"
                           className="saved-charts-card__btn saved-charts-card__btn--confirm"
+                          aria-label={`Confirm delete ${chart.title}`}
                           onClick={(e) => {
                             e.stopPropagation()
                             handleDelete(chart.id)
@@ -145,6 +155,7 @@ export default function SavedChartsPage() {
                         <button
                           type="button"
                           className="saved-charts-card__btn saved-charts-card__btn--cancel"
+                          aria-label={`Cancel delete ${chart.title}`}
                           onClick={(e) => {
                             e.stopPropagation()
                             setDeleteConfirm(null)

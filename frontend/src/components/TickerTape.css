@@ -120,3 +120,23 @@
   padding: 0 2px;
 }
 
+/* ─────────────────────────────────────────────
+   Light Mode
+───────────────────────────────────────────── */
+[data-theme="light"] .ticker {
+  background: rgba(232, 238, 246, 0.95);
+  border-bottom: 1px solid rgba(115, 153, 198, 0.2);
+}
+
+[data-theme="light"] .ticker__symbol {
+  color: rgba(13, 31, 51, 0.7);
+}
+
+[data-theme="light"] .ticker__value {
+  color: rgba(13, 31, 51, 0.5);
+}
+
+[data-theme="light"] .ticker__sep {
+  color: rgba(13, 31, 51, 0.15);
+}
+

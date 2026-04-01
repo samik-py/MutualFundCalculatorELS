@@ -35,7 +35,7 @@ export default function GroundTruth() {
         </div>
 
         {loading ? (
-          <div className="gt-loading reveal reveal-delay-1">Fetching live data...</div>
+          <div className="gt-loading reveal reveal-delay-1" role="status" aria-live="polite">Fetching live data...</div>
         ) : (
           <div className="gt-grid reveal reveal-delay-1">
             {/* Rf card */}
@@ -44,7 +44,7 @@ export default function GroundTruth() {
               <div className="gt-card__metric">{fmt(rf)}</div>
               <div className="gt-card__label">Risk-Free Rate (Rf)</div>
               <div className="gt-card__source">
-                <span className="gt-card__source-icon">&#9632;</span>
+                <span className="gt-card__source-icon" aria-hidden="true">&#9632;</span>
                 FRED · DGS10 · 10-Year U.S. Treasury
               </div>
               <p className="gt-card__desc">
@@ -52,8 +52,8 @@ export default function GroundTruth() {
                 a risk-free return. Used as the baseline for all CAPM projections.
               </p>
               <div className="gt-card__certainty">
-                <span className="gt-certainty-label">Certainty</span>
-                <div className="gt-certainty-bar">
+                <span className="gt-certainty-label" aria-hidden="true">Certainty</span>
+                <div className="gt-certainty-bar" role="meter" aria-valuenow={95} aria-valuemin={0} aria-valuemax={100} aria-label="Certainty: 95%">
                   <div className="gt-certainty-fill gt-certainty-fill--high" style={{ width: '95%' }} />
                 </div>
                 <span className="gt-certainty-text">Very High · Government Data</span>
@@ -66,7 +66,7 @@ export default function GroundTruth() {
               <div className="gt-card__metric">{fmt(rm)}</div>
               <div className="gt-card__label">Market Return 5Y (Rm)</div>
               <div className="gt-card__source">
-                <span className="gt-card__source-icon">&#9632;</span>
+                <span className="gt-card__source-icon" aria-hidden="true">&#9632;</span>
                 Yahoo Finance · S&amp;P 500 · 5-Year CAGR
               </div>
               <p className="gt-card__desc">
@@ -74,8 +74,8 @@ export default function GroundTruth() {
                 Historical fact — forward-looking returns may differ.
               </p>
               <div className="gt-card__certainty">
-                <span className="gt-certainty-label">Certainty</span>
-                <div className="gt-certainty-bar">
+                <span className="gt-certainty-label" aria-hidden="true">Certainty</span>
+                <div className="gt-certainty-bar" role="meter" aria-valuenow={70} aria-valuemin={0} aria-valuemax={100} aria-label="Certainty: 70%">
                   <div className="gt-certainty-fill gt-certainty-fill--moderate" style={{ width: '70%' }} />
                 </div>
                 <span className="gt-certainty-text">Moderate · Past Performance</span>
@@ -88,7 +88,7 @@ export default function GroundTruth() {
               <div className="gt-card__metric">{fmt(premium)}</div>
               <div className="gt-card__label">Equity Risk Premium (Rm − Rf)</div>
               <div className="gt-card__source">
-                <span className="gt-card__source-icon">&#9632;</span>
+                <span className="gt-card__source-icon" aria-hidden="true">&#9632;</span>
                 Computed · CAPM Input
               </div>
               <p className="gt-card__desc">

@@ -147,8 +147,8 @@ export default function CryptoSuitePage() {
   return (
     <>
       <Navbar />
-      <main className="crypto-suite">
-        <section className="crypto-suite__hero">
+      <main id="main-content" className="crypto-suite">
+        <section className="crypto-suite__hero" data-tour="crypto-suite">
           <div className="crypto-suite__hero-copy">
             <span className="crypto-suite__eyebrow">Coinbase Integrated Crypto Desk</span>
             <h1 className="crypto-suite__title">Cryptocurrency Portfolio Suite</h1>
@@ -181,8 +181,9 @@ export default function CryptoSuitePage() {
                 accept=".csv,.json"
                 onChange={handleWalletUpload}
                 disabled={uploading}
+                aria-label="Upload wallet file (CSV or JSON)"
               />
-              <span>{uploading ? 'Uploading wallet…' : 'Upload Wallet File'}</span>
+              <span aria-hidden="true">{uploading ? 'Uploading wallet…' : 'Upload Wallet File'}</span>
             </label>
             <p className="crypto-suite__upload-hint">
               Supports CSV or JSON wallet exports with holdings and optional transactions.
@@ -192,7 +193,7 @@ export default function CryptoSuitePage() {
         </section>
 
         {loading && (
-          <section className="crypto-suite__loading-card">
+          <section className="crypto-suite__loading-card" role="status" aria-live="polite">
             <p>Loading crypto suite…</p>
           </section>
         )}

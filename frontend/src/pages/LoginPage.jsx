@@ -32,15 +32,19 @@ export default function LoginPage() {
   return (
     <>
       <Navbar />
-      <div className="auth-page">
+      <main id="main-content" className="auth-page">
         <div className="auth-card">
           <p className="auth-eyebrow">Goldman Sachs · Portal</p>
           <h1 className="auth-title">Welcome back</h1>
           <p className="auth-subtitle">Sign in to your account to continue</p>
 
-          {error && <div className="auth-error">{error}</div>}
+          {error && (
+            <div id="login-error" className="auth-error" role="alert" aria-live="assertive">
+              {error}
+            </div>
+          )}
 
-          <form className="auth-form" onSubmit={handleSubmit}>
+          <form className="auth-form" onSubmit={handleSubmit} noValidate aria-describedby={error ? 'login-error' : undefined}>
             <div className="auth-field">
               <label className="auth-label" htmlFor="email">Email</label>
               <input
@@ -49,6 +53,7 @@ export default function LoginPage() {
                 type="email"
                 autoComplete="email"
                 required
+                aria-required="true"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@example.com"
@@ -63,13 +68,14 @@ export default function LoginPage() {
                 type="password"
                 autoComplete="current-password"
                 required
+                aria-required="true"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
               />
             </div>
 
-            <button className="auth-btn" type="submit" disabled={loading}>
+            <button className="auth-btn" type="submit" disabled={loading} aria-busy={loading}>
               {loading ? 'Signing in…' : 'Sign In'}
             </button>
           </form>
@@ -79,7 +85,7 @@ export default function LoginPage() {
             <Link to="/register" className="auth-switch-link">Create account</Link>
           </p>
         </div>
-      </div>
+      </main>
     </>
   )
 }

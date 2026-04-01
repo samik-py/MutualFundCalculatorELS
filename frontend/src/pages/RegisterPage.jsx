@@ -31,15 +31,19 @@ export default function RegisterPage() {
   return (
     <>
       <Navbar />
-      <div className="auth-page">
+      <main id="main-content" className="auth-page">
         <div className="auth-card">
           <p className="auth-eyebrow">Goldman Sachs · Portal</p>
           <h1 className="auth-title">Create account</h1>
           <p className="auth-subtitle">Start your investment journey today</p>
 
-          {error && <div className="auth-error">{error}</div>}
+          {error && (
+            <div id="register-error" className="auth-error" role="alert" aria-live="assertive">
+              {error}
+            </div>
+          )}
 
-          <form className="auth-form" onSubmit={handleSubmit}>
+          <form className="auth-form" onSubmit={handleSubmit} noValidate aria-describedby={error ? 'register-error' : undefined}>
             <div className="auth-field">
               <label className="auth-label" htmlFor="displayName">Display Name</label>
               <input
@@ -61,6 +65,7 @@ export default function RegisterPage() {
                 type="email"
                 autoComplete="email"
                 required
+                aria-required="true"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@example.com"
@@ -75,14 +80,17 @@ export default function RegisterPage() {
                 type="password"
                 autoComplete="new-password"
                 required
+                aria-required="true"
                 minLength={8}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Minimum 8 characters"
+                aria-describedby="password-hint"
               />
+              <span id="password-hint" className="sr-only">Minimum 8 characters required</span>
             </div>
 
-            <button className="auth-btn" type="submit" disabled={loading}>
+            <button className="auth-btn" type="submit" disabled={loading} aria-busy={loading}>
               {loading ? 'Creating account…' : 'Create Account'}
             </button>
           </form>
@@ -92,7 +100,7 @@ export default function RegisterPage() {
             <Link to="/login" className="auth-switch-link">Sign in</Link>
           </p>
         </div>
-      </div>
+      </main>
     </>
   )
 }

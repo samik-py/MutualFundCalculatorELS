@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
+import { useTheme } from '../context/ThemeContext'
 import Navbar from '../components/Navbar'
 import {
   LineChart,
@@ -36,6 +37,20 @@ function formatCurrency(value) {
 }
 
 export default function CompareChartsPage() {
+  const { theme } = useTheme()
+  const isLight = theme === 'light'
+  const chartTickColor = isLight ? 'rgba(13,31,51,0.8)' : 'rgba(255,255,255,0.9)'
+  const chartGridColor = isLight ? 'rgba(0,0,0,0.08)' : 'rgba(255,255,255,0.1)'
+  const chartAxisColor = isLight ? 'rgba(0,0,0,0.15)' : 'rgba(255,255,255,0.2)'
+  const chartAxisLabelColor = isLight ? 'rgba(13,31,51,0.6)' : 'rgba(255,255,255,0.7)'
+  const tooltipStyle = {
+    background: isLight ? 'rgba(240,244,249,0.97)' : 'rgba(10,30,60,0.95)',
+    border: isLight ? '1px solid rgba(0,0,0,0.12)' : '1px solid rgba(255,255,255,0.15)',
+    borderRadius: '8px',
+    color: isLight ? '#0d1f33' : '#e8eaf0',
+  }
+  const sliderTrack = isLight ? 'rgba(0,0,0,0.12)' : 'rgba(255,255,255,0.12)'
+
   const [searchParams] = useSearchParams()
   const [selectedIds, setSelectedIds] = useState(() => FUNDS.slice(0, 2).map((f) => f.id))
   const [amount, setAmount] = useState('10000')
@@ -139,7 +154,7 @@ export default function CompareChartsPage() {
   const canGenerate = selectedFunds.length >= 2 && selectedFunds.length <= 5 && amount && parseFloat(amount) > 0
 
   const sliderStyle = {
-    background: `linear-gradient(to right, var(--gold) 0%, var(--gold) ${((years - 1) / 29) * 100}%, rgba(255,255,255,0.12) ${((years - 1) / 29) * 100}%, rgba(255,255,255,0.12) 100%)`,
+    background: `linear-gradient(to right, var(--gold) 0%, var(--gold) ${((years - 1) / 29) * 100}%, ${sliderTrack} ${((years - 1) / 29) * 100}%, ${sliderTrack} 100%)`,
   }
 
   const handleGenerate = async () => {
@@ -194,7 +209,7 @@ export default function CompareChartsPage() {
   return (
     <>
       <Navbar />
-      <main className="compare-charts-page">
+      <main id="main-content" className="compare-charts-page">
         <div className="compare-charts-section">
           <header className="compare-charts-header">
             <h1 className="compare-charts-title">Compare Fund Growth</h1>
@@ -204,8 +219,8 @@ export default function CompareChartsPage() {
           </header>
 
           <div className="compare-charts-card">
-            <div className="field-group">
-              <label className="field-label">Select funds (2-5)</label>
+            <fieldset className="field-group" aria-describedby={selectedIds.length < 2 ? 'fund-hint' : undefined}>
+              <legend className="field-label">Select funds (2–5)</legend>
               <div className="compare-charts-checkboxes">
                 {FUNDS.map((f) => (
                   <label key={f.id} className="compare-charts-checkbox">
@@ -214,19 +229,23 @@ export default function CompareChartsPage() {
                       checked={selectedIds.includes(f.id)}
                       onChange={() => toggleFund(f.id)}
                       disabled={!selectedIds.includes(f.id) && selectedIds.length >= 5}
+                      aria-label={f.label}
                     />
                     <span className="compare-charts-checkbox-label">{f.label}</span>
                   </label>
                 ))}
               </div>
-              {selectedIds.length < 2 && <span className="field-hint">Select at least 2 funds.</span>}
-            </div>
+              {selectedIds.length < 2 && (
+                <span id="fund-hint" className="field-hint" role="status">Select at least 2 funds.</span>
+              )}
+            </fieldset>
 
             <div className="field-group">
-              <label className="field-label">Initial Investment</label>
+              <label className="field-label" htmlFor="compare-amount">Initial Investment</label>
               <div className="input-wrapper">
-                <span className="input-prefix">$</span>
+                <span className="input-prefix" aria-hidden="true">$</span>
                 <input
+                  id="compare-amount"
                   className="field-input"
                   type="number"
                   min="0"
@@ -234,18 +253,20 @@ export default function CompareChartsPage() {
                   placeholder="10,000"
                   value={amount}
                   onChange={(e) => setAmount(e.target.value)}
+                  aria-label="Initial investment amount in US dollars"
                 />
               </div>
             </div>
 
             <div className="field-group">
               <div className="slider-header">
-                <label className="field-label">Time Horizon</label>
-                <span className="slider-value">
+                <label className="field-label" htmlFor="compare-years">Time Horizon</label>
+                <span className="slider-value" aria-hidden="true">
                   <strong>{years}</strong> {years === 1 ? 'year' : 'years'}
                 </span>
               </div>
               <input
+                id="compare-years"
                 className="field-range"
                 type="range"
                 min="1"
@@ -253,13 +274,20 @@ export default function CompareChartsPage() {
                 value={years}
                 style={sliderStyle}
                 onChange={(e) => setYears(parseInt(e.target.value, 10))}
+                aria-valuemin={1}
+                aria-valuemax={30}
+                aria-valuenow={years}
+                aria-valuetext={`${years} ${years === 1 ? 'year' : 'years'}`}
               />
               <div className="slider-ticks">
-                <span>1yr</span>
-                <span>5yr</span>
-                <span>10yr</span>
-                <span>20yr</span>
-                <span>30yr</span>
+                {[1, 5, 10, 20, 30].map((v) => (
+                  <span
+                    key={v}
+                    style={{ left: `calc(${((v - 1) / 29) * 100}% + ${(0.5 - (v - 1) / 29) * 20}px)` }}
+                  >
+                    {v}yr
+                  </span>
+                ))}
               </div>
             </div>
 
@@ -288,36 +316,40 @@ export default function CompareChartsPage() {
                 <button type="button" className="compare-charts-save-btn" onClick={handleShareChart}>
                   Share Chart
                 </button>
-                {shareStatus && <span className="compare-charts-share-status">{shareStatus}</span>}
+                {shareStatus && (
+                  <span
+                    className="compare-charts-share-status"
+                    role="status"
+                    aria-live="polite"
+                    aria-atomic="true"
+                  >
+                    {shareStatus}
+                  </span>
+                )}
               </div>
               <div className="compare-charts-chart-wrap">
                 <ResponsiveContainer width="100%" height={420}>
                   <LineChart data={chartData.data} margin={{ top: 16, right: 16, left: 8, bottom: 8 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
+                    <CartesianGrid strokeDasharray="3 3" stroke={chartGridColor} vertical={false} />
                     <XAxis
                       dataKey="year"
-                      stroke="rgba(255,255,255,0.7)"
-                      tick={{ fill: 'rgba(255,255,255,0.9)', fontSize: 12 }}
-                      tickLine={{ stroke: 'rgba(255,255,255,0.2)' }}
-                      axisLine={{ stroke: 'rgba(255,255,255,0.2)' }}
-                      label={{ value: 'Years', position: 'insideBottom', offset: -4, fill: 'rgba(255,255,255,0.7)' }}
+                      stroke={chartAxisColor}
+                      tick={{ fill: chartTickColor, fontSize: 12 }}
+                      tickLine={{ stroke: chartAxisColor }}
+                      axisLine={{ stroke: chartAxisColor }}
+                      label={{ value: 'Years', position: 'insideBottom', offset: -4, fill: chartAxisLabelColor }}
                     />
                     <YAxis
-                      stroke="rgba(255,255,255,0.7)"
-                      tick={{ fill: 'rgba(255,255,255,0.9)', fontSize: 12 }}
-                      tickLine={{ stroke: 'rgba(255,255,255,0.2)' }}
-                      axisLine={{ stroke: 'rgba(255,255,255,0.2)' }}
+                      stroke={chartAxisColor}
+                      tick={{ fill: chartTickColor, fontSize: 12 }}
+                      tickLine={{ stroke: chartAxisColor }}
+                      axisLine={{ stroke: chartAxisColor }}
                       tickFormatter={(v) => formatCurrency(v)}
-                      label={{ value: 'Projected value', angle: -90, position: 'insideLeft', fill: 'rgba(255,255,255,0.7)' }}
+                      label={{ value: 'Projected value', angle: -90, position: 'insideLeft', fill: chartAxisLabelColor }}
                     />
                     <Tooltip
-                      contentStyle={{
-                        background: 'rgba(10, 30, 60, 0.95)',
-                        border: '1px solid rgba(255,255,255,0.15)',
-                        borderRadius: '8px',
-                        color: '#e8eaf0',
-                      }}
-                      labelStyle={{ color: 'rgba(255,255,255,0.9)' }}
+                      contentStyle={tooltipStyle}
+                      labelStyle={{ color: chartTickColor }}
                       formatter={(value, name) => {
                         const fund = chartData.selectedFunds.find((f) => f.id === name)
                         return [formatCurrency(value), fund ? fund.label : name]
@@ -325,14 +357,13 @@ export default function CompareChartsPage() {
                       labelFormatter={(label) => `Year ${label}`}
                     />
                     <Legend
-                      wrapperStyle={{ paddingTop: 16 }}
+                      wrapperStyle={{ paddingTop: 16, color: isLight ? 'rgba(13,31,51,0.8)' : 'rgba(232,234,240,0.8)' }}
                       formatter={(value) => {
                         const fund = chartData.selectedFunds.find((f) => f.id === value)
                         return fund ? fund.label : value
                       }}
                       iconType="line"
                       iconSize={10}
-                      stroke="rgba(255,255,255,0.5)"
                     />
                     {chartData.selectedFunds.map((f, i) => (
                       <Line
@@ -356,10 +387,17 @@ export default function CompareChartsPage() {
             <div
               className="compare-charts-modal-backdrop"
               onClick={() => !saving && setSaveModalOpen(false)}
+              onKeyDown={(e) => { if (e.key === 'Escape' && !saving) setSaveModalOpen(false) }}
               role="presentation"
             >
-              <div className="compare-charts-modal" onClick={(e) => e.stopPropagation()}>
-                <h3 className="compare-charts-modal__title">Save chart</h3>
+              <div
+                className="compare-charts-modal"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="save-chart-heading"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <h3 id="save-chart-heading" className="compare-charts-modal__title">Save chart</h3>
                 <form onSubmit={handleSaveChart} className="compare-charts-modal__form">
                   <label className="compare-charts-modal__label" htmlFor="chart-title">
                     Title
@@ -372,9 +410,12 @@ export default function CompareChartsPage() {
                     onChange={(e) => setSaveTitle(e.target.value)}
                     placeholder="e.g. Retirement comparison"
                     autoFocus
+                    required
+                    aria-required="true"
                     disabled={saving}
+                    aria-describedby={saveError ? 'save-chart-error' : undefined}
                   />
-                  {saveError && <p className="compare-charts-modal__error" role="alert">{saveError}</p>}
+                  {saveError && <p id="save-chart-error" className="compare-charts-modal__error" role="alert" aria-live="assertive">{saveError}</p>}
                   <div className="compare-charts-modal__actions">
                     <button
                       type="button"

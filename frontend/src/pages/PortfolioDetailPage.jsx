@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import Navbar from '../components/Navbar'
-import TickerTape from '../components/TickerTape'
 import { getPortfolio, updatePortfolio, addHolding, removeHolding } from '../services/portfolioApi'
 import './PortfolioDetailPage.css'
 
@@ -133,9 +132,8 @@ export default function PortfolioDetailPage() {
     return (
       <>
         <Navbar />
-        <TickerTape />
-        <main className="portfolio-detail-page">
-          <p className="portfolio-detail-loading">Loading…</p>
+        <main id="main-content" className="portfolio-detail-page">
+          <p className="portfolio-detail-loading" role="status" aria-live="polite">Loading…</p>
         </main>
       </>
     )
@@ -145,10 +143,9 @@ export default function PortfolioDetailPage() {
     return (
       <>
         <Navbar />
-        <TickerTape />
-        <main className="portfolio-detail-page">
+        <main id="main-content" className="portfolio-detail-page">
           <div className="portfolio-detail-section">
-            <p className="portfolio-detail-error">{error || 'Portfolio not found'}</p>
+            <p className="portfolio-detail-error" role="alert">{error || 'Portfolio not found'}</p>
             <button type="button" className="portfolio-detail-back" onClick={() => navigate('/portfolios')}>
               ← Back to portfolios
             </button>
@@ -164,8 +161,7 @@ export default function PortfolioDetailPage() {
   return (
     <>
       <Navbar />
-      <TickerTape />
-      <main className="portfolio-detail-page">
+      <main id="main-content" className="portfolio-detail-page">
         <div className="portfolio-detail-section">
           <button type="button" className="portfolio-detail-back" onClick={() => navigate('/portfolios')}>
             ← Back to portfolios
@@ -195,6 +191,7 @@ export default function PortfolioDetailPage() {
               onFocus={() => setEditingName(true)}
               role="button"
               tabIndex={0}
+              aria-label={`Edit portfolio name: ${portfolio.name}`}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault()
@@ -214,19 +211,19 @@ export default function PortfolioDetailPage() {
                 <table className="portfolio-detail-table">
                   <thead>
                     <tr>
-                      <th>Fund Name</th>
-                      <th>Shares</th>
-                      <th>Purchase Price</th>
-                      <th>Purchase Date</th>
-                      <th aria-label="Actions" />
+                      <th scope="col">Fund Name</th>
+                      <th scope="col">Shares</th>
+                      <th scope="col">Purchase Price</th>
+                      <th scope="col">Purchase Date</th>
+                      <th scope="col" aria-label="Actions" />
                     </tr>
                   </thead>
                   <tbody>
                     {holdings.map((h) => (
                       <tr key={h.id}>
-                        <td className="portfolio-detail-table__fund">
+                        <th scope="row" className="portfolio-detail-table__fund">
                           {FUND_LABEL_BY_ID[h.fundId] ?? h.fundId}
-                        </td>
+                        </th>
                         <td>{Number(h.shares).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 4 })}</td>
                         <td>{formatCurrency(h.purchasePrice)}</td>
                         <td>{formatDate(h.purchaseDate)}</td>
@@ -236,6 +233,7 @@ export default function PortfolioDetailPage() {
                             className="portfolio-detail-remove-btn"
                             onClick={() => handleRemoveHolding(h.id)}
                             disabled={removingId === h.id}
+                            aria-label={`Remove ${FUND_LABEL_BY_ID[h.fundId] ?? h.fundId} holding`}
                           >
                             Remove
                           </button>

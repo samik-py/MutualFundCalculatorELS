@@ -164,6 +164,10 @@ export default function PredictorForm() {
                 setYears(parseInt(e.target.value))
                 setHasCalculated(false)
               }}
+              aria-valuemin={1}
+              aria-valuemax={30}
+              aria-valuenow={years}
+              aria-valuetext={`${years} ${years === 1 ? 'year' : 'years'}`}
             />
             <div className="slider-ticks">
               <span>1yr</span>
@@ -185,7 +189,7 @@ export default function PredictorForm() {
             ) : (
               <>
                 <span>Calculate Future Value</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="calc-button__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="calc-button__icon" aria-hidden="true" focusable="false">
                   <path d="M13 7l5 5m0 0l-5 5m5-5H6" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </>
@@ -194,7 +198,7 @@ export default function PredictorForm() {
 
           {/* ── Result Panel ── */}
           {hasCalculated && result && (
-            <div className="result-panel">
+            <div className="result-panel" role="region" aria-label="Projection results" aria-live="polite" aria-atomic="true">
               <div className="result-panel__inner">
                 <div className="result-main">
                   <span className="result-label">Projected Value in {years} years</span>

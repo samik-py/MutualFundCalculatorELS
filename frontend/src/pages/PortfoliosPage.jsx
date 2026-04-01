@@ -69,9 +69,9 @@ export default function PortfoliosPage() {
     return (
       <>
         <Navbar />
-        <main className="portfolios-page">
+        <main id="main-content" className="portfolios-page">
           <div className="portfolios-section">
-            <p className="portfolios-loading">Loading portfolios…</p>
+            <p className="portfolios-loading" role="status" aria-live="polite">Loading portfolios…</p>
           </div>
         </main>
       </>
@@ -81,9 +81,9 @@ export default function PortfoliosPage() {
   return (
     <>
       <Navbar />
-      <main className="portfolios-page">
+      <main id="main-content" className="portfolios-page">
         <div className="portfolios-section">
-          <header className="portfolios-header">
+          <header className="portfolios-header" data-tour="portfolios">
             <h1 className="portfolios-title">My Portfolios</h1>
             <p className="portfolios-subtitle">View and manage your portfolios</p>
             <button
@@ -101,12 +101,21 @@ export default function PortfoliosPage() {
             </div>
           )}
 
-          <div className="portfolios-grid">
+          <div className="portfolios-grid" role="list">
             {portfolios.map((p) => (
               <article
                 key={p.id}
                 className="portfolio-card"
+                role="listitem"
+                tabIndex={deleteConfirm === p.id ? -1 : 0}
                 onClick={() => deleteConfirm !== p.id && navigate(`/portfolios/${p.id}`)}
+                onKeyDown={(e) => {
+                  if ((e.key === 'Enter' || e.key === ' ') && deleteConfirm !== p.id) {
+                    e.preventDefault()
+                    navigate(`/portfolios/${p.id}`)
+                  }
+                }}
+                aria-label={`${p.name}, ${p.holdingCount} ${p.holdingCount === 1 ? 'holding' : 'holdings'}, created ${formatDate(p.createdAt)}`}
               >
                 <div className="portfolio-card__content">
                   <h2 className="portfolio-card__name">{p.name}</h2>
@@ -118,10 +127,11 @@ export default function PortfoliosPage() {
                 <div className="portfolio-card__actions">
                   {deleteConfirm === p.id ? (
                     <>
-                      <span className="portfolio-card__confirm-text">Delete?</span>
+                      <span className="portfolio-card__confirm-text" role="status">Delete?</span>
                       <button
                         type="button"
                         className="portfolio-card__btn portfolio-card__btn--confirm"
+                        aria-label={`Confirm delete ${p.name}`}
                         onClick={(e) => {
                           e.stopPropagation()
                           handleDelete(p.id)
@@ -132,6 +142,7 @@ export default function PortfoliosPage() {
                       <button
                         type="button"
                         className="portfolio-card__btn portfolio-card__btn--cancel"
+                        aria-label={`Cancel delete ${p.name}`}
                         onClick={(e) => {
                           e.stopPropagation()
                           setDeleteConfirm(null)
@@ -167,13 +178,17 @@ export default function PortfoliosPage() {
           <div
             className="portfolios-modal-backdrop"
             onClick={() => !creating && setModalOpen(false)}
+            onKeyDown={(e) => { if (e.key === 'Escape' && !creating) setModalOpen(false) }}
             role="presentation"
           >
             <div
               className="portfolios-modal"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="create-portfolio-heading"
               onClick={(e) => e.stopPropagation()}
             >
-              <h3 className="portfolios-modal__title">New Portfolio</h3>
+              <h3 id="create-portfolio-heading" className="portfolios-modal__title">New Portfolio</h3>
               <form onSubmit={handleCreate} className="portfolios-modal__form">
                 <label className="portfolios-modal__label" htmlFor="portfolio-name">
                   Name
@@ -186,6 +201,8 @@ export default function PortfoliosPage() {
                   onChange={(e) => setNewName(e.target.value)}
                   placeholder="e.g. Retirement 2030"
                   autoFocus
+                  required
+                  aria-required="true"
                   disabled={creating}
                 />
                 <div className="portfolios-modal__actions">
