@@ -35,7 +35,7 @@ class MutualFundControllerTest {
 
     MutualFundController controller = new MutualFundController(
         finance,
-        new PortfolioService(),
+        new PortfolioService(new HeuristicPortfolioProfileClassifier()),
         catalog,
         compare,
         monteCarlo,

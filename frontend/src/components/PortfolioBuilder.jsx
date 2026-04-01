@@ -178,12 +178,12 @@ export default function PortfolioBuilder() {
         <PortfolioPanel
           name={nameA} setName={setNameA}
           holdings={holdingsA} setHoldings={setHoldingsA}
-          allFunds={allFunds} color="#d1a153"
+          allFunds={allFunds} color="#54779F"
         />
         <PortfolioPanel
           name={nameB} setName={setNameB}
           holdings={holdingsB} setHoldings={setHoldingsB}
-          allFunds={allFunds} color="#67e8f9"
+          allFunds={allFunds} color="#A8BFDC"
         />
       </div>
 
@@ -239,8 +239,8 @@ export default function PortfolioBuilder() {
           {/* Stats */}
           <div className="pb-stats">
             {[
-              { name: result.nameA, ret: result.returnA, final: finalA, color: '#d1a153' },
-              { name: result.nameB, ret: result.returnB, final: finalB, color: '#67e8f9' },
+              { name: result.nameA, ret: result.returnA, final: finalA, color: '#54779F' },
+              { name: result.nameB, ret: result.returnB, final: finalB, color: '#A8BFDC' },
             ].map(({ name, ret, final, color }) => (
               <div key={name} className="pb-stat-card">
                 <div className="pb-stat-dot" style={{ background: color }} />
@@ -276,8 +276,8 @@ export default function PortfolioBuilder() {
               />
               <Tooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{ paddingTop: 16, fontSize: 11, color: 'rgba(232,234,240,0.6)' }} />
-              <Line type="monotone" dataKey={result.nameA} stroke="#d1a153" strokeWidth={2.5} dot={false} activeDot={{ r: 4 }} />
-              <Line type="monotone" dataKey={result.nameB} stroke="#67e8f9" strokeWidth={2.5} dot={false} activeDot={{ r: 4 }} />
+              <Line type="monotone" dataKey={result.nameA} stroke="#54779F" strokeWidth={2.5} dot={false} activeDot={{ r: 4 }} />
+              <Line type="monotone" dataKey={result.nameB} stroke="#A8BFDC" strokeWidth={2.5} dot={false} activeDot={{ r: 4 }} />
             </LineChart>
           </ResponsiveContainer>
 
@@ -289,4 +289,3 @@ export default function PortfolioBuilder() {
     </div>
   )
 }
-

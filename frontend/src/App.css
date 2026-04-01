@@ -2,21 +2,21 @@
    CSS Variables — Design System
 ───────────────────────────────────────────── */
 :root {
-  --bg-deep: #041024;
-  --bg-mid: #071830;
-  --gold: #d1a153;
-  --gold-bright: #e8b96a;
-  --cyan: #67e8f9;
+  --bg-deep: #061426;
+  --bg-mid: #10233d;
+  --gold: #7399C6;
+  --gold-bright: #a8bfdc;
+  --cyan: #7399C6;
   --white: #ffffff;
-  --text-primary: #e8eaf0;
-  --text-muted: rgba(232, 234, 240, 0.55);
-  --text-subtle: rgba(232, 234, 240, 0.35);
-  --glass-bg: rgba(255, 255, 255, 0.04);
-  --glass-bg-hover: rgba(255, 255, 255, 0.07);
-  --glass-border: rgba(255, 255, 255, 0.09);
-  --glass-border-hover: rgba(255, 255, 255, 0.18);
-  --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --text-primary: #edf2f8;
+  --text-muted: rgba(237, 242, 248, 0.68);
+  --text-subtle: rgba(237, 242, 248, 0.46);
+  --glass-bg: rgba(115, 153, 198, 0.08);
+  --glass-bg-hover: rgba(115, 153, 198, 0.13);
+  --glass-border: rgba(115, 153, 198, 0.18);
+  --glass-border-hover: rgba(168, 191, 220, 0.34);
+  --font-serif: 'Goldman Sans', 'Neue Haas Grotesk Text Pro', 'Helvetica Neue', Arial, sans-serif;
+  --font-sans: 'Goldman Sans', 'Neue Haas Grotesk Text Pro', 'Helvetica Neue', Arial, sans-serif;
   --transition-base: 0.3s ease;
   --transition-slow: 0.8s ease;
 }
@@ -114,9 +114,9 @@ main {
   background: var(--bg-deep);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(209, 161, 83, 0.3);
+  background: rgba(115, 153, 198, 0.3);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(209, 161, 83, 0.5);
+  background: rgba(115, 153, 198, 0.5);
 }

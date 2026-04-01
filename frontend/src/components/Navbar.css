@@ -28,10 +28,10 @@
   background: linear-gradient(
     to right,
     transparent 0%,
-    rgba(209, 161, 83, 0.18) 10%,
-    rgba(209, 161, 83, 0.45) 30%,
-    rgba(209, 161, 83, 0.45) 70%,
-    rgba(209, 161, 83, 0.18) 90%,
+    rgba(115, 153, 198, 0.18) 10%,
+    rgba(115, 153, 198, 0.45) 30%,
+    rgba(115, 153, 198, 0.45) 70%,
+    rgba(115, 153, 198, 0.18) 90%,
     transparent 100%
   );
   transition: opacity 0.3s ease;
@@ -42,10 +42,10 @@
   background: linear-gradient(
     to right,
     transparent 0%,
-    rgba(209, 161, 83, 0.3) 10%,
-    rgba(209, 161, 83, 0.7) 30%,
-    rgba(209, 161, 83, 0.7) 70%,
-    rgba(209, 161, 83, 0.3) 90%,
+    rgba(115, 153, 198, 0.3) 10%,
+    rgba(115, 153, 198, 0.7) 30%,
+    rgba(115, 153, 198, 0.7) 70%,
+    rgba(115, 153, 198, 0.3) 90%,
     transparent 100%
   );
 }
@@ -77,7 +77,7 @@
   justify-content: center;
   width: 34px;
   height: 34px;
-  border: 1px solid rgba(209, 161, 83, 0.6);
+  border: 1px solid rgba(115, 153, 198, 0.6);
   font-family: var(--font-serif);
   font-size: 0.95rem;
   font-weight: 600;
@@ -88,7 +88,7 @@
 }
 
 .navbar__brand:hover .navbar__monogram {
-  background: rgba(209, 161, 83, 0.08);
+  background: rgba(115, 153, 198, 0.08);
   border-color: var(--gold);
 }
 
@@ -113,7 +113,7 @@
   font-size: 0.6rem;
   font-weight: 400;
   letter-spacing: 0.14em;
-  color: rgba(209, 161, 83, 0.7);
+  color: rgba(115, 153, 198, 0.7);
   text-transform: uppercase;
   line-height: 1.2;
 }
@@ -172,8 +172,8 @@
 .navbar__link--tour {
   background: none;
   cursor: pointer;
-  border: 1px solid rgba(103, 232, 249, 0.3);
-  color: rgba(103, 232, 249, 0.65);
+  border: 1px solid rgba(115, 153, 198, 0.3);
+  color: rgba(115, 153, 198, 0.65);
   margin-left: 2px;
   padding: 6px 18px;
   border-radius: 2px;
@@ -191,14 +191,14 @@
 }
 
 .navbar__link--tour:hover {
-  background: rgba(103, 232, 249, 0.08);
-  border-color: rgba(103, 232, 249, 0.6);
-  color: #67e8f9;
+  background: rgba(115, 153, 198, 0.08);
+  border-color: rgba(115, 153, 198, 0.6);
+  color: #7399C6;
 }
 
 /* CTA link */
 .navbar__link--cta {
-  border: 1px solid rgba(209, 161, 83, 0.45);
+  border: 1px solid rgba(115, 153, 198, 0.45);
   color: var(--gold);
   margin-left: 8px;
   padding: 6px 18px;
@@ -211,7 +211,7 @@
 }
 
 .navbar__link--cta:hover {
-  background: rgba(209, 161, 83, 0.1);
+  background: rgba(115, 153, 198, 0.1);
   border-color: var(--gold);
   color: var(--gold);
 }
@@ -224,7 +224,7 @@
   font-size: 0.72rem;
   font-weight: 400;
   letter-spacing: 0.06em;
-  color: rgba(209, 161, 83, 0.8);
+  color: rgba(115, 153, 198, 0.8);
   white-space: nowrap;
 }
 

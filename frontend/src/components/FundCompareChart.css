@@ -81,7 +81,7 @@
 }
 
 .fcc-chip--on {
-  background: rgba(209, 161, 83, 0.12);
+  background: rgba(115, 153, 198, 0.12);
   border-color: var(--gold);
   color: var(--gold);
 }
@@ -123,7 +123,7 @@
 /* Tooltip */
 .chart-tooltip {
   background: rgba(4, 16, 36, 0.95);
-  border: 1px solid rgba(209, 161, 83, 0.25);
+  border: 1px solid rgba(115, 153, 198, 0.25);
   border-radius: 8px;
   padding: 12px 16px;
   font-size: 0.8rem;

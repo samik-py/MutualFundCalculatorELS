@@ -6,8 +6,8 @@ import { fetchFunds, compareFunds } from '../services/api'
 import './FundCompareChart.css'
 
 const CHART_COLORS = [
-  '#d1a153', '#67e8f9', '#a78bfa', '#5de89e', '#f97316',
-  '#ec4899', '#38bdf8', '#facc15', '#fb923c', '#4ade80',
+  '#54779F', '#7399C6', '#8CAED5', '#A8BFDC', '#C3D4E8',
+  '#4E6E94', '#89A9CE', '#B7CAE1', '#D3E0EE', '#E4EDF6',
 ]
 
 const CATEGORIES = [

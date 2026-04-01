@@ -254,7 +254,7 @@
 }
 
 .hero__feature:hover {
-  border-color: rgba(209, 161, 83, 0.3);
+  border-color: rgba(115, 153, 198, 0.3);
   transform: translateY(-3px);
 }
 
@@ -315,7 +315,7 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--cyan);
-  border: 1px solid rgba(103, 232, 249, 0.25);
+  border: 1px solid rgba(115, 153, 198, 0.25);
   border-radius: 4px;
   padding: 4px 12px;
 }

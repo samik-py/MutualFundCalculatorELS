@@ -30,11 +30,11 @@ function CustomTooltip({ active, payload, label }) {
     <div className="mc-tooltip">
       <div className="mc-tooltip__year">Year {label}</div>
       {[
-        { label: '95th pct.', val: high, color: 'rgba(209,161,83,0.5)' },
-        { label: '75th pct.', val: q3, color: 'rgba(209,161,83,0.7)' },
-        { label: 'Median', val: med, color: '#d1a153' },
-        { label: '25th pct.', val: q1, color: 'rgba(209,161,83,0.7)' },
-        { label: '5th pct.', val: low, color: 'rgba(209,161,83,0.5)' },
+        { label: '95th pct.', val: high, color: 'rgba(115,153,198,0.5)' },
+        { label: '75th pct.', val: q3, color: 'rgba(115,153,198,0.7)' },
+        { label: 'Median', val: med, color: '#7399C6' },
+        { label: '25th pct.', val: q1, color: 'rgba(115,153,198,0.7)' },
+        { label: '5th pct.', val: low, color: 'rgba(115,153,198,0.5)' },
       ].map(({ label: l, val, color }) => val != null && (
         <div key={l} className="mc-tooltip__row">
           <span className="mc-tooltip__dot" style={{ background: color }} />
@@ -233,28 +233,28 @@ export default function MonteCarloChart() {
 
               {/* Stacked bands: p5 (transparent base) → p25-p5 → p75-p25 → p95-p75 */}
               <Area stackId="band" type="monotone" dataKey="p5"
-                fill="transparent" stroke="rgba(209,161,83,0.3)"
+                fill="transparent" stroke="rgba(115,153,198,0.3)"
                 strokeWidth={1} strokeDasharray="4 3"
                 name="5th pct" dot={false} activeDot={false} legendType="none"
               />
               <Area stackId="band" type="monotone" dataKey="p25_delta"
-                fill="rgba(209,161,83,0.08)" stroke="none"
+                fill="rgba(115,153,198,0.08)" stroke="none"
                 name="25th–5th" dot={false} activeDot={false} legendType="none"
               />
               <Area stackId="band" type="monotone" dataKey="p75_delta"
-                fill="rgba(209,161,83,0.18)" stroke="none"
+                fill="rgba(115,153,198,0.18)" stroke="none"
                 name="IQR (25th–75th)" dot={false} activeDot={false} legendType="none"
               />
               <Area stackId="band" type="monotone" dataKey="p95_delta"
-                fill="rgba(209,161,83,0.08)" stroke="rgba(209,161,83,0.3)"
+                fill="rgba(115,153,198,0.08)" stroke="rgba(115,153,198,0.3)"
                 strokeWidth={1} strokeDasharray="4 3"
                 name="95th pct" dot={false} activeDot={false} legendType="none"
               />
 
               {/* Median line */}
               <Line type="monotone" dataKey="Median"
-                stroke="#d1a153" strokeWidth={2.5}
-                dot={false} activeDot={{ r: 4, fill: '#d1a153' }}
+                stroke="#7399C6" strokeWidth={2.5}
+                dot={false} activeDot={{ r: 4, fill: '#7399C6' }}
               />
             </ComposedChart>
           </ResponsiveContainer>

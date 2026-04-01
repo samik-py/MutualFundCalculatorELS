@@ -76,8 +76,8 @@
 }
 
 .gt-card--rf { border-top: 2px solid rgba(93, 232, 158, 0.5); }
-.gt-card--rm { border-top: 2px solid rgba(209, 161, 83, 0.5); }
-.gt-card--erp { border-top: 2px solid rgba(103, 232, 249, 0.5); }
+.gt-card--rm { border-top: 2px solid rgba(115, 153, 198, 0.5); }
+.gt-card--erp { border-top: 2px solid rgba(115, 153, 198, 0.5); }
 
 /* Badge */
 .gt-card__badge {
@@ -95,12 +95,12 @@
 
 .gt-card__badge--moderate {
   color: var(--gold);
-  border-color: rgba(209, 161, 83, 0.35);
+  border-color: rgba(115, 153, 198, 0.35);
 }
 
 .gt-card__badge--derived {
   color: var(--cyan);
-  border-color: rgba(103, 232, 249, 0.35);
+  border-color: rgba(115, 153, 198, 0.35);
 }
 
 /* Metric */
@@ -187,8 +187,8 @@
 /* CAPM formula */
 .gt-capm-formula {
   margin-top: 16px;
-  background: rgba(103, 232, 249, 0.04);
-  border: 1px solid rgba(103, 232, 249, 0.12);
+  background: rgba(115, 153, 198, 0.04);
+  border: 1px solid rgba(115, 153, 198, 0.12);
   border-radius: 6px;
   padding: 10px 14px;
   text-align: center;

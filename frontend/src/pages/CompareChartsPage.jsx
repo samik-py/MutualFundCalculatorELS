@@ -24,7 +24,7 @@ const FUNDS = [
   { id: 'pimco-total', label: 'PIMCO Total Return (PTTRX)' },
 ]
 
-const LINE_COLORS = ['#d1a153', '#67e8f9', '#a78bfa', '#f87171', '#34d399']
+const LINE_COLORS = ['#54779F', '#7399C6', '#8CAED5', '#A8BFDC', '#C3D4E8']
 
 function formatCurrency(value) {
   return new Intl.NumberFormat('en-US', {

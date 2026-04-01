@@ -6,7 +6,7 @@ import { getPortfolios } from '../services/portfolioApi'
 import { getDashboard, getPortfolioPerformance } from '../services/dashboardApi'
 import './DashboardPage.css'
 
-const PIE_COLORS = ['#d1a153', '#67e8f9', '#a78bfa', '#f87171', '#34d399']
+const PIE_COLORS = ['#54779F', '#7399C6', '#8CAED5', '#A8BFDC', '#C3D4E8']
 
 function formatCurrency(value) {
   return new Intl.NumberFormat('en-US', {

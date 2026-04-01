@@ -4,8 +4,8 @@ const PARTICLE_COUNT = 800
 const SPEED = 0.8
 const TRAIL_OPACITY = 0.04
 const INTERACTION_RADIUS = 150
-const GOLD = '#d1a153'
-const CYAN = '#67e8f9'
+const GOLD = '#7399C6'
+const CYAN = '#7399C6'
 
 class Particle {
   constructor(width, height, color) {

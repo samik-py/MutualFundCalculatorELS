@@ -11,6 +11,7 @@ import com.mfcalculator.dto.InvestmentResponse;
 import com.mfcalculator.service.CompareService;
 import com.mfcalculator.service.FinanceService;
 import com.mfcalculator.service.FundCatalogService;
+import com.mfcalculator.service.HeuristicPortfolioProfileClassifier;
 import com.mfcalculator.service.MonteCarloService;
 import com.mfcalculator.service.PortfolioService;
 import org.junit.jupiter.api.Test;
@@ -37,7 +38,7 @@ class MutualFundControllerIntegrationTest {
 
     MutualFundController controller = new MutualFundController(
         financeService,
-        new PortfolioService(),
+        new PortfolioService(new HeuristicPortfolioProfileClassifier()),
         fundCatalogService,
         compareService,
         monteCarloService,

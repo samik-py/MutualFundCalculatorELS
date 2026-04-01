@@ -4,7 +4,7 @@
 .cp-hero {
   position: relative;
   z-index: 1;
-  background: linear-gradient(to bottom, rgba(103,232,249,0.03) 0%, transparent 100%);
+  background: linear-gradient(to bottom, rgba(115,153,198,0.03) 0%, transparent 100%);
   border-bottom: 1px solid var(--glass-border);
 }
 
@@ -48,7 +48,7 @@
   font-family: var(--font-serif);
   font-size: 3rem;
   font-weight: 300;
-  color: rgba(209, 161, 83, 0.25);
+  color: rgba(115, 153, 198, 0.25);
   line-height: 1;
   flex-shrink: 0;
   padding-top: 4px;
@@ -92,7 +92,7 @@
   justify-content: center;
   width: 28px;
   height: 28px;
-  border: 1px solid rgba(209, 161, 83, 0.4);
+  border: 1px solid rgba(115, 153, 198, 0.4);
   font-family: var(--font-serif);
   font-size: 0.75rem;
   color: var(--gold);

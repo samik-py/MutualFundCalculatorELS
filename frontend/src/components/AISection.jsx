@@ -2,13 +2,13 @@ import { useState } from 'react'
 import { getAIPortfolio } from '../services/api'
 import './AISection.css'
 
-const COLORS = ['#d1a153', '#67e8f9', '#a78bfa', 'rgba(255,255,255,0.3)']
+const COLORS = ['#54779F', '#7399C6', '#A8BFDC', 'rgba(255,255,255,0.3)']
 
 function riskColor(level) {
   const l = (level || '').toLowerCase()
-  if (l === 'high') return '#f97316'
-  if (l === 'low') return '#5de89e'
-  return '#67e8f9'
+  if (l.includes('aggressive')) return '#f97316'
+  if (l.includes('conservative')) return '#5de89e'
+  return '#7399C6'
 }
 
 export default function AISection() {
@@ -24,7 +24,7 @@ export default function AISection() {
     setError(null)
     try {
       const data = await getAIPortfolio(prompt)
-      // Backend returns { allocation: [{name, pct}], summary, expectedReturn }
+      // Backend returns { allocation: [{name, pct}], summary, expectedReturn, riskLevel }
       // Attach colors for display
       const enriched = {
         ...data,
@@ -32,7 +32,7 @@ export default function AISection() {
           ...item,
           color: COLORS[i % COLORS.length],
         })),
-        riskLevel: detectRisk(prompt),
+        riskLevel: data.riskLevel || 'Moderate',
       }
       setResponse(enriched)
     } catch (e) {
@@ -161,11 +161,4 @@ export default function AISection() {
       </footer>
     </section>
   )
-}
-
-function detectRisk(prompt) {
-  const lower = prompt.toLowerCase()
-  if (lower.includes('aggressive') || lower.includes('high risk') || lower.includes('growth') || lower.includes('long term') || lower.includes('young')) return 'High'
-  if (lower.includes('conservative') || lower.includes('low risk') || lower.includes('safe') || lower.includes('retire') || lower.includes('preserv')) return 'Low'
-  return 'Moderate'
 }

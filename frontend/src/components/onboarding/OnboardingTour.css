@@ -16,11 +16,11 @@
   z-index: 1000;
   pointer-events: none;
   border-radius: 6px;
-  border: 1.5px solid var(--gold, #d1a153);
+  border: 1.5px solid var(--gold, #7399C6);
   box-shadow:
     0 0 0 9999px rgba(4, 16, 36, 0.82),
-    0 0 0 3px rgba(209, 161, 83, 0.18),
-    0 0 24px 4px rgba(209, 161, 83, 0.22);
+    0 0 0 3px rgba(115, 153, 198, 0.18),
+    0 0 24px 4px rgba(115, 153, 198, 0.22);
   transition: top 0.3s ease, left 0.3s ease, width 0.3s ease, height 0.3s ease;
 }
 
@@ -30,7 +30,7 @@
   z-index: 1001;
   width: 340px;
   background: rgba(6, 22, 50, 0.96);
-  border: 1px solid rgba(209, 161, 83, 0.35);
+  border: 1px solid rgba(115, 153, 198, 0.35);
   border-radius: 10px;
   padding: 24px;
   backdrop-filter: blur(16px);
@@ -86,19 +86,19 @@
 }
 
 .tour-step-label {
-  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-family: var(--font-sans, 'Helvetica Neue', Arial, sans-serif);
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--gold, #d1a153);
+  color: var(--gold, #7399C6);
 }
 
 .tour-skip {
   background: none;
   border: none;
   cursor: pointer;
-  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-family: var(--font-sans, 'Helvetica Neue', Arial, sans-serif);
   font-size: 11px;
   color: rgba(255, 255, 255, 0.35);
   padding: 0;
@@ -111,7 +111,7 @@
 
 /* ─── Content ─── */
 .tour-title {
-  font-family: var(--font-serif, 'Cormorant Garamond', serif);
+  font-family: var(--font-serif, 'Helvetica Neue', Arial, sans-serif);
   font-size: 22px;
   font-weight: 500;
   color: #fff;
@@ -126,7 +126,7 @@
 }
 
 .tour-body {
-  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-family: var(--font-sans, 'Helvetica Neue', Arial, sans-serif);
   font-size: 13px;
   line-height: 1.65;
   color: rgba(255, 255, 255, 0.72);
@@ -151,13 +151,13 @@
 }
 
 .tour-dot--done {
-  background: rgba(209, 161, 83, 0.45);
+  background: rgba(115, 153, 198, 0.45);
 }
 
 .tour-dot--active {
-  background: var(--gold, #d1a153);
+  background: var(--gold, #7399C6);
   transform: scale(1.35);
-  box-shadow: 0 0 6px rgba(209, 161, 83, 0.6);
+  box-shadow: 0 0 6px rgba(115, 153, 198, 0.6);
 }
 
 /* ─── Navigation buttons ─── */
@@ -172,7 +172,7 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-family: var(--font-sans, 'Helvetica Neue', Arial, sans-serif);
   font-size: 13px;
   font-weight: 500;
   border-radius: 6px;
@@ -194,8 +194,8 @@
 }
 
 .tour-btn--primary {
-  background: var(--gold, #d1a153);
-  border: 1px solid var(--gold, #d1a153);
+  background: var(--gold, #7399C6);
+  border: 1px solid var(--gold, #7399C6);
   color: #041024;
   font-weight: 600;
 }

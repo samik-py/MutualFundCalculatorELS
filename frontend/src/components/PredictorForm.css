@@ -238,12 +238,12 @@
   border-radius: 50%;
   background: var(--gold);
   cursor: pointer;
-  box-shadow: 0 0 0 3px rgba(209, 161, 83, 0.15), 0 2px 8px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 0 3px rgba(115, 153, 198, 0.15), 0 2px 8px rgba(0, 0, 0, 0.4);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .field-range::-webkit-slider-thumb:hover {
   transform: scale(1.2);
-  box-shadow: 0 0 0 6px rgba(209, 161, 83, 0.2), 0 2px 12px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 0 6px rgba(115, 153, 198, 0.2), 0 2px 12px rgba(0, 0, 0, 0.5);
 }
 
 /* Thumb — Firefox */
@@ -254,7 +254,7 @@
   background: var(--gold);
   cursor: pointer;
   border: none;
-  box-shadow: 0 0 0 3px rgba(209, 161, 83, 0.15);
+  box-shadow: 0 0 0 3px rgba(115, 153, 198, 0.15);
 }
 
 .slider-ticks {
@@ -301,7 +301,7 @@
 .calc-button:hover:not(.calc-button--disabled) {
   filter: brightness(1.12);
   transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(209, 161, 83, 0.3);
+  box-shadow: 0 8px 32px rgba(115, 153, 198, 0.3);
 }
 
 .calc-button:hover:not(.calc-button--disabled) .calc-button__icon {

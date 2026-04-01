@@ -4,7 +4,7 @@
 .pp-hero {
   position: relative;
   z-index: 1;
-  background: linear-gradient(to bottom, rgba(209,161,83,0.03) 0%, transparent 100%);
+  background: linear-gradient(to bottom, rgba(115,153,198,0.03) 0%, transparent 100%);
   border-bottom: 1px solid var(--glass-border);
 }
 
