@@ -2,6 +2,14 @@ import { useState, useRef, useEffect } from 'react'
 import { fetchFunds, calculateFutureValue } from '../services/api'
 import './PredictorForm.css'
 
+const YEAR_TICKS = [
+  { value: 1, label: '1yr', align: 'start' },
+  { value: 5, label: '5yr', align: 'center' },
+  { value: 10, label: '10yr', align: 'center' },
+  { value: 20, label: '20yr', align: 'center' },
+  { value: 30, label: '30yr', align: 'end' },
+]
+
 function formatCurrency(value) {
   return new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -170,11 +178,15 @@ export default function PredictorForm() {
               aria-valuetext={`${years} ${years === 1 ? 'year' : 'years'}`}
             />
             <div className="slider-ticks">
-              <span>1yr</span>
-              <span>5yr</span>
-              <span>10yr</span>
-              <span>20yr</span>
-              <span>30yr</span>
+              {YEAR_TICKS.map((tick) => (
+                <span
+                  key={tick.value}
+                  className={`slider-ticks__label slider-ticks__label--${tick.align}`}
+                  style={{ left: `${((tick.value - 1) / 29) * 100}%` }}
+                >
+                  {tick.label}
+                </span>
+              ))}
             </div>
           </div>
 

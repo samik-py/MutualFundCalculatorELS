@@ -99,10 +99,10 @@ body {
 }
 
 /* ─────────────────────────────────────────────
-   Main Content — clear fixed navbar + ticker
+   Main Content — clear fixed navbar
 ───────────────────────────────────────────── */
 main {
-  padding-top: 88px; /* 56px navbar + 32px ticker */
+  padding-top: 56px;
 }
 
 /* ─────────────────────────────────────────────

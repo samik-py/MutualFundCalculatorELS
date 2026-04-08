@@ -26,6 +26,13 @@ const FUNDS = [
 ]
 
 const LINE_COLORS = ['#54779F', '#7399C6', '#8CAED5', '#A8BFDC', '#C3D4E8']
+const YEAR_TICKS = [
+  { value: 1, label: '1yr', align: 'start' },
+  { value: 5, label: '5yr', align: 'center' },
+  { value: 10, label: '10yr', align: 'center' },
+  { value: 20, label: '20yr', align: 'center' },
+  { value: 30, label: '30yr', align: 'end' },
+]
 
 function formatCurrency(value) {
   return new Intl.NumberFormat('en-US', {
@@ -280,12 +287,13 @@ export default function CompareChartsPage() {
                 aria-valuetext={`${years} ${years === 1 ? 'year' : 'years'}`}
               />
               <div className="slider-ticks">
-                {[1, 5, 10, 20, 30].map((v) => (
+                {YEAR_TICKS.map((tick) => (
                   <span
-                    key={v}
-                    style={{ left: `calc(${((v - 1) / 29) * 100}% + ${(0.5 - (v - 1) / 29) * 20}px)` }}
+                    key={tick.value}
+                    className={`slider-ticks__label slider-ticks__label--${tick.align}`}
+                    style={{ left: `${((tick.value - 1) / 29) * 100}%` }}
                   >
-                    {v}yr
+                    {tick.label}
                   </span>
                 ))}
               </div>
@@ -329,7 +337,7 @@ export default function CompareChartsPage() {
               </div>
               <div className="compare-charts-chart-wrap">
                 <ResponsiveContainer width="100%" height={420}>
-                  <LineChart data={chartData.data} margin={{ top: 16, right: 16, left: 8, bottom: 8 }}>
+                  <LineChart data={chartData.data} margin={{ top: 16, right: 16, left: 30, bottom: 8 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke={chartGridColor} vertical={false} />
                     <XAxis
                       dataKey="year"
@@ -340,12 +348,19 @@ export default function CompareChartsPage() {
                       label={{ value: 'Years', position: 'insideBottom', offset: -4, fill: chartAxisLabelColor }}
                     />
                     <YAxis
+                      width={96}
                       stroke={chartAxisColor}
                       tick={{ fill: chartTickColor, fontSize: 12 }}
                       tickLine={{ stroke: chartAxisColor }}
                       axisLine={{ stroke: chartAxisColor }}
                       tickFormatter={(v) => formatCurrency(v)}
-                      label={{ value: 'Projected value', angle: -90, position: 'insideLeft', fill: chartAxisLabelColor }}
+                      label={{
+                        value: 'Projected value',
+                        angle: -90,
+                        position: 'insideLeft',
+                        offset: -10,
+                        fill: chartAxisLabelColor,
+                      }}
                     />
                     <Tooltip
                       contentStyle={tooltipStyle}

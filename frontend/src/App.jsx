@@ -5,7 +5,6 @@ import { ThemeProvider } from './context/ThemeContext'
 import { OnboardingProvider } from './components/onboarding/OnboardingContext'
 import OnboardingTour from './components/onboarding/OnboardingTour'
 import ProtectedRoute from './components/ProtectedRoute'
-import TickerTape from './components/TickerTape'
 import LandingPage from './pages/LandingPage'
 import PredictorPage from './pages/PredictorPage'
 import LoginPage from './pages/LoginPage'
@@ -26,7 +25,6 @@ export default function App() {
         <BrowserRouter>
           <OnboardingProvider>
             <OnboardingTour />
-          <TickerTape />
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/predictor" element={<PredictorPage />} />

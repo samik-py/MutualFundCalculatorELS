@@ -13,7 +13,19 @@ public class HeuristicPortfolioProfileClassifier implements PortfolioProfileClas
 
     String lower = prompt.toLowerCase(Locale.ROOT);
 
-    if (containsAny(lower, "very aggressive", "maximum growth", "highest risk", "speculative")) {
+    if (containsAny(
+        lower,
+        "very aggressive",
+        "maximum growth",
+        "max growth",
+        "highest risk",
+        "speculative",
+        "swing for the fences",
+        "hyper growth",
+        "moonshot",
+        "extremely aggressive"
+    ) || (containsAny(lower, "high risk", "major volatility", "big swings", "large drawdowns")
+        && containsAny(lower, "long horizon", "20 years", "25 years", "30 years", "maximize growth"))) {
       return PortfolioRiskProfile.VERY_AGGRESSIVE;
     }
     if (containsAny(lower, "slightly aggressive", "moderately aggressive")) {
@@ -28,7 +40,22 @@ public class HeuristicPortfolioProfileClassifier implements PortfolioProfileClas
     if (containsAny(lower, "conservative", "low risk", "safe", "retire", "preserv")) {
       return PortfolioRiskProfile.CONSERVATIVE;
     }
-    if (containsAny(lower, "aggressive", "high risk", "growth", "long term", "young")) {
+    if (containsAny(
+        lower,
+        "aggressive",
+        "high risk",
+        "growth",
+        "long term",
+        "long-term",
+        "young",
+        "decades",
+        "comfortable with volatility",
+        "can handle volatility",
+        "can tolerate volatility",
+        "comfortable with drawdowns",
+        "maximize returns",
+        "capital appreciation"
+    )) {
       return PortfolioRiskProfile.AGGRESSIVE;
     }
 

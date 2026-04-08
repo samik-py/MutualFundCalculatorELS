@@ -275,11 +275,28 @@
   color: var(--text-subtle);
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  padding: 0 2px;
+}
+
+.slider-ticks__label {
+  position: absolute;
+  top: 0;
+  white-space: nowrap;
+}
+
+.slider-ticks__label--start {
+  transform: translateX(0);
+}
+
+.slider-ticks__label--center {
+  transform: translateX(-50%);
+}
+
+.slider-ticks__label--end {
+  transform: translateX(-100%);
 }
 
 .slider-ticks span {
-  position: absolute;
-  transform: translateX(-50%);
   white-space: nowrap;
 }
 

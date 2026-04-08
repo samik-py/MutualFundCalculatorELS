@@ -26,7 +26,7 @@ export default function TickerTape() {
       role="marquee"
       aria-label="Live market ticker — major indices, mutual funds, and commodities"
       aria-live="off"
-    >
+    >zzzzzz
       <div className="ticker__label" aria-hidden="true">LIVE</div>
       {/* aria-hidden: the scrolling track is presentational; a static summary is provided below */}
       <div className="ticker__track" aria-hidden="true">

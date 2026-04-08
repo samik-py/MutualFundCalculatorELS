@@ -36,8 +36,12 @@ public class GeminiPortfolioProfileClassifier implements PortfolioProfileClassif
       CONSERVATIVE
       VERY_CONSERVATIVE
 
-      Prefer the middle category when the prompt is ambiguous.
       Base the classification on stated risk tolerance, time horizon, need for income, drawdown tolerance, age/life stage cues, and preservation vs growth language.
+      Do not avoid aggressive categories just because they imply higher risk. If the user clearly prioritizes growth, accepts volatility, has a long time horizon, or explicitly asks for aggressive positioning, choose AGGRESSIVE or VERY_AGGRESSIVE.
+      Use VERY_AGGRESSIVE for language like maximum growth, highest growth, willing to take major losses, high volatility is acceptable, swing for the fences, speculative, or very long horizon with explicit high-risk tolerance.
+      Use AGGRESSIVE for language like aggressive growth, strong growth focus, long-term growth, comfortable with significant volatility, can handle drawdowns, or young investor with decades until withdrawal.
+      Use MODERATE only when the signal is genuinely mixed or balanced between growth and preservation.
+      If the user explicitly names a risk tier, honor that tier unless the rest of the prompt directly contradicts it.
       """;
 
   private final RestTemplate restTemplate;
