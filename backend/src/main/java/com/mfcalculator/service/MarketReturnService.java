@@ -8,8 +8,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import java.net.URI;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @Service
 public class MarketReturnService implements MarketReturnProvider {
@@ -36,20 +42,21 @@ public class MarketReturnService implements MarketReturnProvider {
   @Override
   public double marketReturn() {
     if (isCacheFresh()) {
-      logger.debug("Market return cache hit: rate={}", cachedRate);
+      logger.info("[Yahoo S&P500] cache hit -> Rm={}", cachedRate);
       return cachedRate;
     }
 
+    logger.info("[Yahoo S&P500] calling Yahoo Finance ^GSPC 5y chart...");
     double fetched = fetchSp500Cagr();
     if (Double.isNaN(fetched)) {
       double cached = cachedOrFallback();
-      logger.debug("Market return fetch failed, using cached/fallback rate={}", cached);
+      logger.warn("[Yahoo S&P500] !! fetch failed -> using cached/fallback Rm={}", cached);
       return cached;
     }
 
     cachedRate = fetched;
     lastFetchedAt = Instant.now();
-    logger.debug("Market return fetched from Yahoo Finance: rate={}", cachedRate);
+    logger.info("[Yahoo S&P500] OK -> live Rm={}", cachedRate);
     return cachedRate;
   }
 
@@ -70,8 +77,16 @@ public class MarketReturnService implements MarketReturnProvider {
   private double fetchSp500Cagr() {
     Map<String, Object> response;
     try {
-      response = restTemplate.getForObject(SP500_CHART_URL, Map.class);
+      // Yahoo Finance blocks requests without a browser-like User-Agent.
+      HttpHeaders headers = new HttpHeaders();
+      headers.add("User-Agent", "Mozilla/5.0");
+      ResponseEntity<Map> entity = restTemplate.exchange(
+          SP500_CHART_URL, HttpMethod.GET, new HttpEntity<>(headers), Map.class);
+      @SuppressWarnings("unchecked")
+      Map<String, Object> body = entity.getBody();
+      response = body;
     } catch (RuntimeException ex) {
+      logger.warn("[Yahoo S&P500] HTTP error: {}", ex.getMessage());
       return Double.NaN;
     }
 

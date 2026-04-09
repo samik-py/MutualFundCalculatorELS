@@ -42,25 +42,26 @@ public class FredRiskFreeRateClient implements RiskFreeRateProvider {
   @Override
   public double riskFreeRate() {
     if (apiKey == null || apiKey.isBlank()) {
-      logger.debug("Risk-free rate fallback: missing FRED apiKey, rate={}", fallbackRiskFreeRate);
+      logger.warn("[FRED] !! no API key set -> using fallback Rf={}", fallbackRiskFreeRate);
       return fallbackRiskFreeRate;
     }
 
     if (isCacheFresh()) {
-      logger.debug("Risk-free rate cache hit: rate={}", cachedRate);
+      logger.info("[FRED] cache hit -> Rf={}", cachedRate);
       return cachedRate;
     }
 
+    logger.info("[FRED] calling FRED DGS10 API...");
     double fetched = fetchRiskFreeRate();
     if (Double.isNaN(fetched)) {
       double cached = cachedRateOrDefault();
-      logger.debug("Risk-free rate fetch failed, using cached/fallback rate={}", cached);
+      logger.warn("[FRED] !! FRED call failed -> using cached/fallback Rf={}", cached);
       return cached;
     }
 
     cachedRate = fetched;
     lastFetchedAt = Instant.now();
-    logger.debug("Risk-free rate fetched from FRED: rate={}", cachedRate);
+    logger.info("[FRED] OK -> live Rf={}", cachedRate);
     return cachedRate;
   }
 

@@ -1,6 +1,7 @@
 import { authFetch, buildAuthHeaders } from './authFetch'
+import { API_BASE } from './apiBase'
 
-const BASE = '/api/user/charts'
+const BASE = `${API_BASE}/user/charts`
 
 /**
  * @returns {Promise<Array<{ id: number, title: string, fundIds: string, timeHorizon: number, amount: number, createdAt: string }>>}

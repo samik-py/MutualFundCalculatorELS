@@ -30,33 +30,43 @@ public class FinanceService {
   }
 
   public InvestmentResponse calculate(InvestmentRequest request) {
+    logger.info("/api/calculate fundId={} amount=${} years={}",
+        request.fundId(), request.amount(), request.years());
     double annualReturn = annualReturnFor(request.fundId());
     double futureValue = request.amount() * Math.exp(annualReturn * request.years());
     double gain = futureValue - request.amount();
+    logger.info("/api/calculate result futureValue=${} gain=${} annualReturn={}",
+        String.format("%.2f", futureValue), String.format("%.2f", gain), annualReturn);
     return new InvestmentResponse(futureValue, gain, annualReturn);
   }
 
   public double annualReturnFor(String fundId) {
     Optional<String> ticker = fundCatalogService.resolveTicker(fundId);
+    logger.info("[CAPM] resolved ticker={}", ticker.orElse("(none)"));
+
     double beta = DEFAULT_BETA;
+    boolean betaIsFallback = true;
     if (ticker.isPresent()) {
       double candidate = safeBeta(ticker.get());
       if (!Double.isNaN(candidate)) {
         beta = candidate;
+        betaIsFallback = false;
       }
     }
-    double riskFreeRate = riskFreeRateProvider.riskFreeRate();
-    double expectedReturn = expectedReturnProvider.expectedReturnFor(ticker.orElse(""));
-    double annualReturn = riskFreeRate + beta * (expectedReturn - riskFreeRate);
-    logger.debug(
-        "CAPM inputs: fundId={}, ticker={}, beta={}, riskFreeRate={}, expectedReturn={}, annualReturn={}",
-        fundId,
-        ticker.orElse(null),
+    logger.info("[CAPM] beta={} ({})",
         beta,
-        riskFreeRate,
-        expectedReturn,
-        annualReturn
-    );
+        betaIsFallback ? "FALLBACK - Newton API failed or NaN" : "live from Newton Analytics");
+
+    double riskFreeRate = riskFreeRateProvider.riskFreeRate();
+    logger.info("[CAPM] Rf={} (from FRED DGS10 or fallback)", riskFreeRate);
+
+    double expectedReturn = expectedReturnProvider.expectedReturnFor(ticker.orElse(""));
+    logger.info("[CAPM] expectedReturn={} (Yahoo prev-year or fallback)", expectedReturn);
+
+    double annualReturn = riskFreeRate + beta * (expectedReturn - riskFreeRate);
+    logger.info("[CAPM] annualReturn = Rf + beta*(E[R]-Rf) = {} + {}*({} - {}) = {}",
+        riskFreeRate, beta, expectedReturn, riskFreeRate, annualReturn);
+
     return annualReturn;
   }
 

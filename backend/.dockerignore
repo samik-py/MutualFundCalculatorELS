@@ -1,0 +1,10 @@
+target/
+data/
+.idea/
+.vscode/
+*.log
+*.iml
+run.ps1
+.env
+.env.*
+!.env.example

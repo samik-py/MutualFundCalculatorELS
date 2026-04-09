@@ -1,2 +1,24 @@
 .idea/
+.vscode/
+.DS_Store
+
+# Build output
 backend/target/
+frontend/dist/
+frontend/node_modules/
+
+# Local H2 database files
+backend/data/
+
+# Local launcher scripts that may contain secrets
+backend/run.ps1
+backend/run.sh
+
+# Environment files (NEVER commit real secrets)
+.env
+.env.local
+.env.*.local
+backend/.env
+frontend/.env
+frontend/.env.local
+!**/.env.example

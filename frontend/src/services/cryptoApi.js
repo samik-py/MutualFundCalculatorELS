@@ -1,6 +1,7 @@
 import { authFetch, buildAuthHeaders } from './authFetch'
+import { API_BASE } from './apiBase'
 
-const BASE = '/api/crypto'
+const BASE = `${API_BASE}/crypto`
 
 export async function getCryptoSuite() {
   const response = await authFetch(`${BASE}/suite`, {

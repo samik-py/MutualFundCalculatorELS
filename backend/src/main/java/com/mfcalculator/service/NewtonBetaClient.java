@@ -27,7 +27,7 @@ public class NewtonBetaClient implements BetaProvider {
   @Override
   public double betaFor(String ticker) {
     if (ticker == null || ticker.isBlank()) {
-      logger.debug("Beta provider missing ticker");
+      logger.warn("[Newton] missing ticker");
       return Double.NaN;
     }
     String url = UriComponentsBuilder.fromHttpUrl("https://api.newtonanalytics.com/stock-beta/")
@@ -37,14 +37,18 @@ public class NewtonBetaClient implements BetaProvider {
         .queryParam("observations", OBSERVATIONS)
         .build()
         .toUriString();
-    logger.debug("Beta provider request: url={}", url);
+    logger.info("[Newton] calling stock-beta API for ticker={}", ticker);
     Map<String, Object> response = restTemplate.getForObject(url, Map.class);
     if (response == null) {
-      logger.debug("Beta provider returned null response for ticker={}", ticker);
+      logger.warn("[Newton] !! null response for ticker={}", ticker);
       return Double.NaN;
     }
     double beta = extractBeta(response.get("data"));
-    logger.debug("Beta provider result: ticker={}, beta={}", ticker, beta);
+    if (Double.isNaN(beta)) {
+      logger.warn("[Newton] !! could not parse beta for ticker={}", ticker);
+    } else {
+      logger.info("[Newton] OK ticker={} -> beta={}", ticker, beta);
+    }
     return beta;
   }
 

@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react'
 import { AUTH_EXPIRED_EVENT } from '../services/authFetch'
+import { API_BASE } from '../services/apiBase'
 
 const JWT_KEY = 'jwt'
 const USER_KEY = 'user'
@@ -67,7 +68,7 @@ export function AuthProvider({ children }) {
   }
 
   async function login(email, password) {
-    const res = await fetch('/api/auth/login', {
+    const res = await fetch(`${API_BASE}/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password }),
@@ -80,7 +81,7 @@ export function AuthProvider({ children }) {
   }
 
   async function register(email, password, displayName) {
-    const res = await fetch('/api/auth/register', {
+    const res = await fetch(`${API_BASE}/auth/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password, displayName }),

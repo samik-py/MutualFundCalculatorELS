@@ -1,6 +1,7 @@
 import { buildAuthHeaders, authFetch } from './authFetch'
+import { API_BASE } from './apiBase'
 
-const BASE_URL = '/api'
+const BASE_URL = API_BASE
 
 // ── Existing ──────────────────────────────────────────────────────────────────
 
