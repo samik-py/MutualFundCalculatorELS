@@ -21,8 +21,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class MarketReturnService implements MarketReturnProvider {
   private static final Duration CACHE_TTL = Duration.ofHours(24);
   private static final double YEARS = 5.0;
-  private static final String SP500_CHART_URL =
-      "https://query1.finance.yahoo.com/v8/finance/chart/%5EGSPC?range=5y&interval=1mo";
+  // Use the literal "^GSPC" symbol — UriComponentsBuilder will encode it once.
+  private static final String SP500_SYMBOL = "^GSPC";
   private static final Logger logger = LoggerFactory.getLogger(MarketReturnService.class);
 
   private final RestTemplate restTemplate;
@@ -77,11 +77,21 @@ public class MarketReturnService implements MarketReturnProvider {
   private double fetchSp500Cagr() {
     Map<String, Object> response;
     try {
+      // Build the URI via UriComponentsBuilder so the "^" in "^GSPC" is
+      // encoded exactly once. Passing a pre-encoded string to RestTemplate
+      // would cause double-encoding (%5E -> %255E -> 404 from Yahoo).
+      URI uri = UriComponentsBuilder
+          .fromHttpUrl("https://query1.finance.yahoo.com/v8/finance/chart/{symbol}")
+          .queryParam("range", "5y")
+          .queryParam("interval", "1mo")
+          .buildAndExpand(SP500_SYMBOL)
+          .toUri();
+
       // Yahoo Finance blocks requests without a browser-like User-Agent.
       HttpHeaders headers = new HttpHeaders();
       headers.add("User-Agent", "Mozilla/5.0");
       ResponseEntity<Map> entity = restTemplate.exchange(
-          SP500_CHART_URL, HttpMethod.GET, new HttpEntity<>(headers), Map.class);
+          uri, HttpMethod.GET, new HttpEntity<>(headers), Map.class);
       @SuppressWarnings("unchecked")
       Map<String, Object> body = entity.getBody();
       response = body;
